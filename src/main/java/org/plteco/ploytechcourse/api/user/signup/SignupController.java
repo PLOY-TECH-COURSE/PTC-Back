@@ -18,7 +18,6 @@ public class SignupController {
 
     @PostMapping("/signup")
     public String signup(@RequestBody User user) {
-       signup.signup(user);
-       return "success";
+       return  signup.signup(user);
     }
 }

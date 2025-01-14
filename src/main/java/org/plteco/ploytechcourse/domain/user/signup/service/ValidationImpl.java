@@ -24,10 +24,10 @@ public class ValidationImpl implements Validation {
     private static final int NAME_MIN = 2;
 
     //아이디의 최대 길이 제한
-    private static final int ID_MAX = 15;
+    private static final int UID_MAX = 15;
 
     //아이디의 최소길이 제한
-    private static final int ID_MIN = 4;
+    private static final int UID_MIN = 4;
 
     // 이메일 유효성 검사를 위한 정규 표현식
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
@@ -55,11 +55,11 @@ public class ValidationImpl implements Validation {
      * 또한, 비밀번호는 숫자, 알파벳, 특수문자가 포함되어야 하며, 비밀번호에 ID가 포함되지 않아야 합니다.
      *
      * @param password 사용자가 입력한 비밀번호
-     * @param ID 사용자의 ID (비밀번호에 포함되지 않아야 함)
+     * @param UID 사용자의 ID (비밀번호에 포함되지 않아야 함)
      * @return 비밀번호가 유효하면 true, 그렇지 않으면 false를 반환합니다.
      */
     @Override
-    public boolean isValidPassword(String password, String rePassword, String ID) {
+    public boolean isValidPassword(String password, String rePassword, String UID) {
         // 비밀번호가 null이거나 길이가 유효하지 않으면 false 반환
         if (password == null || password.length() <= PASSWORD_MIN || password.length() >= PASSWORD_MAX) {
             return false;
@@ -73,7 +73,7 @@ public class ValidationImpl implements Validation {
             return false;
         }
         // 비밀번호에 ID가 포함되면 false 반환
-        return !password.contains(ID);
+        return !password.contains(UID);
     }
 
 
@@ -81,13 +81,13 @@ public class ValidationImpl implements Validation {
      * 사용자 ID의 유효성을 검사하는 메서드입니다.
      * ID가 null이 아니고, 길이가 최소 MIN 이상, 최대 MAX 이하인지 확인합니다.
      *
-     * @param ID 사용자의 ID
+     * @param UID 사용자의 ID
      * @return ID가 유효하면 true, 그렇지 않으면 false를 반환합니다.
      */
     @Override
-    public boolean isValidID(String ID) {
+    public boolean isValidID(String UID) {
         // ID가 null이 아니고, 길이가 유효한 범위에 있는지 확인
-        return ID != null && ID.length() >= ID_MIN && ID.length() <= ID_MAX;
+        return UID != null && UID.length() >= UID_MIN && UID.length() <= UID_MAX;
     }
 
     /**
