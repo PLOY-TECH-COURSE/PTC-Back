@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.shared.security;
+package org.plteco.ploytechcourse.shared.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +12,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/signup").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().permitAll();
         return http.build();
     }
 }

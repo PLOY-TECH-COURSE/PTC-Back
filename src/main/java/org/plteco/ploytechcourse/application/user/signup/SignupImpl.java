@@ -1,10 +1,8 @@
 package org.plteco.ploytechcourse.application.user.signup;
 
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.domain.user.signup.model.dto.User;
 import org.plteco.ploytechcourse.domain.user.signup.service.Validation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
