@@ -1,12 +1,10 @@
 package org.plteco.ploytechcourse.api.user.signup;
 
 import lombok.RequiredArgsConstructor;
-import org.checkerframework.checker.units.qual.A;
-import org.plteco.ploytechcourse.application.user.signup.Signup;
-import org.plteco.ploytechcourse.domain.user.signup.model.dto.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.plteco.ploytechcourse.application.user.signup.SendEmailApplication;
+import org.plteco.ploytechcourse.application.user.signup.SignupApplication;
+import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
+import org.plteco.ploytechcourse.application.user.signup.dto.emailDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,10 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class SignupController {
-    private final Signup signup;
+    private final SignupApplication signupApplication;
+    private final SendEmailApplication sendEmailApplication;
 
     @PostMapping("/signup")
-    public String signup(@RequestBody User user) {
-       return  signup.signup(user);
+    public String signup(@RequestBody SignupUserDto signupUserDto) {
+        return signupApplication.signup(signupUserDto);
+    }
+
+    @PostMapping("/email")
+    public String mail(@RequestBody emailDto emailDto) {
+        return sendEmailApplication.sendEmail(emailDto);
     }
 }
+
