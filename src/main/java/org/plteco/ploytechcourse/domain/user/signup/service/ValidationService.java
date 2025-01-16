@@ -8,4 +8,5 @@ public interface ValidationService {
     boolean isValidUserClass(Long userClass);
     boolean isValidGrade(Long grade);
     boolean isValidNumber(Long number);
+    boolean verifyCode(String email, String code);
 }

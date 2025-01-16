@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.domain.user.signup.model.dto;
+package org.plteco.ploytechcourse.application.user.signup.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +16,7 @@ public class SignupUserDto {
     private String uid;
     private String name;
     private String email;
+    private String code;
     private String password;
     private String rePassword;
     private Long grade;

@@ -1,7 +1,10 @@
 package org.plteco.ploytechcourse.domain.user.signup.service;
 
+import lombok.RequiredArgsConstructor;
+import org.plteco.ploytechcourse.domain.user.signup.repository.VerificationCodeRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.regex.Pattern;
 
 /**
@@ -9,8 +12,10 @@ import java.util.regex.Pattern;
  * 이메일, 비밀번호, 사용자 ID, 사용자 이름, 사용자 클래스, 학년, 번호에 대한 유효성 검사를 제공합니다.
  */
 @Service
+@RequiredArgsConstructor
 public class ValidationServiceImpl implements ValidationService {
 
+    private final VerificationCodeRepository verificationCodeRepository;
     private final int PASSWORD_MAX = 30;
     private final int PASSWORD_MIN = 10;
     private final int NAME_MAX = 30;
@@ -123,5 +128,19 @@ public class ValidationServiceImpl implements ValidationService {
     @Override
     public boolean isValidNumber(Long number) {
         return number != null && number >= NUMBER_MIN;
+    }
+
+    /**
+     * 이메일과 인증 코드가 일치하는지 확인하고, 코드가 만료되지 않았는지 검사합니다.
+     *
+     * @param email 인증을 확인할 이메일 주소
+     * @param code 인증 코드
+     * @return 코드가 유효하면 true, 그렇지 않으면 false
+     */
+    @Override
+    public boolean verifyCode(String email, String code) {
+        return verificationCodeRepository.findByEmailAndCode(email, code)
+                .map(vc -> vc.getExpiresTime().isAfter(LocalDateTime.now()))
+                .orElse(false);
     }
 }
