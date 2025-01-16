@@ -1,7 +1,7 @@
 package org.plteco.ploytechcourse.application.user.signup;
 
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.application.user.signup.dto.emailDto;
+import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
 import org.plteco.ploytechcourse.domain.user.signup.service.SendEmailService;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationService;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class SendEmailApplicationImpl implements SendEmailApplication {
     private final SendEmailService sendEmailService;
 
     @Override
-    public String sendEmail(emailDto emailDto) {
+    public String sendEmail(EmailDto emailDto) {
         if (!validationService.isValidEmail(emailDto.getEmail())) {
             return "이메일이 유효하지 않습니다.";
         }

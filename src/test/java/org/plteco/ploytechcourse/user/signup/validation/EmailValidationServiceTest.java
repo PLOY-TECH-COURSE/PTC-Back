@@ -4,21 +4,31 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.plteco.ploytechcourse.domain.user.signup.repository.VerificationCodeRepository;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationService;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationServiceImpl;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EmailValidationServiceTest {
 
-    private ValidationService validationService;
+
     private static final String SUCCESS_EMAIL = "email@email.com";
     private static final String FAIL_EMAIL = "email.com";
 
+    @Mock
+    private VerificationCodeRepository verificationCodeRepository;
+
+    @InjectMocks
+    private ValidationServiceImpl validationService;
+
     @BeforeEach
     public void setup() {
-        validationService = new ValidationServiceImpl();
+        // Initialize mocks
+        MockitoAnnotations.openMocks(this);
     }
-
     @Tag("validation_success")
     @DisplayName("이메일 유효성 검사 성공")
     @Test

@@ -4,23 +4,33 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.plteco.ploytechcourse.domain.user.signup.repository.VerificationCodeRepository;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationService;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationServiceImpl;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class IDValidationServiceTest {
 
-    private ValidationService validationService;
+
     private static final String SUCCESS_ID = "huhon";
     private static final String FAIL_ID = "hu";
     private static final String SHORT_ID = "hu";
     private static final String LONG_ID = "huhon123456789012345";
 
+    @Mock
+    private VerificationCodeRepository verificationCodeRepository;
+
+    @InjectMocks
+    private ValidationServiceImpl validationService;
+
     @BeforeEach
     public void setup() {
-        validationService = new ValidationServiceImpl();
+        // Initialize mocks
+        MockitoAnnotations.openMocks(this);
     }
-
     @Tag("validation_success")
     @DisplayName("아이디 유효성 검사 성공")
     @Test

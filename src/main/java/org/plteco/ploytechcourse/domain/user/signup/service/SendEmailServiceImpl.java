@@ -8,6 +8,7 @@ import org.plteco.ploytechcourse.domain.user.signup.repository.VerificationCodeR
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
@@ -18,6 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class SendEmailServiceImpl implements SendEmailService {
 
     private final JavaMailSender emailSender;
@@ -36,13 +38,21 @@ public class SendEmailServiceImpl implements SendEmailService {
 
         String content = "<html>"
                 + "<body>"
-                + "<h1>플테코 인증 코드: " + createdCode.getCode() + "</h1>"
+                + "<div style='background-color: #CAD5FF; display: flex; flex-direction: column; align-items: center; padding: 8px 10px;'>"
+                + "<div>"
+                + "<p style='margin: 0; padding-bottom: 8px;'>인증코드</p>"
+                + "<div style='background-color: #fff; border-radius: 8px; padding: 8px 10px;'>"
+                + "<p style='font-size: 24px; margin: 0;'>" + createdCode.getCode() + "</p>"
+                + "</div>"
                 + "<p>해당 코드를 홈페이지에 입력하세요.</p>"
+                + "</div>"
                 + "<footer style='color: grey; font-size: small;'>"
-                + "<p>※본 메일은 자동응답 메일이므로 본 메일에 회신하지 마시기 바랍니다.</p>"
+                + "※ 본 메일은 자동응답 메일이므로 본 메일에 회신하지 마시기 바랍니다."
                 + "</footer>"
+                + "</div>"
                 + "</body>"
                 + "</html>";
+
         try {
             sendEmail(email, title, content);
         } catch (MessagingException e) {
@@ -61,7 +71,11 @@ public class SendEmailServiceImpl implements SendEmailService {
     @Override
     public VerificationCode createVerificationCode(String email) {
         String randomCode = generateRandomCode(6);
-        VerificationCode code = new VerificationCode(email, randomCode, LocalDateTime.now().plusMinutes(10)); // 만료 시간을 10분으로 설정
+        VerificationCode code = VerificationCode.builder()
+                .email(email)
+                .code(randomCode)
+                .expiresTime(LocalDateTime.now().plusMinutes(10))
+                .build();
         return verificationCodeRepository.save(code);
     }
 

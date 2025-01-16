@@ -26,6 +26,7 @@ public class ValidationServiceImpl implements ValidationService {
     private final int GRADE_MIN=1;
     private final int GRADE_MAX=3;
     private final int NUMBER_MIN=1;
+    private final int EMAIL_MAX=320;
 
     // 이메일 유효성 검사를 위한 정규 표현식
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
@@ -41,7 +42,7 @@ public class ValidationServiceImpl implements ValidationService {
      */
     @Override
     public boolean isValidEmail(String email) {
-        return email != null && email.matches(EMAIL_PATTERN);
+        return email != null && email.matches(EMAIL_PATTERN)&&email.length()<EMAIL_MAX;
     }
 
     /**

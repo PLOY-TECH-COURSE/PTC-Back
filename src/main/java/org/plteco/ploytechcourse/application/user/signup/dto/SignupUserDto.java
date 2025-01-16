@@ -19,6 +19,7 @@ public class SignupUserDto {
     private String code;
     private String password;
     private String rePassword;
+    private String bio;
     private Long grade;
     private Long userClass;
     private Long number;
