@@ -2,7 +2,11 @@ package org.plteco.ploytechcourse.application.user.signup;
 
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
+import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +14,8 @@ import org.springframework.stereotype.Service;
 public class SignupApplicationImpl implements SignupApplication {
 
     private final ValidationService validationService;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public String signup(SignupUserDto signupUserDto) {
@@ -52,6 +58,25 @@ public class SignupApplicationImpl implements SignupApplication {
             return "코드가 이상합니다." ;
         }
 
+        if(userRepository.existsByEmail(signupUserDto.getEmail())) {
+            return "중복된 이름입니다.";
+        }
+
+        if(userRepository.existsByEmail(signupUserDto.getEmail())) {
+            return "중복된 아이디입니다.";
+        }
+        userRepository.save(User.builder()
+                        .uid(signupUserDto.getUid())
+                        .email(signupUserDto.getEmail())
+                        .name(signupUserDto.getName())
+                        .bio(signupUserDto.getBio())
+                        .grade(signupUserDto.getGrade())
+                        .role(RoleEnum.ROLE_USER)
+                        .classNumber(signupUserDto.getUserClass())
+                        .profile("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png")
+                        .number(signupUserDto.getNumber())
+                        .password(bCryptPasswordEncoder.encode(signupUserDto.getPassword()))
+                        .build());
         return "유효성 검사 성공";
     }
 }

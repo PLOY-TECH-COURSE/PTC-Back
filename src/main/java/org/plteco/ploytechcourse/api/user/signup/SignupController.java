@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.signup.SendEmailApplication;
 import org.plteco.ploytechcourse.application.user.signup.SignupApplication;
 import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
-import org.plteco.ploytechcourse.application.user.signup.dto.emailDto;
+import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +21,7 @@ public class SignupController {
     }
 
     @PostMapping("/email")
-    public String mail(@RequestBody emailDto emailDto) {
+    public String mail(@RequestBody EmailDto emailDto) {
         return sendEmailApplication.sendEmail(emailDto);
     }
 }

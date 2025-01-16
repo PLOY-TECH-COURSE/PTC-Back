@@ -1,7 +1,7 @@
 package org.plteco.ploytechcourse.application.user.signup;
 
-import org.plteco.ploytechcourse.application.user.signup.dto.emailDto;
+import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
 
 public interface SendEmailApplication {
-    String sendEmail(emailDto emailDto);
+    String sendEmail(EmailDto emailDto);
 }
