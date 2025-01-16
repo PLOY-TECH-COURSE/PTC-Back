@@ -1,8 +1,7 @@
 package org.plteco.ploytechcourse.application.user.signup;
 
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.domain.user.signup.model.dto.SignupUserDto;
-import org.plteco.ploytechcourse.domain.user.signup.service.SendEmailServiceImpl;
+import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class SignupApplicationImpl implements SignupApplication {
 
     private final ValidationService validationService;
-    private final SendEmailServiceImpl sendMailImpl;
 
     @Override
     public String signup(SignupUserDto signupUserDto) {
@@ -48,6 +46,10 @@ public class SignupApplicationImpl implements SignupApplication {
         // 사용자 번호 유효성 검사
         if (!validationService.isValidNumber(signupUserDto.getNumber())) {
             return "번호가 유효하지 않습니다.";
+        }
+
+        if(!validationService.verifyCode(signupUserDto.getEmail(), signupUserDto.getCode())) {
+            return "코드가 이상합니다." ;
         }
 
         return "유효성 검사 성공";

@@ -65,19 +65,6 @@ public class SendEmailServiceImpl implements SendEmailService {
         return verificationCodeRepository.save(code);
     }
 
-    /**
-     * 이메일과 인증 코드가 일치하는지 확인하고, 코드가 만료되지 않았는지 검사합니다.
-     *
-     * @param email 인증을 확인할 이메일 주소
-     * @param code 인증 코드
-     * @return 코드가 유효하면 true, 그렇지 않으면 false
-     */
-    @Override
-    public boolean verifyCode(String email, String code) {
-        return verificationCodeRepository.findByEmailAndCode(email, code)
-                .map(vc -> vc.getExpiresTime().isAfter(LocalDateTime.now()))
-                .orElse(false);
-    }
 
     /**
      * 주어진 이메일 주소로 이메일을 전송합니다.

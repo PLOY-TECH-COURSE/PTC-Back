@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.domain.user.signup.model.dto;
+package org.plteco.ploytechcourse.application.user.signup.dto;
 
 import lombok.Data;
 

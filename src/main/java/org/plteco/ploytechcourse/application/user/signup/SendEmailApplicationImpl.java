@@ -1,7 +1,7 @@
 package org.plteco.ploytechcourse.application.user.signup;
 
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.domain.user.signup.model.dto.emailDto;
+import org.plteco.ploytechcourse.application.user.signup.dto.emailDto;
 import org.plteco.ploytechcourse.domain.user.signup.service.SendEmailService;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationService;
 import org.springframework.stereotype.Service;
