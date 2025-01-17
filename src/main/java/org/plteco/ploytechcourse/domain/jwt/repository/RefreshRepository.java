@@ -28,5 +28,11 @@ public interface RefreshRepository extends JpaRepository<RefreshToken, Long> {
     @Transactional // 트랜잭션이 적용된 메서드로, 데이터베이스 변경 사항이 커밋되도록 보장
     void deleteByToken(String token);
 
-
+    /**
+     * 주어진 토큰에 해당하는 리프레시 토큰을 조회합니다.
+     *
+     * @param token 리프레시 토큰
+     * @return 리프레시 토큰
+     */
+    RefreshToken findByToken(String token);
 }

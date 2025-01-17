@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor
-@ResponseBody
 public class RefreshController {
 
     private final ProcessTokenReissue processTokenReissue;
