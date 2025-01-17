@@ -2,9 +2,11 @@ package org.plteco.ploytechcourse.shared.config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.shared.jwt.service.JwtFilter;
-import org.plteco.ploytechcourse.shared.jwt.service.LoginFilter;
-import org.plteco.ploytechcourse.shared.jwt.service.JwtUtil;
+import org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter;
+import org.plteco.ploytechcourse.domain.jwt.repository.RefreshRepository;
+import org.plteco.ploytechcourse.domain.jwt.service.JwtFilter;
+import org.plteco.ploytechcourse.domain.user.login.service.LoginFilter;
+import org.plteco.ploytechcourse.domain.jwt.service.JwtUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,6 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -28,6 +31,7 @@ public class SecurityConfig {
 
     private final AuthenticationConfiguration authenticationConfiguration;
     private final JwtUtil jwtUtil;
+    private final RefreshRepository refreshRepository;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -43,9 +47,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/email", "/signup", "/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/email", "/signup", "/login", "/refresh").permitAll()
                         .requestMatchers(HttpMethod.GET, "/documents", "/users/search/{user-name}", "/documents/search", "/comments/{document-id}", "/favorites", "/announcements").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/logout", "/refresh", "/comments/{document-id}", "/favorites/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.POST, "/logout", "/comments/{document-id}", "/favorites/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/{user-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/applications").hasRole("USER")
@@ -81,8 +85,8 @@ public class SecurityConfig {
                     }
                 })));
         http.addFilterBefore(new JwtFilter(jwtUtil), LoginFilter.class);
-        http.addFilterAt(new LoginFilter(authenticationManager(), jwtUtil), UsernamePasswordAuthenticationFilter.class);
-
+        http.addFilterAt(new LoginFilter(authenticationManager(), jwtUtil,refreshRepository), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new CustomLogoutFilter(jwtUtil, refreshRepository), LogoutFilter.class);
         return http.build();
     }
 }
