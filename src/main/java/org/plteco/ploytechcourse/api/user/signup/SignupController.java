@@ -26,10 +26,5 @@ public class SignupController {
     public String mail(@RequestBody EmailDto emailDto) {
         return sendEmailApplication.sendEmail(emailDto);
     }
-
-    @PostMapping("/applications")
-    public Long applications() {
-        return  userContextUtil.getId();
-    }
 }
 
