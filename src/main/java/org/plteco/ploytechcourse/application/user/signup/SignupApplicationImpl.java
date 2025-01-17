@@ -62,7 +62,7 @@ public class SignupApplicationImpl implements SignupApplication {
             return "중복된 이름입니다.";
         }
 
-        if(userRepository.existsByEmail(signupUserDto.getEmail())) {
+        if(userRepository.existsByUid(signupUserDto.getUid())) {
             return "중복된 아이디입니다.";
         }
         userRepository.save(User.builder()
