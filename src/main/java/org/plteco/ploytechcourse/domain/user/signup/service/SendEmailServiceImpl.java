@@ -36,7 +36,7 @@ public class SendEmailServiceImpl implements SendEmailService {
         VerificationCode createdCode = createVerificationCode(email);
         String title = "플테코 이메일 인증 번호";
 
-        String content = "<html>"
+        String content ="<html>"
                 + "<body>"
                 + "<div style='background-color: #CAD5FF; display: flex; flex-direction: column; align-items: center; padding: 8px 10px;'>"
                 + "<div>"
