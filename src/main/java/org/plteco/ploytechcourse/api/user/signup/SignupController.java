@@ -87,3 +87,4 @@ public class SignupController {
         return ResponseEntity.ok("이메일을 보냈습니다.");
     }
 }
+
