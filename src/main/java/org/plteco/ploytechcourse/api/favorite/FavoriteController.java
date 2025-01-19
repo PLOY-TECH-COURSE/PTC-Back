@@ -1,7 +1,7 @@
 package org.plteco.ploytechcourse.api.favorite;
 
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.domain.favorite.service.FavoriteService;
+import org.plteco.ploytechcourse.domain.favorite.service.FavoriteServiceImpl;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class FavoriteController {
 
-    private final FavoriteService favoriteService;
+    private final FavoriteServiceImpl favoriteService;
     private final UserContextUtil userContextUtil;
 
     @PostMapping("/favorite/{documentId}")
