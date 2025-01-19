@@ -3,10 +3,12 @@ package org.plteco.ploytechcourse.shared.jwt;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.login.dto.CustomUserDetails;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 현재 인증된 사용자의 정보를 가져오는 유틸리티 클래스입니다.
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
+@Transactional
 public class UserContextUtil {
 
     private final UserRepository userRepository;
@@ -70,6 +73,16 @@ public class UserContextUtil {
      */
     public Long getId() {
         return userRepository.findByEmail(getEmail()).getId();
+    }
+
+
+    /**
+     * 현재 인증된 사용자의 정보를 반환합니다.
+     *
+     * @return 사용자의 정보
+     */
+    public User getCurrentUser() {
+        return userRepository.findByEmail(getEmail());
     }
 
     /**
