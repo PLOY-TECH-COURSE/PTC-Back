@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.plteco.ploytechcourse.domain.favorite.model.entity.Favorite;
 import org.plteco.ploytechcourse.domain.favorite.model.entity.FavoriteId;
 import org.plteco.ploytechcourse.domain.favorite.repository.FavoriteRepository;
-import org.plteco.ploytechcourse.domain.favorite.service.FavoriteService;
+import org.plteco.ploytechcourse.domain.favorite.service.FavoriteServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -19,7 +19,7 @@ class FavoriteServiceTest {
     private FavoriteRepository favoriteRepository;
 
     @InjectMocks
-    private FavoriteService favoriteService;
+    private FavoriteServiceImpl favoriteService;
 
     @Test
     @DisplayName("즐겨찾기 등록 테스트")
