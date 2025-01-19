@@ -31,15 +31,16 @@ public class FavoriteService {
         return favoriteRepository.save(favorite);
     }
 
-    public Optional<List<Favorite>> getFavorite(long user_id) {
-        return favoriteRepository.findById_UserId(user_id);
-    }
+//    public Optional<List<Document>> getFavorite(long user_id) {
+//        return favoriteRepository.findById_UserId(user_id);
+//    }
 
     public void deleteFavorite(long user_id, long document_id) {
         FavoriteId favoriteId = FavoriteId.builder()
                 .user_id(user_id)
                 .document_id(document_id)
                 .build();
+
         favoriteRepository.deleteById(favoriteId);
     }
 }
