@@ -47,7 +47,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/email", "/signup", "/login", "/refresh").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/email", "/signup", "/login", "/refresh","/verify").permitAll()
                         .requestMatchers(HttpMethod.GET, "/documents", "/users/search/{user-name}", "/documents/search", "/comments/{document-id}", "/favorites", "/announcements").permitAll()
                         .requestMatchers(HttpMethod.POST, "/logout", "/comments/{document-id}", "/favorites/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/{user-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
@@ -73,7 +73,7 @@ public class SecurityConfig {
                         CorsConfiguration configuration = new CorsConfiguration();
 
                         //클라이언트 주소 넣어야함
-                        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+                        configuration.setAllowedOrigins(Collections.singletonList("https://ptc-front-bves.vercel.app"));
                         configuration.setAllowedMethods(Collections.singletonList("*"));
                         configuration.setAllowCredentials(true);
                         configuration.setAllowedHeaders(Collections.singletonList("*"));
