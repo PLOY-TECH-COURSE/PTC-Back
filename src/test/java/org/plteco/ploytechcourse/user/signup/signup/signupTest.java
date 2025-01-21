@@ -1,87 +1,42 @@
 package org.plteco.ploytechcourse.user.signup.signup;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
-import org.plteco.ploytechcourse.application.user.signup.service.SignupApplicationImpl;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
-import org.plteco.ploytechcourse.domain.user.signup.service.ValidationService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class)
-public class signupTest {
-    @Mock
-    private ValidationService validationService;
+@SpringBootTest
+@Transactional // 테스트 종료 후 DB 상태를 롤백
+public class SignupTest {
 
-    @Mock
+    @Autowired
     private UserRepository userRepository;
 
-    @Mock
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @InjectMocks
-    private SignupApplicationImpl signupApplication;
-
-    private SignupUserDto MockSignupUserDto;
-
-    @BeforeEach
-    void setUp() {
-            MockSignupUserDto = SignupUserDto.builder()
-                    .uid("heodongun")
-                    .name("허온")
-                    .email("heodongun@gmail.com")
-                    .code("code")
-                    .password("password")
-                    .rePassword("password")
-                    .bio("나는 사람이올시다")
-                    .grade(1L)
-                    .userClass(4L)
-                    .number(14L)
-                    .build();
-    }
-
     @Test
-    void existsByEmailSuccess() {
-        //given
-        when(userRepository.existsByEmail(MockSignupUserDto.getEmail())).thenReturn(false);
+    public void testSaveUser() {
+        // 테스트할 사용자 객체 생성
+        User user = User.builder()
+                .uid("test123")
+                .email("test@example.com")
+                .name("테스트")
+                .password("encodedPassword")
+                .role(RoleEnum.ROLE_USER)
+                .grade(1L)
+                .classNumber(2L)
+                .number(3L)
+                .build();
 
-        //when
-        String result=signupApplication.signup(MockSignupUserDto);
+        // 데이터베이스에 저장
+        userRepository.save(user);
 
-        //then
-        Assertions.assertThat(result).isEqualTo("유효성 검사 성공");
+        // 저장 여부 확인
+        assertTrue(userRepository.existsByEmail("test@example.com"));
     }
-
-//    @Test
-//    void existsByEmailFail() {
-//        //given
-//        when(userRepository.existsByEmail(MockSignupUserDto.getEmail())).thenReturn(true);
-//
-//        //when
-//        String result=signupApplication.signup(MockSignupUserDto);
-//
-//
-//    }
-//
-//    @Test
-//    void existsByUidSuccess() {
-//
-//    }
-//
-//    @Test
-//    void existsByUidFail() {
-//
-//    }
-//
-//    @Test
-//    void signupSuccess() {
-//
-//    }
 }
