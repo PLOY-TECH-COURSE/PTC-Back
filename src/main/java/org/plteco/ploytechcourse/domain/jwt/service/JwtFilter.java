@@ -39,11 +39,15 @@ public class JwtFilter extends OncePerRequestFilter {
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // 헤더에서 access키에 담긴 토큰을 꺼냄
-        String accessToken = request.getHeader("access");
+        // 헤더에서 Authorization에 담긴 토큰을 꺼냄
+        String accessToken = request.getHeader("Authorization");
+
+        if (accessToken != null && accessToken.startsWith("Bearer ")) {
+            accessToken = accessToken.substring(7);  // "Bearer "의 길이는 7
+        }
 
         // 토큰이 없다면 다음 필터로 넘김
-        if (accessToken == null) {
+        if (accessToken == null|| accessToken.isEmpty()) {
             filterChain.doFilter(request, response);
             return;
         }
