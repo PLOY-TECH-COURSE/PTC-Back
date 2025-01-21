@@ -58,6 +58,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/documents", "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/S3").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/comments/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/comments/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .anyRequest().denyAll()
                 )
                 .csrf(csrf -> csrf.disable())

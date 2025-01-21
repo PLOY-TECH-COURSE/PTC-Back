@@ -1,12 +1,14 @@
 package org.plteco.ploytechcourse.domain.comment.service;
 
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import java.util.List;
 
 public interface CommentService {
-    List<Comment> getComments(long document_id);
-    void createComment(long user_id, long document_id, String commentText);
-    void deleteComment(long commentId);
-    void updateComment(long commentId, String commentText);
+    List<Comment> getComments(Long document_id);
+    void createComment(Long document_id, String commentText);
+    void deleteComment(Long commentId);
+    void updateComment(Long commentId, String commentText);
+    Comment getCommentById(Long commentId);
 }
