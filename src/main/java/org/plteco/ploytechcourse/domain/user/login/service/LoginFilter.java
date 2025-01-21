@@ -87,7 +87,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         addRefreshEntity(uid, email, refresh, 86400000L);
 
         // 응답 헤더에 access 토큰을 추가하고, refresh 토큰은 쿠키에 추가
-        response.setHeader("access", access);
+        response.setHeader("Authorization", access);
         response.addCookie(createCookie("refresh", refresh));
         response.setStatus(HttpStatus.OK.value());
     }
