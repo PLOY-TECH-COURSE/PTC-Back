@@ -1,10 +1,12 @@
 package org.plteco.ploytechcourse.api.user.signup;
 
 import lombok.RequiredArgsConstructor;
+import org.plteco.ploytechcourse.application.user.signup.dto.EmailAndCodeDto;
 import org.plteco.ploytechcourse.application.user.signup.service.SendEmailApplication;
 import org.plteco.ploytechcourse.application.user.signup.service.SignupApplication;
 import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
 import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
+import org.plteco.ploytechcourse.application.user.signup.service.ValidationCodeApplication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,7 @@ public class SignupController {
 
     private final SignupApplication signupApplication;
     private final SendEmailApplication sendEmailApplication;
+    private final ValidationCodeApplication validationCodeApplication;
 
     /**
      * 사용자가 입력한 정보로 회원가입을 진행합니다.
@@ -45,6 +48,11 @@ public class SignupController {
     @PostMapping("/email")
     public String mail(@RequestBody EmailDto emailDto) {
         return sendEmailApplication.sendEmail(emailDto);
+    }
+
+    @PostMapping("/verify")
+    public String verify(@RequestBody EmailAndCodeDto emailAndCodeDto) {
+        return validationCodeApplication.isValid(emailAndCodeDto);
     }
 
 }

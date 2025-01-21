@@ -24,6 +24,6 @@ public class CorsMvcConfig implements WebMvcConfigurer {
         // 모든 경로에 대해 CORS를 허용
         corsRegistry.addMapping("/**")
                 // 특정 출처에서의 요청만 허용
-                .allowedOrigins("http://localhost:3000"); // 프론트엔드가 호스팅되는 URL을 설정해야 함.
+                .allowedOrigins("https://ptc-front-bves.vercel.app"); // 프론트엔드가 호스팅되는 URL을 설정해야 함.
     }
 }
