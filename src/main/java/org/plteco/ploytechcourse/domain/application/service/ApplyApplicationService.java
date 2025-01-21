@@ -7,4 +7,6 @@ import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 public interface ApplyApplicationService {
     TechCourseForm apply(ApplyApplicationDto applyApplicationDto);
     boolean isValidDuplicationStudent(Long userId);
+    boolean isValidIntroduction(String introduction);
+    boolean isValidResolution(String resolution);
 }

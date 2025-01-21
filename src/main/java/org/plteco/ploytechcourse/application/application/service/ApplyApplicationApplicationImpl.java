@@ -15,11 +15,14 @@ public class ApplyApplicationApplicationImpl implements ApplyApplicationApplicat
 
     @Override
     public String applyApplication(ApplyApplicationDto applyApplicationDto) {
-        if(applyApplicationService.isValidDuplicationStudent(userContextUtil.getId())){
+        if(!applyApplicationService.isValidDuplicationStudent(userContextUtil.getId())){
             return "중복된 요청입니다";
         }
-        if(applyApplicationService.apply(applyApplicationDto)==null){
-            return "저장 안됨";
+        if(!applyApplicationService.isValidResolution(applyApplicationDto.getResolution())){
+            return "다짐이 유효하지 않습니다.";
+        }
+        if(!applyApplicationService.isValidIntroduction(applyApplicationDto.getIntroduction())){
+            return "자기소개가 유효하지 않습니다.";
         }
         return "저장 잘됨";
     }
