@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
+import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +16,10 @@ import java.util.Optional;
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
+    private final UserContextUtil userContextUtil;
 
     @Override
-    public List<Comment> getComments(long document_id) {
+    public List<Comment> getComments(Long document_id) {
 
         List<Comment> comments = commentRepository.findCommentByDocumentId(document_id);
 
@@ -25,10 +27,10 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void createComment(long user_id, long document_id, String commentText) {
+    public void createComment(Long document_id, String commentText) {
 
         Comment comment = Comment.builder()
-                .user_id(user_id)
+                .user(userContextUtil.getCurrentUser())
                 .documentId(document_id)
                 .comment(commentText)
                 .build();
@@ -37,12 +39,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteComment(long commentId) {
+    public void deleteComment(Long commentId) {
         commentRepository.deleteById(commentId);
     }
 
     @Override
-    public void updateComment(long commentId, String commentText) {
+    public void updateComment(Long commentId, String commentText) {
 
         Optional<Comment> oldComment = commentRepository.findById(commentId);
 
@@ -50,7 +52,12 @@ public class CommentServiceImpl implements CommentService {
             Comment newComment = oldComment.get();
             newComment.setComment(commentText);
 
-            commentRepository.save(newComment);
+            commentRepository.save(newComment); // JPA의 save메서드는 update 기능까지 지원
         }
+    }
+
+    @Override
+    public Comment getCommentById(Long commentId) {
+        return commentRepository.findById(commentId).orElse(null);
     }
 }
