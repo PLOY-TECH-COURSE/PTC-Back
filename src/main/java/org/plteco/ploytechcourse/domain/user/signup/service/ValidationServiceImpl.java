@@ -16,17 +16,6 @@ import java.util.regex.Pattern;
 public class ValidationServiceImpl implements ValidationService {
 
     private final VerificationCodeRepository verificationCodeRepository;
-    private final int PASSWORD_MAX = 30;
-    private final int PASSWORD_MIN = 10;
-    private final int NAME_MAX = 30;
-    private final int NAME_MIN = 2;
-    private final int UID_MAX = 15;
-    private final int UID_MIN = 4;
-    private final int USERCLASS_MIN=1;
-    private final int GRADE_MIN=1;
-    private final int GRADE_MAX=3;
-    private final int NUMBER_MIN=1;
-    private final int EMAIL_MAX=320;
 
     // 이메일 유효성 검사를 위한 정규 표현식
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
@@ -42,7 +31,8 @@ public class ValidationServiceImpl implements ValidationService {
      */
     @Override
     public boolean isValidEmail(String email) {
-        return email != null && email.matches(EMAIL_PATTERN)&&email.length()<EMAIL_MAX;
+        int EMAIL_MAX = 320;
+        return email != null && email.matches(EMAIL_PATTERN)&&email.length()< EMAIL_MAX;
     }
 
     /**
@@ -56,6 +46,8 @@ public class ValidationServiceImpl implements ValidationService {
      */
     @Override
     public boolean isValidPassword(String password, String rePassword, String UID) {
+        int PASSWORD_MAX = 30;
+        int PASSWORD_MIN = 10;
         if (password == null || password.length() < PASSWORD_MIN || password.length() > PASSWORD_MAX) {
             return false;
         }
@@ -80,6 +72,8 @@ public class ValidationServiceImpl implements ValidationService {
      */
     @Override
     public boolean isValidID(String UID) {
+        int UID_MAX = 15;
+        int UID_MIN = 4;
         return UID != null && UID.length() >= UID_MIN && UID.length() <= UID_MAX;
     }
 
@@ -92,6 +86,8 @@ public class ValidationServiceImpl implements ValidationService {
      */
     @Override
     public boolean isValidUsername(String username) {
+        int NAME_MAX = 30;
+        int NAME_MIN = 2;
         return username != null && username.length() >= NAME_MIN && username.length() <= NAME_MAX;
     }
 
@@ -104,6 +100,7 @@ public class ValidationServiceImpl implements ValidationService {
      */
     @Override
     public boolean isValidUserClass(Long userClass) {
+        int USERCLASS_MIN = 1;
         return userClass != null && userClass >= USERCLASS_MIN;
     }
 
@@ -116,6 +113,8 @@ public class ValidationServiceImpl implements ValidationService {
      */
     @Override
     public boolean isValidGrade(Long grade) {
+        int GRADE_MIN = 1;
+        int GRADE_MAX = 3;
         return grade != null && grade >= GRADE_MIN && grade <= GRADE_MAX;
     }
 
@@ -128,6 +127,7 @@ public class ValidationServiceImpl implements ValidationService {
      */
     @Override
     public boolean isValidNumber(Long number) {
+        int NUMBER_MIN = 1;
         return number != null && number >= NUMBER_MIN;
     }
 
