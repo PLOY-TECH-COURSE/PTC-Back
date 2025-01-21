@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class ApplyApplicationServiceImpl implements ApplyApplicationService {
     private final UserContextUtil userContextUtil;
     private final ApplicationRepository applicationRepository;
+    private final int INTRODUCTION_MAX=500;
+    private final int RESOLUTION_MAX=500;
 
     @Override
     public TechCourseForm apply(ApplyApplicationDto applyApplicationDto) {
@@ -26,6 +28,16 @@ public class ApplyApplicationServiceImpl implements ApplyApplicationService {
 
     @Override
     public boolean isValidDuplicationStudent(Long userId) {
-        return applicationRepository.existsByUserId(userId);
+        return !applicationRepository.existsByUserId(userId);
+    }
+
+    @Override
+    public boolean isValidIntroduction(String introduction) {
+        return introduction!=null&&INTRODUCTION_MAX >= introduction.length()&&!introduction.isEmpty();
+    }
+
+    @Override
+    public boolean isValidResolution(String resolution) {
+        return resolution!=null&&RESOLUTION_MAX >= resolution.length()&&!resolution.isEmpty();
     }
 }
