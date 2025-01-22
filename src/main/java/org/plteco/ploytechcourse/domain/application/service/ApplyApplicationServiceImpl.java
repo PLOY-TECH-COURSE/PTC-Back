@@ -31,13 +31,5 @@ public class ApplyApplicationServiceImpl implements ApplyApplicationService {
         return !applicationRepository.existsByUserId(userId);
     }
 
-    @Override
-    public boolean isValidIntroduction(String introduction) {
-        return introduction!=null&&INTRODUCTION_MAX >= introduction.length()&&!introduction.isEmpty();
-    }
 
-    @Override
-    public boolean isValidResolution(String resolution) {
-        return resolution!=null&&RESOLUTION_MAX >= resolution.length()&&!resolution.isEmpty();
-    }
 }

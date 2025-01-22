@@ -1,6 +1,7 @@
 package org.plteco.ploytechcourse.application.user.signup.service;
 
 import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
+import org.plteco.ploytechcourse.shared.exception.PltecoException;
 
 /**
  * 사용자 회원가입을 처리하는 애플리케이션 서비스 인터페이스입니다.
@@ -20,5 +21,5 @@ public interface SignupApplication {
      * @param signupUserDto 회원가입에 필요한 사용자 정보가 담긴 DTO 객체
      * @return 회원가입 처리 결과 메시지
      */
-    String signup(SignupUserDto signupUserDto);
+    void signup(SignupUserDto signupUserDto);
 }
