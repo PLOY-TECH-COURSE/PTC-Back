@@ -7,6 +7,7 @@ import org.plteco.ploytechcourse.domain.jwt.repository.RefreshRepository;
 import org.plteco.ploytechcourse.domain.jwt.service.JwtFilter;
 import org.plteco.ploytechcourse.domain.user.login.service.LoginFilter;
 import org.plteco.ploytechcourse.domain.jwt.service.JwtUtil;
+import org.plteco.ploytechcourse.shared.exception.CustomAccessDeniedHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -33,6 +34,7 @@ public class SecurityConfig {
     private final AuthenticationConfiguration authenticationConfiguration;
     private final JwtUtil jwtUtil;
     private final RefreshRepository refreshRepository;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -54,12 +56,16 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/users/{user-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/applications").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/applications", "/permissions").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/applications").hasAnyRole("ADMIN","SUPERADMIN")
+                        .requestMatchers(HttpMethod.PATCH,  "/permissions").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/documents", "/comments/{document-id}/{comment-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/documents", "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/S3").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .anyRequest().denyAll()
+                )
+                .exceptionHandling(exception -> exception
+                        .accessDeniedHandler(customAccessDeniedHandler)
                 )
                 .csrf(csrf -> csrf.disable())
                 .formLogin(form -> form.disable())
@@ -81,7 +87,6 @@ public class SecurityConfig {
                         configuration.setMaxAge(3600L);
 
                         configuration.setExposedHeaders(Collections.singletonList("Authorization"));
-                        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
                         return configuration;
                     }
                 })));

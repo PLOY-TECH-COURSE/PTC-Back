@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.shared.exception;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,7 +30,7 @@ public class PltecoExceptionHandler {
         ErrorResponse errorResponse = ErrorResponse.from(400, "INVALID_CREDENTIALS", ex.getMessage());
         return ResponseEntity.status(400).body(errorResponse);
     }
-
+    
     // Null
     @ExceptionHandler(value = NullPointerException.class)
     public ResponseEntity<ErrorResponse> ExceptionHandler(NullPointerException ex) {
