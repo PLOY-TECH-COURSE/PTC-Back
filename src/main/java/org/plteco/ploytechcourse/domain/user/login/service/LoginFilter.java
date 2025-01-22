@@ -83,11 +83,11 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         // 사용자의 역할을 기반으로 JWT를 생성
         RoleEnum role = RoleEnum.valueOf(auth.getAuthority());
-        String access = jwtUtil.createJwt("access", email, uid, role, 600000L);
-        String refresh = jwtUtil.createJwt("refresh", email, uid, role, 86400000L);
+        String access = jwtUtil.createJwt("access", email, uid, role, 1800000L);
+        String refresh = jwtUtil.createJwt("refresh", email, uid, role, 1209600000L);
 
         // refresh 토큰을 저장
-        addRefreshEntity(uid, email, refresh, 86400000L);
+        addRefreshEntity(uid, email, refresh, 1209600000L);
 
         // 응답 헤더에 access 토큰을 추가하고, refresh 토큰은 쿠키에 추가
         response.setHeader("Authorization", access);
@@ -137,7 +137,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
      */
     private Cookie createCookie(String key, String value) {
         Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(24 * 60 * 60); // 쿠키의 최대 수명: 1일
+        cookie.setMaxAge(24 * 60 * 60*14); // 쿠키의 최대 수명: 1일
         cookie.setHttpOnly(true); // JavaScript에서 접근할 수 없도록 설정
         return cookie;
     }
