@@ -18,6 +18,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -101,7 +104,28 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
      */
     @Override
     public void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) {
-        response.setStatus(401);
+        response.setContentType("application/json");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);  // 401 상태 코드 설정
+
+        // JSON 응답 내용
+        String jsonResponse = "{"
+                + "\"timestamp\":\"" + LocalDateTime.now() + "\","
+                + "\"status\":401,"
+                + "\"error\":\"Unauthorized\","
+                + "\"message\":\"INVALID_CREDENTIALS\","
+                + "\"path\":\"" + request.getRequestURI() + "\""
+                + "}";
+
+        // 응답 본문에 JSON 작성
+        PrintWriter writer = null;
+        try {
+            writer = response.getWriter();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        writer.write(jsonResponse);
+        writer.flush();
+
     }
 
     /**
