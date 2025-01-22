@@ -7,6 +7,7 @@ import org.plteco.ploytechcourse.domain.jwt.repository.RefreshRepository;
 import org.plteco.ploytechcourse.domain.jwt.service.JwtFilter;
 import org.plteco.ploytechcourse.domain.user.login.service.LoginFilter;
 import org.plteco.ploytechcourse.domain.jwt.service.JwtUtil;
+import org.plteco.ploytechcourse.shared.exception.CustomAccessDeniedHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -33,6 +34,7 @@ public class SecurityConfig {
     private final AuthenticationConfiguration authenticationConfiguration;
     private final JwtUtil jwtUtil;
     private final RefreshRepository refreshRepository;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -61,6 +63,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/S3").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .anyRequest().denyAll()
+                )
+                .exceptionHandling(exception -> exception
+                        .accessDeniedHandler(customAccessDeniedHandler)
                 )
                 .csrf(csrf -> csrf.disable())
                 .formLogin(form -> form.disable())
