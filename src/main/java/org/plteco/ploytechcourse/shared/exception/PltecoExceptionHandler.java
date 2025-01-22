@@ -38,6 +38,7 @@ public class PltecoExceptionHandler {
     }
 
     // 권한 없음
+    //작동안함
     @ExceptionHandler(value = AccessDeniedException.class)
     public ResponseEntity<ErrorResponse> ExceptionHandler(AccessDeniedException ex) {
         ErrorResponse errorResponse = ErrorResponse.from(403, "ACCESS_DENIED", ex.getMessage());
