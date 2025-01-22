@@ -1,10 +1,14 @@
 package org.plteco.ploytechcourse.api.user.signup;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.signup.service.SendEmailApplication;
 import org.plteco.ploytechcourse.application.user.signup.service.SignupApplication;
 import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
 import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
+import org.plteco.ploytechcourse.shared.exception.PltecoException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,8 +33,9 @@ public class SignupController {
      * @return 회원가입 처리 결과 메시지
      */
     @PostMapping("/signup")
-    public String signup(@RequestBody SignupUserDto signupUserDto) {
-        return signupApplication.signup(signupUserDto);
+    public ResponseEntity<String>  signup(@Valid @RequestBody SignupUserDto signupUserDto) {
+        signupApplication.signup(signupUserDto);
+        return ResponseEntity.ok("회원가입이 완료되었습니다.");
     }
 
     /**
@@ -43,8 +48,8 @@ public class SignupController {
      * @return 이메일 전송 결과 메시지
      */
     @PostMapping("/email")
-    public String mail(@RequestBody EmailDto emailDto) {
-        return sendEmailApplication.sendEmail(emailDto);
+    public ResponseEntity<String>  mail(@Valid @RequestBody EmailDto emailDto) {
+        sendEmailApplication.sendEmail(emailDto);
+        return ResponseEntity.ok("이메일을 보냈습니다.");
     }
-
 }
