@@ -87,15 +87,15 @@ public class ProcessTokenReissueImpl implements ProcessTokenReissue {
         RoleEnum role = jwtUtil.getRole(refresh);
 
         // 새 액세스 토큰과 리프레시 토큰 생성
-        String newAccess = jwtUtil.createJwt("access", email, uid, role, 600000L);
-        String newRefresh = jwtUtil.createJwt("refresh", email, uid, role, 86400000L);
+        String newAccess = jwtUtil.createJwt("access", email, uid, role, 1800000L);
+        String newRefresh = jwtUtil.createJwt("refresh", email, uid, role, 1209600000L);
 
         // 기존 리프레시 토큰 삭제 및 새 리프레시 토큰 엔티티 저장
         refreshRepository.deleteByToken(refresh);
-        addRefreshEntity.addRefreshEntity(uid, email, newRefresh, 86400000L);
+        addRefreshEntity.addRefreshEntity(uid, email, newRefresh, 1209600000L);
 
         // 응답 헤더와 쿠키에 새 토큰 추가
-        response.setHeader("access", newAccess);
+        response.setHeader("Authorization", newAccess);
         response.addCookie(createCookie("refresh", newRefresh));
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -110,7 +110,7 @@ public class ProcessTokenReissueImpl implements ProcessTokenReissue {
      */
     private Cookie createCookie(String key, String value) {
         Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(24 * 60 * 60);  // 1일 유효
+        cookie.setMaxAge(24 * 60 * 60*14);  // 14일 유효
         cookie.setHttpOnly(true); // 클라이언트 측에서 접근 불가
         return cookie;
     }
