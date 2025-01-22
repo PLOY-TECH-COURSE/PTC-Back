@@ -95,7 +95,7 @@ public class SendEmailServiceImpl implements SendEmailService {
         helper.setTo(toEmail);
         helper.setSubject(title);
         helper.setText(content, true);
-        helper.setReplyTo("imgforestmail@gmail.com");
+        helper.setReplyTo("ploytechcourse@gmail.com");
         emailSender.send(message);
     }
 
