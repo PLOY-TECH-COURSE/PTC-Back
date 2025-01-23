@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.login.ProcessTokenReissue;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,9 +42,15 @@ public class RefreshController {
             description = "사용자가 리프레시 토큰을 사용하여 새로운 액세스 토큰을 발급받습니다.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "새로운 액세스 토큰 발급 완료"),
-                    @ApiResponse(responseCode = "400", description = "잘못된 요청 (예: 유효하지 않은 리프레시 토큰)"),
-                    @ApiResponse(responseCode = "401", description = "인증 실패 (예: 토큰 만료 또는 유효하지 않음)"),
-                    @ApiResponse(responseCode = "500", description = "서버 오류")
+                    @ApiResponse(responseCode = "400", description = "잘못된 요청 (예: 유효하지 않은 리프레시 토큰)",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "401", description = "인증 실패 (예: 토큰 만료 또는 유효하지 않음)",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "500", description = "서버 오류",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class)))
             }
     )
     @PostMapping("/refresh")
