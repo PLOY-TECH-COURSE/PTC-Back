@@ -80,8 +80,8 @@ public class SecurityConfig {
                         CorsConfiguration configuration = new CorsConfiguration();
 
                         //클라이언트 주소 넣어야함
-//                       configuration.setAllowedOrigins(Collections.singletonList("https://ptc-front-bves.vercel.app"));
-                        configuration.setAllowedOrigins(Arrays.asList("https://ptc-front-bves.vercel.app", "http://192.168.0.18:5173","http://192.168.0.17:5173","http://192.168.0.27:5173","http://172.21.62.81:5173"));
+                       // configuration.setAllowedOrigins(Collections.singletonList("https://ptc-front-bves.vercel.app"));
+                        configuration.setAllowedOrigins(Collections.singletonList("*"));
                         configuration.setAllowedMethods(Collections.singletonList("*"));
                         configuration.setAllowCredentials(true);
                         configuration.setAllowedHeaders(Collections.singletonList("*"));
