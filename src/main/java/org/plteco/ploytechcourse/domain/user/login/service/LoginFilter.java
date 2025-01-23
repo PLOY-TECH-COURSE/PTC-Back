@@ -166,7 +166,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
      */
     private Cookie createCookie(String key, String value) {
         Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(24 * 60 * 60*14); // 쿠키의 최대 수명: 1일
+        cookie.setMaxAge(24 * 60 * 60*14); // 쿠키의 최대 수명: 14일
         cookie.setHttpOnly(true); // JavaScript에서 접근할 수 없도록 설정
         return cookie;
     }
