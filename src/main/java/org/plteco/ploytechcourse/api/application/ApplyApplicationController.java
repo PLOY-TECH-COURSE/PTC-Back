@@ -3,7 +3,6 @@ package org.plteco.ploytechcourse.api.application;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,15 +11,11 @@ import org.plteco.ploytechcourse.application.application.dto.ShowApplicationDto;
 import org.plteco.ploytechcourse.application.application.service.ApplyApplicationApplication;
 import org.plteco.ploytechcourse.application.application.service.ShowApplicationApplication;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@ApiResponses({
-        @ApiResponse(responseCode = "200", description = "테크코스 신청이 완료되었습니다."),
-        @ApiResponse(responseCode = "400", description = "INVALID_ARGUMENT"),
-        @ApiResponse(responseCode = "500", description = "SERVER_UNKNOWN")
-})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/applications")
@@ -33,8 +28,12 @@ public class ApplyApplicationController {
             description = "사용자가 테크코스를 신청합니다.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "테크코스 신청이 완료되었습니다."),
-                    @ApiResponse(responseCode = "400", description = "잘못된 요청"),
-                    @ApiResponse(responseCode = "500", description = "서버 오류")
+                    @ApiResponse(responseCode = "400", description = "잘못된 요청",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "500", description = "서버 오류",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class)))
             },
             security = @SecurityRequirement(name = "BearerAuth")
     )
@@ -51,8 +50,12 @@ public class ApplyApplicationController {
             description = "신청한 테크코스를 조회합니다.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "테크코스 목록 조회 성공"),
-                    @ApiResponse(responseCode = "400", description = "잘못된 요청"),
-                    @ApiResponse(responseCode = "500", description = "서버 오류"),
+                    @ApiResponse(responseCode = "400", description = "잘못된 요청",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "500", description = "서버 오류",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class)))
             },
             security = @SecurityRequirement(name = "BearerAuth")
     )
