@@ -1,5 +1,7 @@
 package org.plteco.ploytechcourse.domain.user.login.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +14,8 @@ import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.login.dto.CustomUserDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -24,6 +28,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * LoginFilter 클래스는 사용자 로그인 시 인증을 처리하고, 성공적으로 인증된 경우 JWT 토큰을 생성하여
@@ -46,8 +51,33 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
      */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String email = obtainEmail(request);
-        String password = obtainPassword(request);
+        String email = null;
+        String password = null;
+
+        try {
+            if (request.getContentType() != null && request.getContentType().equalsIgnoreCase("application/json")) {
+                // JSON 요청 처리
+                ObjectMapper objectMapper = new ObjectMapper();
+                Map<String, String> requestBody = objectMapper.readValue(request.getInputStream(), new TypeReference<Map<String, String>>() {});
+                email = requestBody.get("email");
+                password = requestBody.get("password");
+            } else {
+                // 기존 form-data 방식 처리
+                email = obtainEmail(request);
+                password = obtainPassword(request);
+            }
+        } catch (IOException e) {
+            throw new AuthenticationServiceException("요청 본문을 읽는 중 오류 발생", e);
+        }
+
+        System.out.println("request = " + request);
+        System.out.println("email = " + email);
+        System.out.println("password = " + password);
+
+        if (email == null || password == null) {
+            throw new BadCredentialsException("이메일 또는 비밀번호가 제공되지 않았습니다.");
+        }
+
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, password, null);
         return authenticationManager.authenticate(authToken);
     }
@@ -125,7 +155,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         }
         writer.write(jsonResponse);
         writer.flush();
-
     }
 
     /**
