@@ -1,14 +1,16 @@
 package org.plteco.ploytechcourse.api.user.signup;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.signup.service.SendEmailApplication;
 import org.plteco.ploytechcourse.application.user.signup.service.SignupApplication;
 import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
 import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
-import org.plteco.ploytechcourse.shared.exception.PltecoException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +34,23 @@ public class SignupController {
      * @param signupUserDto 회원가입에 필요한 정보가 담긴 DTO 객체
      * @return 회원가입 처리 결과 메시지
      */
+    @Operation(
+            summary = "회원가입",
+            description = "사용자가 입력한 정보로 회원가입을 진행합니다.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "회원가입이 완료되었습니다."),
+                    @ApiResponse(responseCode = "400", description = "잘못된 요청 (예: 필수 정보 누락, 유효하지 않은 입력값)",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "500", description = "서버 오류",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class)))
+            }
+    )
     @PostMapping("/signup")
-    public ResponseEntity<String>  signup(@Valid @RequestBody SignupUserDto signupUserDto) {
+    public ResponseEntity<String> signup(
+            @Parameter(description = "회원가입에 필요한 정보", required = true)
+            @Valid @RequestBody SignupUserDto signupUserDto) {
         signupApplication.signup(signupUserDto);
         return ResponseEntity.ok("회원가입이 완료되었습니다.");
     }
@@ -47,8 +64,23 @@ public class SignupController {
      * @param emailDto 이메일 인증에 필요한 정보가 담긴 DTO 객체
      * @return 이메일 전송 결과 메시지
      */
+    @Operation(
+            summary = "이메일 인증 메일 전송",
+            description = "사용자의 이메일로 인증 메일을 전송합니다.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "이메일 전송이 완료되었습니다."),
+                    @ApiResponse(responseCode = "400", description = "잘못된 요청 (예: 유효하지 않은 이메일)",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "500", description = "서버 오류",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class)))
+            }
+    )
     @PostMapping("/email")
-    public ResponseEntity<String>  mail(@Valid @RequestBody EmailDto emailDto) {
+    public ResponseEntity<String> mail(
+            @Parameter(description = "이메일 인증에 필요한 정보", required = true)
+            @Valid @RequestBody EmailDto emailDto) {
         sendEmailApplication.sendEmail(emailDto);
         return ResponseEntity.ok("이메일을 보냈습니다.");
     }
