@@ -9,6 +9,8 @@ import org.plteco.ploytechcourse.application.user.signup.service.SendEmailApplic
 import org.plteco.ploytechcourse.application.user.signup.service.SignupApplication;
 import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
 import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
+import org.plteco.ploytechcourse.shared.exception.PltecoException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,7 +54,7 @@ public class SignupController {
             @Parameter(description = "회원가입에 필요한 정보", required = true)
             @Valid @RequestBody SignupUserDto signupUserDto) {
         signupApplication.signup(signupUserDto);
-        return ResponseEntity.ok("회원가입이 완료되었습니다.");
+        throw new PltecoException("회원가입 성공", HttpStatus.OK);
     }
 
     /**
