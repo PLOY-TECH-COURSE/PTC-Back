@@ -23,7 +23,7 @@ public class CorsMvcConfig implements WebMvcConfigurer {
         corsRegistry.addMapping("/**")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                 .allowedHeaders("*")
-                .allowedOriginPatterns("*") // 모든 출처 허용
+                .allowedOriginPatterns("https://ptc-front-bves.vercel.app") // 모든 출처 허용
                 .allowCredentials(true); // 자격 증명 허용
     }
 }
