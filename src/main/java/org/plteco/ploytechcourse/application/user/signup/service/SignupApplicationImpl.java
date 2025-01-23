@@ -75,7 +75,6 @@ public class SignupApplicationImpl implements SignupApplication {
                 .password(bCryptPasswordEncoder.encode(signupUserDto.getPassword())) // 비밀번호 암호화
                 .build());
 
-        // 회원가입 성공 메시지 반환
-        throw new PltecoException("회원가입 성공", HttpStatus.OK);
+
     }
 }
