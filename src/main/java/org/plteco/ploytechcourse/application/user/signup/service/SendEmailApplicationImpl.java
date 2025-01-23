@@ -2,6 +2,7 @@ package org.plteco.ploytechcourse.application.user.signup.service;
 
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
+import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.plteco.ploytechcourse.domain.user.signup.service.SendEmailService;
 import org.plteco.ploytechcourse.domain.user.signup.service.ValidationService;
 import org.plteco.ploytechcourse.shared.exception.PltecoException;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SendEmailApplicationImpl implements SendEmailApplication {
     private final SendEmailService sendEmailService;    // 이메일로 인증코드를 전송하는 서비스
+    private final UserRepository userRepository;
 
     /**
      * 주어진 이메일로 인증번호를 전송합니다.
@@ -32,6 +34,9 @@ public class SendEmailApplicationImpl implements SendEmailApplication {
      */
     @Override
     public void sendEmail(EmailDto emailDto) {
+        if(userRepository.existsByEmail(emailDto.getEmail())) {
+            throw new PltecoException("이미 가입된 이메일 입니다.", HttpStatus.BAD_REQUEST);
+        }
         sendEmailService.sendCodeToEmail(emailDto.getEmail());
         throw new PltecoException("이메일 보내기 성공", HttpStatus.OK);
     }
