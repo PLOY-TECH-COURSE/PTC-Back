@@ -80,7 +80,7 @@ public class SecurityConfig {
                 CorsConfiguration configuration = new CorsConfiguration();
 
                 // 모든 출처 허용
-                configuration.addAllowedOriginPattern("*"); // allowedOriginPatterns 사용
+                configuration.addAllowedOriginPattern("https://ptc-front-bves.vercel.app"); // allowedOriginPatterns 사용
                 configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
                 configuration.setAllowedHeaders(Arrays.asList("*"));
                 configuration.setAllowCredentials(true); // allowCredentials 설정
