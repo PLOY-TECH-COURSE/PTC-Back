@@ -26,6 +26,9 @@ public class CorsMvcConfig implements WebMvcConfigurer {
 //                // 특정 출처에서의 요청만 허용 https://ptc-front-bves.vercel.app
 //                .allowedOrigins("https://ptc-front-bves.vercel.app"); // 프론트엔드가 호스팅되는 URL을 설정해야 함.
                 corsRegistry.addMapping("/**")
-                .allowedOrigins("*");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
+                        .allowedHeaders("*")
+                        .allowCredentials(true)
+                        .allowedOrigins("*");
     }
 }
