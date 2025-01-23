@@ -51,6 +51,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/email", "/signup", "/login", "/refresh","/verify").permitAll()
+                        .requestMatchers("/swagger-ui/**","/v3/api-docs/**","/swagger-resources/**","/webjars/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/documents", "/users/search/{user-name}", "/documents/search", "/comments/{document-id}", "/favorites", "/announcements").permitAll()
                         .requestMatchers(HttpMethod.POST, "/logout", "/comments/{document-id}", "/favorites/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/{user-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
@@ -71,7 +72,6 @@ public class SecurityConfig {
                 .formLogin(form -> form.disable())
                 .httpBasic(httpBasic -> httpBasic.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
         http.cors((corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
 
                     @Override
