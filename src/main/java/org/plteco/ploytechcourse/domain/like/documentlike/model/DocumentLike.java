@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.domain.like.commentlike.model.entity;
+package org.plteco.ploytechcourse.domain.like.documentlike.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,24 +7,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
+
 @Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-public class CommentLike{
-
+public class DocumentLike{
     @EmbeddedId
-    private CommentLikeId id;
+    private DocumentLikeId id;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @MapsId("commentId")
-//    @JoinColumn(name = "comment_id")
-//    private Commment comment;
+//    @MapsId("documentId")
+//    @JoinColumn(name = "document_id")
+//    private Document document;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
-
 }
