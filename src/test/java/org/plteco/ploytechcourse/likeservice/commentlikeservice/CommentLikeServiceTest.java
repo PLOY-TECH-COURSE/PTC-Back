@@ -77,13 +77,13 @@ public class CommentLikeServiceTest {
     public void getLikesTest() {
         // given
         long commentId = 1L;
-        when(commentLikeRepository.countByCommentId(commentId)).thenReturn(5L);
+        when(commentLikeRepository.countByIdCommentId(commentId)).thenReturn(5L);
 
         // when
         long count = commentLikeService.getLikes(commentId);
 
         // then
-        verify(commentLikeRepository, times(1)).countByCommentId(commentId);
+        verify(commentLikeRepository, times(1)).countByIdCommentId(commentId);
         assert(count == 5L); // expected 5
     }
 }
