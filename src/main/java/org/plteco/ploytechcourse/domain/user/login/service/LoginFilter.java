@@ -1,5 +1,7 @@
 package org.plteco.ploytechcourse.domain.user.login.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,15 +14,21 @@ import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.login.dto.CustomUserDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * LoginFilter 클래스는 사용자 로그인 시 인증을 처리하고, 성공적으로 인증된 경우 JWT 토큰을 생성하여
@@ -43,8 +51,33 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
      */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String email = obtainEmail(request);
-        String password = obtainPassword(request);
+        String email = null;
+        String password = null;
+
+        try {
+            if (request.getContentType() != null && request.getContentType().equalsIgnoreCase("application/json")) {
+                // JSON 요청 처리
+                ObjectMapper objectMapper = new ObjectMapper();
+                Map<String, String> requestBody = objectMapper.readValue(request.getInputStream(), new TypeReference<Map<String, String>>() {});
+                email = requestBody.get("email");
+                password = requestBody.get("password");
+            } else {
+                // 기존 form-data 방식 처리
+                email = obtainEmail(request);
+                password = obtainPassword(request);
+            }
+        } catch (IOException e) {
+            throw new AuthenticationServiceException("요청 본문을 읽는 중 오류 발생", e);
+        }
+
+        System.out.println("request = " + request);
+        System.out.println("email = " + email);
+        System.out.println("password = " + password);
+
+        if (email == null || password == null) {
+            throw new BadCredentialsException("이메일 또는 비밀번호가 제공되지 않았습니다.");
+        }
+
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, password, null);
         return authenticationManager.authenticate(authToken);
     }
@@ -80,14 +113,14 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         // 사용자의 역할을 기반으로 JWT를 생성
         RoleEnum role = RoleEnum.valueOf(auth.getAuthority());
-        String access = jwtUtil.createJwt("access", email, uid, role, 600000L);
-        String refresh = jwtUtil.createJwt("refresh", email, uid, role, 86400000L);
+        String access = jwtUtil.createJwt("access", email, uid, role, 1800000L);
+        String refresh = jwtUtil.createJwt("refresh", email, uid, role, 1209600000L);
 
         // refresh 토큰을 저장
-        addRefreshEntity(uid, email, refresh, 86400000L);
+        addRefreshEntity(uid, email, refresh, 1209600000L);
 
         // 응답 헤더에 access 토큰을 추가하고, refresh 토큰은 쿠키에 추가
-        response.setHeader("access", access);
+        response.setHeader("Authorization", access);
         response.addCookie(createCookie("refresh", refresh));
         response.setStatus(HttpStatus.OK.value());
     }
@@ -101,7 +134,27 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
      */
     @Override
     public void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) {
-        response.setStatus(401);
+        response.setContentType("application/json");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);  // 401 상태 코드 설정
+
+        // JSON 응답 내용
+        String jsonResponse = "{"
+                + "\"timestamp\":\"" + LocalDateTime.now() + "\","
+                + "\"status\":401,"
+                + "\"error\":\"Unauthorized\","
+                + "\"message\":\"INVALID_CREDENTIALS\","
+                + "\"path\":\"" + request.getRequestURI() + "\""
+                + "}";
+
+        // 응답 본문에 JSON 작성
+        PrintWriter writer = null;
+        try {
+            writer = response.getWriter();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        writer.write(jsonResponse);
+        writer.flush();
     }
 
     /**
@@ -113,7 +166,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
      */
     private Cookie createCookie(String key, String value) {
         Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(24 * 60 * 60); // 쿠키의 최대 수명: 1일
+        cookie.setMaxAge(24 * 60 * 60*14); // 쿠키의 최대 수명: 14일
         cookie.setHttpOnly(true); // JavaScript에서 접근할 수 없도록 설정
         return cookie;
     }

@@ -1,10 +1,15 @@
 package org.plteco.ploytechcourse.api.user.login;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.login.ProcessTokenReissue;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,8 +37,28 @@ public class RefreshController {
      * @param response 클라이언트 응답 객체
      * @return 새로운 액세스 토큰을 포함하는 응답
      */
+    @Operation(
+            summary = "리프레시 토큰으로 액세스 토큰 재발급",
+            description = "사용자가 리프레시 토큰을 사용하여 새로운 액세스 토큰을 발급받습니다.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "새로운 액세스 토큰 발급 완료"),
+                    @ApiResponse(responseCode = "400", description = "잘못된 요청 (예: 유효하지 않은 리프레시 토큰)",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "401", description = "인증 실패 (예: 토큰 만료 또는 유효하지 않음)",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class))),
+                    @ApiResponse(responseCode = "500", description = "서버 오류",
+                            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
+                                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ErrorResponse.class)))
+            }
+    )
     @PostMapping("/refresh")
-    public ResponseEntity<?> reissue(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<?> reissue(
+            @Parameter(description = "클라이언트 요청 객체 (리프레시 토큰 포함)", required = true, in = ParameterIn.COOKIE)
+            HttpServletRequest request,
+            @Parameter(description = "클라이언트 응답 객체 (새로운 액세스 토큰을 포함한 응답)", required = true)
+            HttpServletResponse response) {
         return processTokenReissue.reissue(request, response);
     }
 }
