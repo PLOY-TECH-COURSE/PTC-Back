@@ -27,7 +27,6 @@ public class Comment {
     @Column(name = "document_id")
     private Long documentId;
 
-    @Setter
     @Column(name = "comment", nullable = false)
     private String comment;
 

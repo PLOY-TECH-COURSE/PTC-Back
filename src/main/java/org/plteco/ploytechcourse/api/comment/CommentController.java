@@ -1,6 +1,7 @@
 package org.plteco.ploytechcourse.api.comment;
 
 import lombok.RequiredArgsConstructor;
+import org.plteco.ploytechcourse.application.comment.CommentServiceApplication;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.service.CommentServiceImpl;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
@@ -15,7 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CommentController {
 
-    private final CommentServiceImpl commentService;
+    private final CommentServiceApplication commentServiceApplication;
     private final UserContextUtil userContextUtil;
 
     // 댓글 등록 (POST)
@@ -26,7 +27,7 @@ public class CommentController {
 
         String commentText = (String) commentData.get("commentText");
 
-        commentService.createComment(documentId, commentText);
+        commentServiceApplication.createComment(documentId, commentText);
 
         return new ResponseEntity<>(HttpStatus.CREATED);  // 성공적으로 생성된 경우 201 반환
     }
