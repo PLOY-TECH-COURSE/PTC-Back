@@ -39,6 +39,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         // 사용자가 없으면 null 반환, Spring Security에서는 예외를 던지는 것이 일반적임
-        return null;
+        throw new UsernameNotFoundException(username);
     }
 }
