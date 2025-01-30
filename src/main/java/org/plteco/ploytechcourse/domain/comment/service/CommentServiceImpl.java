@@ -49,8 +49,12 @@ public class CommentServiceImpl implements CommentService {
         Optional<Comment> oldComment = commentRepository.findById(commentId);
 
         if (oldComment.isPresent()) {
-            Comment newComment = oldComment.get();
-            newComment.setComment(commentText);
+            Comment newComment = Comment.builder()
+                    .id(oldComment.get().getId())
+                    .user(userContextUtil.getCurrentUser())
+                    .documentId(oldComment.get().getDocumentId())
+                    .comment(commentText)
+                    .build();
 
             commentRepository.save(newComment); // JPA의 save메서드는 update 기능까지 지원
         }
