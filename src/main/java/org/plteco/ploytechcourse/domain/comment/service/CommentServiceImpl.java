@@ -4,6 +4,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
+import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.stereotype.Service;
 
@@ -16,22 +18,21 @@ import java.util.Optional;
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
-    private final UserContextUtil userContextUtil;
 
     @Override
-    public List<Comment> getComments(Long document_id) {
+    public List<Comment> getComments(long documentId) {
 
-        List<Comment> comments = commentRepository.findCommentByDocumentId(document_id);
+        List<Comment> comments = commentRepository.findCommentByDocumentId(documentId);
 
         return comments.isEmpty() ? null : comments;
     }
 
     @Override
-    public void createComment(Long document_id, String commentText) {
+    public void createComment(User user , Document document, String commentText) {
 
         Comment comment = Comment.builder()
-                .user(userContextUtil.getCurrentUser())
-                .documentId(document_id)
+                .user(user)
+                .document(document)
                 .comment(commentText)
                 .build();
 
@@ -39,20 +40,20 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteComment(Long commentId) {
+    public void deleteCommentByUser(long commentId) {
         commentRepository.deleteById(commentId);
     }
 
     @Override
-    public void updateComment(Long commentId, String commentText) {
+    public void updateComment(User user, long commentId, String commentText) {
 
         Optional<Comment> oldComment = commentRepository.findById(commentId);
 
         if (oldComment.isPresent()) {
             Comment newComment = Comment.builder()
                     .id(oldComment.get().getId())
-                    .user(userContextUtil.getCurrentUser())
-                    .documentId(oldComment.get().getDocumentId())
+                    .user(user)
+                    .document(oldComment.get().getDocument())
                     .comment(commentText)
                     .build();
 
@@ -61,7 +62,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment getCommentById(Long commentId) {
+    public Comment getCommentById(long commentId) {
         return commentRepository.findById(commentId).orElse(null);
     }
 }

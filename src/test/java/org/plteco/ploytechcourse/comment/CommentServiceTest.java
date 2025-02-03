@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.plteco.ploytechcourse.application.comment.CommentServiceApplication;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
 import org.plteco.ploytechcourse.domain.comment.service.CommentServiceImpl;
@@ -20,7 +21,7 @@ public class CommentServiceTest {
     private CommentRepository commentRepository;
 
     @InjectMocks
-    private CommentServiceImpl commentService;
+    private CommentServiceApplication commentService;
 
     @Test
     public void testCreateComment() {
@@ -28,13 +29,6 @@ public class CommentServiceTest {
         User user = Mockito.mock(User.class);
         Long documentId = 1L;
         String commentText = "comment";
-
-        // Mocking the behavior of commentRepository.save()
-        Comment comment = Comment.builder()
-                .user(user)
-                .documentId(documentId)
-                .comment(commentText)
-                .build();
 
         // when
         commentService.createComment(documentId, commentText);
