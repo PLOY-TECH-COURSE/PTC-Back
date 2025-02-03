@@ -2,6 +2,7 @@ package org.plteco.ploytechcourse.domain.comment.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 
@@ -17,17 +18,14 @@ public class Comment {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "document_id")
-//    private Document document;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "document_id", nullable = false)
+    private Document document;
 
-    @Column(name = "document_id")
-    private Long documentId;
-
-    @Column(name = "comment", nullable = false)
+    @Column(name = "comment", nullable = false, length = 500)
     private String comment;
 
 }
