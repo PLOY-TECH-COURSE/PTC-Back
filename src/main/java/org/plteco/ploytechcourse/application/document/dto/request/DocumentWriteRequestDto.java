@@ -1,21 +1,21 @@
 package org.plteco.ploytechcourse.application.document.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import lombok.Getter;
 
-@Getter
-public class DocumentWriteRequestDto {
-    private String title;
-    private String content;
-    private String thumbnail;
-    private String introduction;
-    private Long categoryId;
-    @Builder
-    public DocumentWriteRequestDto(String title, String content, String thumbnail, String introduction, Long categoryId) {
-        this.title = title;
-        this.content = content;
-        this.thumbnail = thumbnail;
-        this.introduction = introduction;
-        this.categoryId = categoryId;
-    }
-}
+@Builder
+public record DocumentWriteRequestDto(
+        @NotNull(message = "글 작성시 제목은 필수 항목입니다.")
+        String title,
+
+        @NotNull(message = "글 작성시 내용은 필수 항목입니다.")
+        String content,
+
+        String thumbnail,
+
+        String introduction,
+
+        @JsonProperty("category")
+        Integer categoryId
+) {}
