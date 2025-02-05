@@ -59,6 +59,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/applications").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/applications").hasAnyRole("ADMIN","SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH,  "/permissions").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/permissions").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/documents", "/comments/{document-id}/{comment-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/documents", "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
