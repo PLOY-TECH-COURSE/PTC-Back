@@ -58,4 +58,8 @@ public class User {
         this.classNumber = classNumber;
         this.number = number;
     }
+    public void updateRole(RoleEnum role) {
+        this.role = role;
+    }
+
 }
