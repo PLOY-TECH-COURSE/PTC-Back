@@ -11,5 +11,4 @@ public interface CommentService {
     void createComment(User user, Document document, String commentText);
     void deleteCommentByUser(long commentId);
     void updateComment(User user, long commentId, String commentText);
-    Comment getCommentById(long commentId);
 }
