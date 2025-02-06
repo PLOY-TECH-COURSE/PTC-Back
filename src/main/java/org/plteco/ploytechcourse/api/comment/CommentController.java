@@ -43,7 +43,7 @@ public class CommentController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = @ExampleObject(value = "{\"status\":403,\"message\":\"로그인이 필요합니다.\",\"errorCode\":\"Bad Request\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
+                            examples = @ExampleObject(value = "{\"status\":401,\"message\":\"로그인이 필요합니다.\",\"errorCode\":\"Bad Request\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
             @ApiResponse(responseCode = "404", description = "글이 존재하지 않음",
                     content = @Content(
                     mediaType = "application/json",
@@ -94,7 +94,7 @@ public class CommentController {
                     content = @Content(
             mediaType = "application/json",
             schema = @Schema(implementation = ErrorResponse.class),
-            examples = @ExampleObject(value = "{\"status\":403,\"message\":\"로그인이 필요합니다.\",\"errorCode\":\"Bad Request\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
+            examples = @ExampleObject(value = "{\"status\":401,\"message\":\"로그인이 필요합니다.\",\"errorCode\":\"Bad Request\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
             @ApiResponse(responseCode = "403", description = "삭제 권한 부족",
                     content = @Content(
                             mediaType = "application/json",
