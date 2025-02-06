@@ -34,7 +34,7 @@ public class Document {
     @Column(name = "introduction")
     private String introduction;
 
-    @Column(name = "create_at")
+    @Column(name = "created_at")
     private LocalDate createAt;
 
     @ManyToOne(fetch = FetchType.LAZY)

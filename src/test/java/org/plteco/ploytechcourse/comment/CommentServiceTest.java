@@ -6,10 +6,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.plteco.ploytechcourse.application.comment.CommentServiceApplication;
+import org.plteco.ploytechcourse.application.comment.service.CommentServiceApplication;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
-import org.plteco.ploytechcourse.domain.comment.service.CommentServiceImpl;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import static org.mockito.Mockito.*;
@@ -46,7 +45,7 @@ public class CommentServiceTest {
         Long commentId = 1L;
 
         // when
-        commentService.deleteComment(commentId);
+        commentService.deleteCommentByUser(commentId);
 
         // then
         // Verify that deleteById() is called once

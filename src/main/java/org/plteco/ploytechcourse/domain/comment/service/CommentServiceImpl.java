@@ -2,15 +2,16 @@ package org.plteco.ploytechcourse.domain.comment.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
-import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -22,13 +23,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getComments(long documentId) {
 
-        List<Comment> comments = commentRepository.findCommentByDocumentId(documentId);
+        List<Comment> comments = commentRepository.findByDocumentId(documentId);
 
-        return comments.isEmpty() ? null : comments;
+        return comments;
     }
 
     @Override
-    public void createComment(User user , Document document, String commentText) {
+    public void createComment(User user, Document document, String commentText) {
 
         Comment comment = Comment.builder()
                 .user(user)
@@ -59,10 +60,5 @@ public class CommentServiceImpl implements CommentService {
 
             commentRepository.save(newComment); // JPA의 save메서드는 update 기능까지 지원
         }
-    }
-
-    @Override
-    public Comment getCommentById(long commentId) {
-        return commentRepository.findById(commentId).orElse(null);
     }
 }
