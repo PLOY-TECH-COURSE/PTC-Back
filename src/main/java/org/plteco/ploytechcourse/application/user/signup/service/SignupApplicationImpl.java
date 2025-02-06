@@ -1,6 +1,7 @@
 package org.plteco.ploytechcourse.application.user.signup.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.plteco.ploytechcourse.application.user.signup.dto.SignupUserDto;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 @Transactional
 public class SignupApplicationImpl implements SignupApplication {
 
@@ -40,29 +42,34 @@ public class SignupApplicationImpl implements SignupApplication {
     @Override
     public void signup(SignupUserDto signupUserDto) {
 
+        log.info("회원가입 시작: {}", signupUserDto.getEmail());
 
         // 비밀번호 유효성 검사
         if (!validationService.isValidPassword(signupUserDto.getPassword(), signupUserDto.getRePassword(), signupUserDto.getUid())) {
+            log.error("비밀번호 유효성 검사 실패: {}", signupUserDto.getEmail());
             throw new PltecoException("비밀번호가 잘못되었습니다.", HttpStatus.BAD_REQUEST);
         }
 
         // 이메일 인증 코드 유효성 검사
         if (!validationService.verifyCode(signupUserDto.getEmail(), signupUserDto.getCode())) {
+            log.error("이메일 인증 코드 검증 실패: {}", signupUserDto.getEmail());
             throw new PltecoException("코드가 잘못되었습니다.", HttpStatus.BAD_REQUEST);
         }
 
         // 이메일 중복 검사
         if (userRepository.existsByEmail(signupUserDto.getEmail())) {
+            log.error("이메일 중복됨: {}", signupUserDto.getEmail());
             throw new PltecoException("이메일이 중복되었습니다.", HttpStatus.BAD_REQUEST);
         }
 
         // 아이디 중복 검사
         if (userRepository.existsByUid(signupUserDto.getUid())) {
+            log.error("아이디 중복됨: {}", signupUserDto.getUid());
             throw new PltecoException("아이디가 중복되었습니다.", HttpStatus.BAD_REQUEST);
         }
 
         // 사용자 정보 저장
-        userRepository.save(User.builder()
+        User savedUser = userRepository.save(User.builder()
                 .uid(signupUserDto.getUid())
                 .email(signupUserDto.getEmail())
                 .name(signupUserDto.getName())
@@ -75,6 +82,6 @@ public class SignupApplicationImpl implements SignupApplication {
                 .password(bCryptPasswordEncoder.encode(signupUserDto.getPassword())) // 비밀번호 암호화
                 .build());
 
-
+        log.info("회원가입 완료: {}", savedUser.getEmail());
     }
 }
