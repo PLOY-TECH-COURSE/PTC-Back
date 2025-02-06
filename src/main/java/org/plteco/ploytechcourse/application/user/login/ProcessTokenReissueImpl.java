@@ -5,6 +5,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.plteco.ploytechcourse.domain.jwt.model.entity.RefreshToken;
 import org.plteco.ploytechcourse.domain.jwt.repository.RefreshRepository;
 import org.plteco.ploytechcourse.domain.jwt.service.AddRefreshEntity;
@@ -26,28 +27,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class ProcessTokenReissueImpl implements ProcessTokenReissue {
 
     private final JwtUtil jwtUtil;
     private final RefreshRepository refreshRepository;
     private final AddRefreshEntity addRefreshEntity;
 
-    /**
-     * 주어진 이메일 주소로 인증 코드를 전송하고 리프레시 토큰을 재발급합니다.
-     *
-     * 1. 클라이언트의 요청에서 리프레시 토큰을 추출합니다.
-     * 2. 리프레시 토큰의 만료 여부를 검사하고 만료된 경우 예외를 처리합니다.
-     * 3. 리프레시 토큰의 유효성 검사 후 새로운 액세스 및 리프레시 토큰을 발급합니다.
-     * 4. 새로 발급된 토큰들을 응답 헤더 및 쿠키로 전송합니다.
-     *
-     *
-     * @param request 클라이언트 요청 객체로, 리프레시 토큰을 포함하고 있음
-     * @param response 클라이언트 응답 객체로, 새로운 액세스 및 리프레시 토큰을 전달
-     * @return 리프레시 토큰 재발급 결과를 담은 HTTP 응답
-     * @throws RuntimeException 이메일 전송 실패 시 예외 발생
-     */
     public ResponseEntity<?> reissue(HttpServletRequest request, HttpServletResponse response) {
-        // 리프레시 토큰 추출
+        log.info("리프레시토큰 재발급 시작");
+
         String refresh = null;
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
@@ -57,63 +46,54 @@ public class ProcessTokenReissueImpl implements ProcessTokenReissue {
         }
 
         if (refresh == null) {
-            // 리프레시 토큰이 없으면 클라이언트에 오류 응답
+            log.error("리프레시 토큰이 없습니다.");
             return new ResponseEntity<>("refresh token null", HttpStatus.BAD_REQUEST);
         }
 
-        // 리프레시 토큰 만료 여부 검사
         try {
             jwtUtil.isExpired(refresh);
         } catch (ExpiredJwtException e) {
-            // 만료된 토큰에 대한 오류 응답
+            log.error("리프레시 토큰이 만료되었습니다. token: {}", refresh);
             return new ResponseEntity<>("refresh token expired", HttpStatus.BAD_REQUEST);
         }
 
-        // 리프레시 토큰이 맞는지 확인 (페이로드 확인)
         String category = jwtUtil.getCategory(refresh);
         if (!category.equals("refresh")) {
-            // 유효하지 않은 리프레시 토큰에 대한 오류 응답
+            log.error("유효하지 않은 리프레시 토큰입니다. token: {}", refresh);
             return new ResponseEntity<>("invalid refresh token", HttpStatus.BAD_REQUEST);
         }
 
         if (!refreshRepository.existsByToken(refresh)) {
-            // 리프레시 토큰이 존재하지 않으면 오류 응답
+            log.error("리프레시 토큰이 존재하지 않습니다. token: {}", refresh);
             return new ResponseEntity<>("invalid refresh token", HttpStatus.BAD_REQUEST);
         }
 
-        // 이메일, UID 및 역할 정보 추출
         String email = jwtUtil.getEmail(refresh);
         String uid = jwtUtil.getUid(refresh);
         RoleEnum role = jwtUtil.getRole(refresh);
 
-        // 새 액세스 토큰과 리프레시 토큰 생성
         String newAccess = jwtUtil.createJwt("access", email, uid, role, 1800000L);
         String newRefresh = jwtUtil.createJwt("refresh", email, uid, role, 1209600000L);
 
-        // 기존 리프레시 토큰 삭제 및 새 리프레시 토큰 엔티티 저장
         refreshRepository.deleteByToken(refresh);
         addRefreshEntity.addRefreshEntity(uid, email, newRefresh, 1209600000L);
 
-        // 응답 헤더와 쿠키에 새 토큰 추가
+        log.info("새로운 액세스 토큰과 리프레시 토큰을 발급했습니다. 새로운 리프레시 토큰: {}", newRefresh);
+
         response.setHeader("Authorization", newAccess);
         response.addCookie(createCookie("refresh", newRefresh));
+
+        log.info("리프레시 토큰 재발급 완료");
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    /**
-     * 쿠키를 생성하는 메서드입니다.
-     *
-     * @param key 쿠키의 이름
-     * @param value 쿠키의 값
-     * @return 생성된 쿠키
-     */
     private Cookie createCookie(String key, String value) {
+        log.info("쿠키 생성 시작");
         Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(24 * 60 * 60*14);  // 14일 유효
+        cookie.setMaxAge(24 * 60 * 60 * 14);  // 14일 유효
         cookie.setHttpOnly(true); // 클라이언트 측에서 접근 불가
+        log.info("쿠키 생성 끝");
         return cookie;
     }
-
-
 }
