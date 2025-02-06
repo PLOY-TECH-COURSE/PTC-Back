@@ -1,6 +1,7 @@
 package org.plteco.ploytechcourse.application.user.signup.service;
 
 import org.plteco.ploytechcourse.application.user.signup.dto.EmailDto;
+import org.plteco.ploytechcourse.shared.exception.PltecoException;
 
 /**
  * 이메일 전송을 처리하는 서비스 인터페이스입니다.
@@ -20,5 +21,5 @@ public interface SendEmailApplication {
      * @param emailDto 이메일 전송에 필요한 정보가 담긴 DTO 객체
      * @return 이메일 전송 결과 메시지
      */
-    String sendEmail(EmailDto emailDto);
+    void sendEmail(EmailDto emailDto);
 }
