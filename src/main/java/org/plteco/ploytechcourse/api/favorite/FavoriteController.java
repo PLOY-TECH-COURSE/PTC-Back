@@ -9,16 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class FavoriteController {
 
-    private final FavoriteServiceImpl favoriteService;
-    private final UserContextUtil userContextUtil;
-
     @PostMapping("/favorite/{documentId}")
     public void registerFavorite(@PathVariable("documentId") long documentId) {
-        /*
-        * jwt에서 user_id를 가져옵니다.
-         */
-        long user_id = userContextUtil.getId();
-        favoriteService.registerFavorite(user_id, documentId);
+
+
     }
 
 //    @GetMapping("/favorite")
@@ -29,8 +23,6 @@ public class FavoriteController {
     @DeleteMapping("/favorite/{documentId}")
     public void deleteFavorite(@PathVariable("documentId") long documentId) {
 
-        long userId = userContextUtil.getId();
-        favoriteService.deleteFavorite(userId, documentId);
     }
 
 }
