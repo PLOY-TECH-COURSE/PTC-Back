@@ -59,7 +59,7 @@ public class CommentController {
     public ResponseEntity<Void> createComment(
             @Parameter(description = "글 아이디", required = true)
             @PathVariable("document-id") Long documentId,
-            @Valid @RequestBody @Schema(description = "댓글 데이터", example = "{\"commentText\": \"허동운 대머리\" }")RequestCommentDTO commentData) {
+            @Valid @RequestBody RequestCommentDTO commentData) {
 
         String commentText = commentData.getCommentText();
         commentServiceApplication.createComment(documentId, commentText);
@@ -163,7 +163,7 @@ public class CommentController {
     public ResponseEntity<Void> updateComment(
             @Parameter(description = "댓글 아이디", required = true)
             @PathVariable("comment-id") Long commentId,
-            @Valid @RequestBody @Schema(description = "댓글 데이터", example = "{\"commentText\": \"허동운 대머리\" }") RequestCommentDTO commentData) {
+            @Valid @RequestBody RequestCommentDTO commentData) {
 
         String commentText = commentData.getCommentText();
         commentServiceApplication.updateComment(commentId, commentText);
