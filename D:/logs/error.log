@@ -1,23 +1,28 @@
-[1;35m02-03 23:51:39[0;39m [[1;33mINFO [0;39m] [36mo.h.v.i.u.Version.<clinit>[0;39m - HV000001: Hibernate Validator 8.0.2.Final 
-[1;35m02-03 23:51:39[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarting[0;39m - Starting PloyTechCourseApplication using Java 23 with PID 23734 (/Users/ploytechcourse/build/classes/java/main started by heodongun in /Users/ploytechcourse) 
-[1;35m02-03 23:51:39[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStartupProfileInfo[0;39m - No active profile set, falling back to 1 default profile: "default" 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Finished Spring Data repository scanning in 26 ms. Found 4 JPA repository interfaces. 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.initialize[0;39m - Tomcat initialized with port 8080 (http) 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"] 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardService.log[0;39m - Starting service [Tomcat] 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardEngine.log[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.34] 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring embedded WebApplicationContext 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 758 ms 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Starting... 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mc.z.h.p.HikariPool.checkFailFast[0;39m - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@38de5daf 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Start completed. 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.h.j.i.u.LogHelper.logPersistenceUnitInformation[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default] 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.h.Version.logVersion[0;39m - HHH000412: Hibernate ORM core version 6.6.4.Final 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.h.c.i.RegionFactoryInitiator.initiateService[0;39m - HHH000026: Second-level cache disabled 
-[1;35m02-03 23:51:40[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.p.SpringPersistenceUnitInfo.addTransformer[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer 
-[1;35m02-03 23:51:41[0;39m [[1;33mWARN [0;39m] [36mo.h.o.deprecation.constructDialect[0;39m - HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) 
-[1;35m02-03 23:51:41[0;39m [[1;33mINFO [0;39m] [36mo.h.o.c.pooling.initiateService[0;39m - HHH10001005: Database info:
+[1;35m02-09 00:05:36[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.shutDownGracefully[0;39m - Commencing graceful shutdown. Waiting for active requests to complete 
+[1;35m02-09 00:05:36[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.doShutdown[0;39m - Graceful shutdown complete 
+[1;35m02-09 00:05:36[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.destroy[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default' 
+[1;35m02-09 00:05:36[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown initiated... 
+[1;35m02-09 00:05:36[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown completed. 
+[1;35m02-09 00:12:32[0;39m [[1;33mINFO [0;39m] [36mo.h.v.i.u.Version.<clinit>[0;39m - HV000001: Hibernate Validator 8.0.2.Final 
+[1;35m02-09 00:12:32[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarting[0;39m - Starting PloyTechCourseApplication using Java 23.0.1 with PID 21080 (/Users/jjm/Downloads/ploytechcourse/out/production/classes started by jjm in /Users/jjm/Downloads/ploytechcourse) 
+[1;35m02-09 00:12:32[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStartupProfileInfo[0;39m - No active profile set, falling back to 1 default profile: "default" 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Finished Spring Data repository scanning in 31 ms. Found 7 JPA repository interfaces. 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.initialize[0;39m - Tomcat initialized with port 8080 (http) 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"] 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardService.log[0;39m - Starting service [Tomcat] 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardEngine.log[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.34] 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring embedded WebApplicationContext 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 719 ms 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Starting... 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mc.z.h.p.HikariPool.checkFailFast[0;39m - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@34cd65ac 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Start completed. 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.h.j.i.u.LogHelper.logPersistenceUnitInformation[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default] 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.h.Version.logVersion[0;39m - HHH000412: Hibernate ORM core version 6.6.4.Final 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.h.c.i.RegionFactoryInitiator.initiateService[0;39m - HHH000026: Second-level cache disabled 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.p.SpringPersistenceUnitInfo.addTransformer[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer 
+[1;35m02-09 00:12:33[0;39m [[1;33mWARN [0;39m] [36mo.h.o.deprecation.constructDialect[0;39m - HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) 
+[1;35m02-09 00:12:33[0;39m [[1;33mINFO [0;39m] [36mo.h.o.c.pooling.initiateService[0;39m - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 10.11.6
@@ -25,27 +30,27 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown 
-[1;35m02-03 23:51:41[0;39m [[1;33mINFO [0;39m] [36mo.h.e.t.j.p.i.JtaPlatformInitiator.initiateService[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) 
-[1;35m02-03 23:51:41[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default' 
-[1;35m02-03 23:51:41[0;39m [[1;33mWARN [0;39m] [36mo.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor[0;39m - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
-[1;35m02-03 23:51:41[0;39m [[1;33mINFO [0;39m] [36mo.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer.configure[0;39m - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService 
-[1;35m02-03 23:51:41[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.handlerMethodsInitialized[0;39m - 13 mappings in 'requestMappingHandlerMapping' 
-[1;35m02-03 23:51:41[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.logMappings[0;39m - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping' 
-[1;35m02-03 23:51:41[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache[0;39m - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice 
-[1;35m02-03 23:51:41[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache[0;39m - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice 
-[1;35m02-03 23:51:42[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"] 
-[1;35m02-03 23:51:42[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.start[0;39m - Tomcat started on port 8080 (http) with context path '/' 
-[1;35m02-03 23:51:42[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarted[0;39m - Started PloyTechCourseApplication in 2.587 seconds (process running for 3.025) 
-[1;35m02-03 23:52:15[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet' 
-[1;35m02-03 23:52:15[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Initializing Servlet 'dispatcherServlet' 
-[1;35m02-03 23:52:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initMultipartResolver[0;39m - Detected StandardServletMultipartResolver 
-[1;35m02-03 23:52:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initLocaleResolver[0;39m - Detected AcceptHeaderLocaleResolver 
-[1;35m02-03 23:52:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initThemeResolver[0;39m - Detected FixedThemeResolver 
-[1;35m02-03 23:52:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initRequestToViewNameTranslator[0;39m - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@a8964c1 
-[1;35m02-03 23:52:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initFlashMapManager[0;39m - Detected org.springframework.web.servlet.support.SessionFlashMapManager@14f08a97 
-[1;35m02-03 23:52:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
-[1;35m02-03 23:52:15[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 3 ms 
-[1;35m02-03 23:52:15[0;39m [[1;33mERROR[0;39m] [36mo.a.c.c.C.[.[.[.[dispatcherServlet].log[0;39m - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception 
+[1;35m02-09 00:12:34[0;39m [[1;33mINFO [0;39m] [36mo.h.e.t.j.p.i.JtaPlatformInitiator.initiateService[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) 
+[1;35m02-09 00:12:34[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[1;35m02-09 00:12:34[0;39m [[1;33mWARN [0;39m] [36mo.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor[0;39m - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[1;35m02-09 00:12:34[0;39m [[1;33mINFO [0;39m] [36mo.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer.configure[0;39m - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService 
+[1;35m02-09 00:12:34[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.handlerMethodsInitialized[0;39m - 18 mappings in 'requestMappingHandlerMapping' 
+[1;35m02-09 00:12:34[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.logMappings[0;39m - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping' 
+[1;35m02-09 00:12:35[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache[0;39m - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice 
+[1;35m02-09 00:12:35[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache[0;39m - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice 
+[1;35m02-09 00:12:35[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"] 
+[1;35m02-09 00:12:35[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.start[0;39m - Tomcat started on port 8080 (http) with context path '/' 
+[1;35m02-09 00:12:35[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarted[0;39m - Started PloyTechCourseApplication in 2.856 seconds (process running for 3.266) 
+[1;35m02-09 00:12:37[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+[1;35m02-09 00:12:37[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Initializing Servlet 'dispatcherServlet' 
+[1;35m02-09 00:12:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initMultipartResolver[0;39m - Detected StandardServletMultipartResolver 
+[1;35m02-09 00:12:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initLocaleResolver[0;39m - Detected AcceptHeaderLocaleResolver 
+[1;35m02-09 00:12:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initThemeResolver[0;39m - Detected FixedThemeResolver 
+[1;35m02-09 00:12:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initRequestToViewNameTranslator[0;39m - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3fc105dd 
+[1;35m02-09 00:12:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initFlashMapManager[0;39m - Detected org.springframework.web.servlet.support.SessionFlashMapManager@4848681d 
+[1;35m02-09 00:12:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
+[1;35m02-09 00:12:37[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 3 ms 
+[1;35m02-09 00:12:37[0;39m [[1;33mERROR[0;39m] [36mo.a.c.c.C.[.[.[.[dispatcherServlet].log[0;39m - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception 
 java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류가 발생했습니다.
 	at org.plteco.ploytechcourse.domain.jwt.service.JwtUtil.getCategory(JwtUtil.java:116)
 	at org.plteco.ploytechcourse.domain.jwt.service.JwtFilter.doFilterInternal(JwtFilter.java:67)
@@ -112,70 +117,240 @@ java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1575)
-[1;35m02-03 23:52:24[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - POST "/email", parameters={} 
-[1;35m02-03 23:52:24[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.user.signup.SignupController#mail(EmailDto) 
-[1;35m02-03 23:52:24[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.traceDebug[0;39m - Read "application/json;charset=UTF-8" to [EmailDto(email=heodongun0922@gmail.com)] 
-[1;35m02-03 23:52:28[0;39m [[1;33mINFO [0;39m] [36mo.p.p.a.u.s.s.SendEmailApplicationImpl.sendEmail[0;39m - 이메일 전송 성공: heodongun0922@gmail.com 
-[1;35m02-03 23:52:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json, application/yaml] 
-[1;35m02-03 23:52:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing ["이메일을 보냈습니다."] 
-[1;35m02-03 23:52:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/index.html", parameters={} 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/swagger-ui.css", parameters={} 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/swagger-initializer.js", parameters={} 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={} 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/index.css", parameters={} 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/swagger-ui-bundle.js", parameters={} 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:05[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/favicon-32x32.png", parameters={} 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/v3/api-docs/swagger-config", parameters={} 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest) 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json] 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.traceDebug[0;39m - Writing [{configUrl=/v3/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-re (truncated)...] 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/v3/api-docs/PloyTechCourse", parameters={} 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.springdoc.webmvc.api.MultipleOpenApiWebMvcResource#openapiJson(HttpServletRequest, String, String, Locale) 
-[1;35m02-03 23:53:06[0;39m [[1;33mINFO [0;39m] [36mo.s.a.AbstractOpenApiResource.getOpenApi[0;39m - Init duration for springdoc-openapi is: 467 ms 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [application/json, */*] and supported [application/json] 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.traceDebug[0;39m - Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...] 
-[1;35m02-03 23:53:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
-[1;35m02-03 23:53:57[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.shutDownGracefully[0;39m - Commencing graceful shutdown. Waiting for active requests to complete 
-[1;35m02-03 23:53:57[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.doShutdown[0;39m - Graceful shutdown complete 
-[1;35m02-03 23:53:57[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.destroy[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default' 
-[1;35m02-03 23:53:57[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown initiated... 
-[1;35m02-03 23:53:57[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown completed. 
-[1;35m02-07 01:39:47[0;39m [[1;33mINFO [0;39m] [36mo.h.v.i.u.Version.<clinit>[0;39m - HV000001: Hibernate Validator 8.0.2.Final 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarting[0;39m - Starting PloyTechCourseApplication using Java 23.0.1 with PID 65191 (/Users/jjm/Downloads/ploytechcourse/out/production/classes started by jjm in /Users/jjm/Downloads/ploytechcourse) 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStartupProfileInfo[0;39m - No active profile set, falling back to 1 default profile: "default" 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Finished Spring Data repository scanning in 48 ms. Found 7 JPA repository interfaces. 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.initialize[0;39m - Tomcat initialized with port 8080 (http) 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"] 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardService.log[0;39m - Starting service [Tomcat] 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardEngine.log[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.34] 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring embedded WebApplicationContext 
-[1;35m02-07 01:39:48[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 958 ms 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Starting... 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mc.z.h.p.HikariPool.checkFailFast[0;39m - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@389a5022 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Start completed. 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mo.h.j.i.u.LogHelper.logPersistenceUnitInformation[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default] 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mo.h.Version.logVersion[0;39m - HHH000412: Hibernate ORM core version 6.6.4.Final 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mo.h.c.i.RegionFactoryInitiator.initiateService[0;39m - HHH000026: Second-level cache disabled 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.p.SpringPersistenceUnitInfo.addTransformer[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer 
-[1;35m02-07 01:39:49[0;39m [[1;33mWARN [0;39m] [36mo.h.o.deprecation.constructDialect[0;39m - HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mo.h.o.c.pooling.initiateService[0;39m - HHH10001005: Database info:
+[1;35m02-09 00:12:39[0;39m [[1;33mERROR[0;39m] [36mo.a.c.c.C.[.[.[.[dispatcherServlet].log[0;39m - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception 
+java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류가 발생했습니다.
+	at org.plteco.ploytechcourse.domain.jwt.service.JwtUtil.getCategory(JwtUtil.java:116)
+	at org.plteco.ploytechcourse.domain.jwt.service.JwtFilter.doFilterInternal(JwtFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter.doFilter(CustomLogoutFilter.java:47)
+	at org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter.doFilter(CustomLogoutFilter.java:40)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+[1;35m02-09 00:12:40[0;39m [[1;33mERROR[0;39m] [36mo.a.c.c.C.[.[.[.[dispatcherServlet].log[0;39m - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception 
+java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류가 발생했습니다.
+	at org.plteco.ploytechcourse.domain.jwt.service.JwtUtil.getCategory(JwtUtil.java:116)
+	at org.plteco.ploytechcourse.domain.jwt.service.JwtFilter.doFilterInternal(JwtFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter.doFilter(CustomLogoutFilter.java:47)
+	at org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter.doFilter(CustomLogoutFilter.java:40)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+[1;35m02-09 00:12:40[0;39m [[1;33mERROR[0;39m] [36mo.a.c.c.C.[.[.[.[dispatcherServlet].log[0;39m - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception 
+java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류가 발생했습니다.
+	at org.plteco.ploytechcourse.domain.jwt.service.JwtUtil.getCategory(JwtUtil.java:116)
+	at org.plteco.ploytechcourse.domain.jwt.service.JwtFilter.doFilterInternal(JwtFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter.doFilter(CustomLogoutFilter.java:47)
+	at org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter.doFilter(CustomLogoutFilter.java:40)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+[1;35m02-09 00:13:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - POST "/comments/2", parameters={} 
+[1;35m02-09 00:13:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#createComment(Long, RequestCommentDTO) 
+[1;35m02-09 00:13:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.traceDebug[0;39m - Read "application/json;charset=UTF-8" to [org.plteco.ploytechcourse.application.comment.dto.RequestCommentDTO@5dbfa884] 
+[1;35m02-09 00:13:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException[0;39m - Using @ExceptionHandler org.plteco.ploytechcourse.shared.exception.PltecoExceptionHandler#ExceptionHandler(MethodArgumentNotValidException) 
+[1;35m02-09 00:13:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
+[1;35m02-09 00:13:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [ErrorResponse[status=400, errorCode=댓글은 500자를 초과할 수 없습니다., message=INVALID_ARGUMENT, timestamp=2025- (truncated)...] 
+[1;35m02-09 00:13:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.resolveException[0;39m - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<java.lang.Void> org.plteco.ploytechcourse.api.comment.CommentController.createComment(java.lang.Long,org.plteco.ploytechcourse.application.comment.dto.RequestCommentDTO): [Field error in object 'requestCommentDTO' on field 'commentText': rejected value [dasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasd]; codes [Size.requestCommentDTO.commentText,Size.commentText,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [requestCommentDTO.commentText,commentText]; arguments []; default message [commentText],500,0]; default message [댓글은 500자를 초과할 수 없습니다.]] ] 
+[1;35m02-09 00:13:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 400 BAD_REQUEST 
+[1;35m02-09 00:13:38[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.shutDownGracefully[0;39m - Commencing graceful shutdown. Waiting for active requests to complete 
+[1;35m02-09 00:13:38[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.doShutdown[0;39m - Graceful shutdown complete 
+[1;35m02-09 00:13:38[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.destroy[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default' 
+[1;35m02-09 00:13:38[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown initiated... 
+[1;35m02-09 00:13:38[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown completed. 
+[1;35m02-09 00:13:40[0;39m [[1;33mINFO [0;39m] [36mo.h.v.i.u.Version.<clinit>[0;39m - HV000001: Hibernate Validator 8.0.2.Final 
+[1;35m02-09 00:13:40[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarting[0;39m - Starting PloyTechCourseApplication using Java 23.0.1 with PID 21586 (/Users/jjm/Downloads/ploytechcourse/out/production/classes started by jjm in /Users/jjm/Downloads/ploytechcourse) 
+[1;35m02-09 00:13:40[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStartupProfileInfo[0;39m - No active profile set, falling back to 1 default profile: "default" 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Finished Spring Data repository scanning in 31 ms. Found 7 JPA repository interfaces. 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.initialize[0;39m - Tomcat initialized with port 8080 (http) 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"] 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardService.log[0;39m - Starting service [Tomcat] 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardEngine.log[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.34] 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring embedded WebApplicationContext 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 723 ms 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Starting... 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mc.z.h.p.HikariPool.checkFailFast[0;39m - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@34cd65ac 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Start completed. 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.h.j.i.u.LogHelper.logPersistenceUnitInformation[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default] 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.h.Version.logVersion[0;39m - HHH000412: Hibernate ORM core version 6.6.4.Final 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.h.c.i.RegionFactoryInitiator.initiateService[0;39m - HHH000026: Second-level cache disabled 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.p.SpringPersistenceUnitInfo.addTransformer[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer 
+[1;35m02-09 00:13:41[0;39m [[1;33mWARN [0;39m] [36mo.h.o.deprecation.constructDialect[0;39m - HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) 
+[1;35m02-09 00:13:41[0;39m [[1;33mINFO [0;39m] [36mo.h.o.c.pooling.initiateService[0;39m - HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 10.11.6
@@ -183,19 +358,36 @@ java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mo.h.e.t.j.p.i.JtaPlatformInitiator.initiateService[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) 
-[1;35m02-07 01:39:49[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default' 
-[1;35m02-07 01:39:50[0;39m [[1;33mWARN [0;39m] [36mo.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor[0;39m - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
-[1;35m02-07 01:39:50[0;39m [[1;33mINFO [0;39m] [36mo.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer.configure[0;39m - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService 
-[1;35m02-07 01:39:50[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.handlerMethodsInitialized[0;39m - 18 mappings in 'requestMappingHandlerMapping' 
-[1;35m02-07 01:39:50[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.logMappings[0;39m - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping' 
-[1;35m02-07 01:39:50[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache[0;39m - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice 
-[1;35m02-07 01:39:50[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache[0;39m - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice 
-[1;35m02-07 01:39:50[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"] 
-[1;35m02-07 01:39:50[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.start[0;39m - Tomcat started on port 8080 (http) with context path '/' 
-[1;35m02-07 01:39:50[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarted[0;39m - Started PloyTechCourseApplication in 3.081 seconds (process running for 3.554) 
-[1;35m02-07 01:39:58[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.shutDownGracefully[0;39m - Commencing graceful shutdown. Waiting for active requests to complete 
-[1;35m02-07 01:39:58[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.doShutdown[0;39m - Graceful shutdown complete 
-[1;35m02-07 01:39:58[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.destroy[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default' 
-[1;35m02-07 01:39:58[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown initiated... 
-[1;35m02-07 01:39:58[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown completed. 
+[1;35m02-09 00:13:42[0;39m [[1;33mINFO [0;39m] [36mo.h.e.t.j.p.i.JtaPlatformInitiator.initiateService[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) 
+[1;35m02-09 00:13:42[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[1;35m02-09 00:13:42[0;39m [[1;33mWARN [0;39m] [36mo.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor[0;39m - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[1;35m02-09 00:13:42[0;39m [[1;33mINFO [0;39m] [36mo.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer.configure[0;39m - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService 
+[1;35m02-09 00:13:42[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.handlerMethodsInitialized[0;39m - 18 mappings in 'requestMappingHandlerMapping' 
+[1;35m02-09 00:13:42[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.logMappings[0;39m - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping' 
+[1;35m02-09 00:13:42[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache[0;39m - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice 
+[1;35m02-09 00:13:42[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache[0;39m - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice 
+[1;35m02-09 00:13:43[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"] 
+[1;35m02-09 00:13:43[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.start[0;39m - Tomcat started on port 8080 (http) with context path '/' 
+[1;35m02-09 00:13:43[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarted[0;39m - Started PloyTechCourseApplication in 2.72 seconds (process running for 3.081) 
+[1;35m02-09 00:13:45[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+[1;35m02-09 00:13:45[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Initializing Servlet 'dispatcherServlet' 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initMultipartResolver[0;39m - Detected StandardServletMultipartResolver 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initLocaleResolver[0;39m - Detected AcceptHeaderLocaleResolver 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initThemeResolver[0;39m - Detected FixedThemeResolver 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initRequestToViewNameTranslator[0;39m - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6eb6750f 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initFlashMapManager[0;39m - Detected org.springframework.web.servlet.support.SessionFlashMapManager@458500d1 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
+[1;35m02-09 00:13:45[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 9 ms 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - POST "/comments/2", parameters={} 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#createComment(Long, RequestCommentDTO) 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.traceDebug[0;39m - Read "application/json;charset=UTF-8" to [org.plteco.ploytechcourse.application.comment.dto.RequestCommentDTO@78e620a6] 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException[0;39m - Using @ExceptionHandler org.plteco.ploytechcourse.shared.exception.PltecoExceptionHandler#ExceptionHandler(MethodArgumentNotValidException) 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [ErrorResponse[status=400, errorCode=INVALID_ARGUMENT, message=댓글은 500자를 초과할 수 없습니다., timestamp=2025- (truncated)...] 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.resolveException[0;39m - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<java.lang.Void> org.plteco.ploytechcourse.api.comment.CommentController.createComment(java.lang.Long,org.plteco.ploytechcourse.application.comment.dto.RequestCommentDTO): [Field error in object 'requestCommentDTO' on field 'commentText': rejected value [dasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasddasdasdasdasdasddsdasd]; codes [Size.requestCommentDTO.commentText,Size.commentText,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [requestCommentDTO.commentText,commentText]; arguments []; default message [commentText],500,0]; default message [댓글은 500자를 초과할 수 없습니다.]] ] 
+[1;35m02-09 00:13:45[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 400 BAD_REQUEST 
+[1;35m02-09 00:14:13[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.shutDownGracefully[0;39m - Commencing graceful shutdown. Waiting for active requests to complete 
+[1;35m02-09 00:14:13[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.doShutdown[0;39m - Graceful shutdown complete 
+[1;35m02-09 00:14:13[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.destroy[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default' 
+[1;35m02-09 00:14:13[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown initiated... 
+[1;35m02-09 00:14:13[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown completed. 
