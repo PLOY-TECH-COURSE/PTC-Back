@@ -175,6 +175,6 @@ public class CommentController {
 
         String commentText = (String) commentData.get("commentText");
         commentServiceApplication.updateComment(commentId, commentText);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK); // 성공적으로 수정된 경우 200 반환
     }
 }
