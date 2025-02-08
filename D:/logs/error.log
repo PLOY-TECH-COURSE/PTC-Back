@@ -391,3 +391,87 @@ java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류
 [1;35m02-09 00:14:13[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.destroy[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default' 
 [1;35m02-09 00:14:13[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown initiated... 
 [1;35m02-09 00:14:13[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown completed. 
+[1;35m02-09 00:25:38[0;39m [[1;33mINFO [0;39m] [36mo.h.v.i.u.Version.<clinit>[0;39m - HV000001: Hibernate Validator 8.0.2.Final 
+[1;35m02-09 00:25:38[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarting[0;39m - Starting PloyTechCourseApplication using Java 23.0.1 with PID 27264 (/Users/jjm/Downloads/ploytechcourse/out/production/classes started by jjm in /Users/jjm/Downloads/ploytechcourse) 
+[1;35m02-09 00:25:38[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStartupProfileInfo[0;39m - No active profile set, falling back to 1 default profile: "default" 
+[1;35m02-09 00:25:38[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+[1;35m02-09 00:25:38[0;39m [[1;33mINFO [0;39m] [36mo.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn[0;39m - Finished Spring Data repository scanning in 31 ms. Found 7 JPA repository interfaces. 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.initialize[0;39m - Tomcat initialized with port 8080 (http) 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"] 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardService.log[0;39m - Starting service [Tomcat] 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.StandardEngine.log[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.34] 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring embedded WebApplicationContext 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 715 ms 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Starting... 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mc.z.h.p.HikariPool.checkFailFast[0;39m - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@5873f3f0 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.getConnection[0;39m - HikariPool-1 - Start completed. 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.h.j.i.u.LogHelper.logPersistenceUnitInformation[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default] 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.h.Version.logVersion[0;39m - HHH000412: Hibernate ORM core version 6.6.4.Final 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.h.c.i.RegionFactoryInitiator.initiateService[0;39m - HHH000026: Second-level cache disabled 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.p.SpringPersistenceUnitInfo.addTransformer[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer 
+[1;35m02-09 00:25:39[0;39m [[1;33mWARN [0;39m] [36mo.h.o.deprecation.constructDialect[0;39m - HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) 
+[1;35m02-09 00:25:39[0;39m [[1;33mINFO [0;39m] [36mo.h.o.c.pooling.initiateService[0;39m - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 10.11.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown 
+[1;35m02-09 00:25:40[0;39m [[1;33mINFO [0;39m] [36mo.h.e.t.j.p.i.JtaPlatformInitiator.initiateService[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) 
+[1;35m02-09 00:25:40[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default' 
+[1;35m02-09 00:25:40[0;39m [[1;33mWARN [0;39m] [36mo.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor[0;39m - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[1;35m02-09 00:25:40[0;39m [[1;33mINFO [0;39m] [36mo.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer.configure[0;39m - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService 
+[1;35m02-09 00:25:40[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.handlerMethodsInitialized[0;39m - 18 mappings in 'requestMappingHandlerMapping' 
+[1;35m02-09 00:25:40[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.logMappings[0;39m - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping' 
+[1;35m02-09 00:25:40[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerAdapter.initControllerAdviceCache[0;39m - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice 
+[1;35m02-09 00:25:40[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.initExceptionHandlerAdviceCache[0;39m - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice 
+[1;35m02-09 00:25:40[0;39m [[1;33mINFO [0;39m] [36mo.a.c.h.Http11NioProtocol.log[0;39m - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"] 
+[1;35m02-09 00:25:40[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.TomcatWebServer.start[0;39m - Tomcat started on port 8080 (http) with context path '/' 
+[1;35m02-09 00:25:40[0;39m [[1;33mINFO [0;39m] [36mo.p.p.PloyTechCourseApplication.logStarted[0;39m - Started PloyTechCourseApplication in 2.438 seconds (process running for 2.812) 
+[1;35m02-09 00:25:43[0;39m [[1;33mINFO [0;39m] [36mo.a.c.c.C.[.[.[/].log[0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+[1;35m02-09 00:25:43[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Initializing Servlet 'dispatcherServlet' 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initMultipartResolver[0;39m - Detected StandardServletMultipartResolver 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initLocaleResolver[0;39m - Detected AcceptHeaderLocaleResolver 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initThemeResolver[0;39m - Detected FixedThemeResolver 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initRequestToViewNameTranslator[0;39m - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3f8c4bcf 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initFlashMapManager[0;39m - Detected org.springframework.web.servlet.support.SessionFlashMapManager@4cd13fad 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
+[1;35m02-09 00:25:43[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 6 ms 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/index.html", parameters={} 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/swagger-initializer.js", parameters={} 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/swagger-ui.css", parameters={} 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/index.css", parameters={} 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/swagger-ui-bundle.js", parameters={} 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={} 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/v3/api-docs/swagger-config", parameters={} 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest) 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.traceDebug[0;39m - Writing [{configUrl=/v3/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-re (truncated)...] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/swagger-ui/favicon-32x32.png", parameters={} 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.h.SimpleUrlHandlerMapping.getHandler[0;39m - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]] 
+[1;35m02-09 00:25:43[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:44[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/v3/api-docs/PloyTechCourse", parameters={} 
+[1;35m02-09 00:25:44[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.springdoc.webmvc.api.MultipleOpenApiWebMvcResource#openapiJson(HttpServletRequest, String, String, Locale) 
+[1;35m02-09 00:25:44[0;39m [[1;33mINFO [0;39m] [36mo.s.a.AbstractOpenApiResource.getOpenApi[0;39m - Init duration for springdoc-openapi is: 483 ms 
+[1;35m02-09 00:25:44[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [application/json, */*] and supported [application/json] 
+[1;35m02-09 00:25:44[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestResponseBodyMethodProcessor.traceDebug[0;39m - Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...] 
+[1;35m02-09 00:25:44[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
+[1;35m02-09 00:25:54[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.shutDownGracefully[0;39m - Commencing graceful shutdown. Waiting for active requests to complete 
+[1;35m02-09 00:25:54[0;39m [[1;33mINFO [0;39m] [36mo.s.b.w.e.t.GracefulShutdown.doShutdown[0;39m - Graceful shutdown complete 
+[1;35m02-09 00:25:54[0;39m [[1;33mINFO [0;39m] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean.destroy[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default' 
+[1;35m02-09 00:25:54[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown initiated... 
+[1;35m02-09 00:25:54[0;39m [[1;33mINFO [0;39m] [36mc.z.h.HikariDataSource.close[0;39m - HikariPool-1 - Shutdown completed. 
