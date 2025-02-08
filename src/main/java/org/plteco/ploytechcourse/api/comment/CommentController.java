@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
 import org.plteco.ploytechcourse.application.comment.service.CommentServiceApplication;
 import org.plteco.ploytechcourse.shared.exception.ErrorResponse;
+import org.plteco.ploytechcourse.shared.exception.PltecoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,13 @@ public class CommentController {
 
     /**
      * 댓글 등록 (POST)
+     * 주어진 문서(document-id)에 대해 요청 본문에 포함된 댓글 데이터를 사용하여 댓글을 등록합니다.
+     *
+     * @param documentId  댓글이 등록될 문서의 고유 아이디.
+     * @param commentData 요청 본문으로 전달되는 댓글 데이터 맵.
+     *                    예시: {"commentText": "허동운 대머리"}
+     * @return 댓글 생성 성공 시 HTTP 상태 코드 201 (Created)을 반환합니다.
+     * @throws PltecoException 요청 데이터가 잘못되었거나, 글이 존재하지 않는 경우 예외가 발생합니다.
      */
     @Operation(summary = "댓글 등록", description = "특정 문서에 댓글을 등록합니다.")
     @ApiResponses(value = {
@@ -64,6 +72,11 @@ public class CommentController {
 
     /**
      * 댓글 조회 (GET)
+     * 주어진 문서(document-id)에 등록된 댓글 목록을 조회합니다.
+     *
+     * @param documentId 댓글 목록을 조회할 문서의 고유 아이디.
+     * @return 댓글 조회 성공 시 댓글 DTO 목록과 HTTP 상태 코드 200 (OK)을 반환합니다.
+     *         만약 해당 문서가 없으면 예외가 발생합니다.
      */
     @Operation(summary = "댓글 조회", description = "특정 문서에 등록된 댓글 목록을 조회합니다.")
     @ApiResponses(value = {
@@ -86,6 +99,12 @@ public class CommentController {
 
     /**
      * 댓글 삭제 (DELETE)
+     * 주어진 댓글(comment-id)을 삭제합니다.
+     * 삭제는 댓글 작성자 또는 관리자 권한이 있는 경우에만 허용됩니다.
+     *
+     * @param commentId 삭제할 댓글의 고유 아이디.
+     * @return 댓글 삭제 성공 시 HTTP 상태 코드 204 (No Content)을 반환합니다.
+     * @throws PltecoException 댓글이 존재하지 않거나, 삭제 권한이 부족한 경우 예외가 발생합니다.
      */
     @Operation(summary = "댓글 삭제", description = "특정 댓글을 삭제합니다. (작성자 또는 관리자 권한 필요)")
     @ApiResponses(value = {
@@ -117,6 +136,14 @@ public class CommentController {
 
     /**
      * 댓글 수정 (PATCH)
+     * 주어진 댓글(comment-id)의 내용을 요청 본문에서 제공된 새로운 내용으로 수정합니다.
+     * 수정은 댓글 작성자만 수행할 수 있습니다.
+     *
+     * @param commentId   수정할 댓글의 고유 아이디.
+     * @param commentData 요청 본문으로 전달되는 수정할 댓글 데이터 맵.
+     *                    예시: {"commentText": "새 댓글 내용"}
+     * @return 댓글 수정 성공 시 HTTP 상태 코드 200 (OK)을 반환합니다.
+     * @throws PltecoException 댓글이 존재하지 않거나, 수정 권한이 부족한 경우 예외가 발생합니다.
      */
     @Operation(summary = "댓글 수정", description = "특정 댓글의 내용을 수정합니다.")
     @ApiResponses(value = {
@@ -148,6 +175,6 @@ public class CommentController {
 
         String commentText = (String) commentData.get("commentText");
         commentServiceApplication.updateComment(commentId, commentText);
-        return new ResponseEntity<>(HttpStatus.OK);  // 수정 후 200 반환
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
