@@ -8,8 +8,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
+import org.plteco.ploytechcourse.application.comment.dto.RequestCommentDTO;
 import org.plteco.ploytechcourse.application.comment.service.CommentServiceApplication;
 import org.plteco.ploytechcourse.shared.exception.ErrorResponse;
 import org.plteco.ploytechcourse.shared.exception.PltecoException;
@@ -32,8 +34,7 @@ public class CommentController {
      * 주어진 문서(document-id)에 대해 요청 본문에 포함된 댓글 데이터를 사용하여 댓글을 등록합니다.
      *
      * @param documentId  댓글이 등록될 문서의 고유 아이디.
-     * @param commentData 요청 본문으로 전달되는 댓글 데이터 맵.
-     *                    예시: {"commentText": "허동운 대머리"}
+     * @param commentData 요청 본문으로 전달되는 댓글 DTO.
      * @return 댓글 생성 성공 시 HTTP 상태 코드 201 (Created)을 반환합니다.
      * @throws PltecoException 요청 데이터가 잘못되었거나, 글이 존재하지 않는 경우 예외가 발생합니다.
      */
@@ -45,13 +46,8 @@ public class CommentController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
                             examples = {
-                                    @ExampleObject(value = "[{\"status\":400,\"message\":\"댓글 내용이 작성되지 않았습니다.\",\"errorCode\":\"Bad Request\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}," +
-                                            "{\"status\":400,\"message\":\"댓글은 500자를 초과할 수 없습니다.\",\"errorCode\":\"Bad Request\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}]")})),
-            @ApiResponse(responseCode = "401", description = "로그인 필요",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorResponse.class),
-                            examples = @ExampleObject(value = "{\"status\":401,\"message\":\"로그인이 필요합니다.\",\"errorCode\":\"Bad Request\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
+                                    @ExampleObject(value = "[{\"status\":400,\"message\":\"댓글 내용이 작성되지 않았습니다.\",\"errorCode\":\"INVALID_ARGUMENT\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}," +
+                                            "{\"status\":400,\"message\":\"댓글은 500자를 초과할 수 없습니다.\",\"errorCode\":\"INVALID_ARGUMENT\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}]")})),
             @ApiResponse(responseCode = "404", description = "글이 존재하지 않음",
                     content = @Content(
                     mediaType = "application/json",
@@ -63,9 +59,9 @@ public class CommentController {
     public ResponseEntity<Void> createComment(
             @Parameter(description = "글 아이디", required = true)
             @PathVariable("document-id") Long documentId,
-            @RequestBody @Schema(description = "댓글 데이터", example = "{\"commentText\": \"허동운 대머리\" }") Map<String, Object> commentData) {
+            @Valid @RequestBody RequestCommentDTO commentData) {
 
-        String commentText = (String) commentData.get("commentText");
+        String commentText = commentData.getCommentText();
         commentServiceApplication.createComment(documentId, commentText);
         return new ResponseEntity<>(HttpStatus.CREATED);  // 성공적으로 생성된 경우 201 반환
     }
@@ -109,16 +105,11 @@ public class CommentController {
     @Operation(summary = "댓글 삭제", description = "특정 댓글을 삭제합니다. (작성자 또는 관리자 권한 필요)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "댓글 조회 성공"),
-            @ApiResponse(responseCode = "401", description = "로그인 필요",
-                    content = @Content(
-            mediaType = "application/json",
-            schema = @Schema(implementation = ErrorResponse.class),
-            examples = @ExampleObject(value = "{\"status\":401,\"message\":\"로그인이 필요합니다.\",\"errorCode\":\"Bad Request\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
             @ApiResponse(responseCode = "403", description = "삭제 권한 부족",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = @ExampleObject(value = "{\"status\":403,\"message\":\"삭제할 권한이 없습니다.\",\"errorCode\":\"Not Found\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
+                            examples = @ExampleObject(value = "{\"status\":403,\"message\":\"삭제할 권한이 없습니다.\",\"errorCode\":\"FORBIDDEN\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
             @ApiResponse(responseCode = "404", description = "댓글이 존재하지 않음",
                     content = @Content(
                             mediaType = "application/json",
@@ -127,9 +118,11 @@ public class CommentController {
             @ApiResponse(responseCode = "500", description = "서버 내부 오류")
     })
     @DeleteMapping("/comments/{comment-id}")
+
     public ResponseEntity<Void> deleteComment(
             @Parameter(description = "댓글 아이디", required = true)
             @PathVariable("comment-id") Long commentId) {
+
         commentServiceApplication.deleteCommentByUser(commentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);  // 삭제 후 204 반환
     }
@@ -140,8 +133,7 @@ public class CommentController {
      * 수정은 댓글 작성자만 수행할 수 있습니다.
      *
      * @param commentId   수정할 댓글의 고유 아이디.
-     * @param commentData 요청 본문으로 전달되는 수정할 댓글 데이터 맵.
-     *                    예시: {"commentText": "새 댓글 내용"}
+     * @param commentData 요청 본문으로 전달되는 수정할 댓글 DTO.
      * @return 댓글 수정 성공 시 HTTP 상태 코드 200 (OK)을 반환합니다.
      * @throws PltecoException 댓글이 존재하지 않거나, 수정 권한이 부족한 경우 예외가 발생합니다.
      */
@@ -159,7 +151,7 @@ public class CommentController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = @ExampleObject(value = "{\"status\":403,\"message\":\"수정할 권한이 없습니다.\",\"errorCode\":\"Not Found\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
+                            examples = @ExampleObject(value = "{\"status\":403,\"message\":\"수정할 권한이 없습니다.\",\"errorCode\":\"FORBIDDEN\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
             @ApiResponse(responseCode = "404", description = "댓글이 존재하지 않음",
                     content = @Content(
                             mediaType = "application/json",
@@ -171,9 +163,9 @@ public class CommentController {
     public ResponseEntity<Void> updateComment(
             @Parameter(description = "댓글 아이디", required = true)
             @PathVariable("comment-id") Long commentId,
-            @RequestBody @Schema(description = "댓글 데이터", example = "{\"commentText\": \"허동운 대머리\" }") Map<String, Object> commentData) {
+            @Valid @RequestBody RequestCommentDTO commentData) {
 
-        String commentText = (String) commentData.get("commentText");
+        String commentText = commentData.getCommentText();
         commentServiceApplication.updateComment(commentId, commentText);
         return new ResponseEntity<>(HttpStatus.OK); // 성공적으로 수정된 경우 200 반환
     }
