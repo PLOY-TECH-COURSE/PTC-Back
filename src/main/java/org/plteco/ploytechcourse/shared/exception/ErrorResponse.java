@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 // record가 클래스의 생성자, Getter, toString등을 자동으로 만들어준다.
 public record ErrorResponse(
         int status,
-        String message,
         String errorCode,
+        String message,
         LocalDateTime timestamp
 ) {
     // from은 정적 팩토리 메서드이다.
