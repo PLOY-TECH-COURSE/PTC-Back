@@ -9,6 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface DocumentLikeRepository extends JpaRepository<DocumentLike, DocumentLikeId> {
-    boolean existsByDocumentIdAndUserId(Long documentId,Long userId);
     long countByDocumentId(Long documentId);
 }

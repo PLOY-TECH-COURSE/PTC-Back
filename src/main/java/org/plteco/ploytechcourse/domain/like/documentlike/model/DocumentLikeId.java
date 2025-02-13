@@ -4,15 +4,17 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Embeddable
-@Builder
-@NoArgsConstructor
+@Getter
+@NoArgsConstructor // JPA를 위한 기본 생성자
 @AllArgsConstructor
 @EqualsAndHashCode
-public class DocumentLikeId{
+public class DocumentLikeId implements Serializable {  // EmbeddedId는 Serializable 필수
     @Column(name = "document_id")
-    private long documentId;
+    private Long documentId;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 }
