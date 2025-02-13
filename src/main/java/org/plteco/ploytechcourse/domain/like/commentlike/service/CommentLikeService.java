@@ -2,47 +2,47 @@ package org.plteco.ploytechcourse.domain.like.commentlike.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.like.commentlike.model.entity.CommentLike;
-import org.plteco.ploytechcourse.domain.like.commentlike.model.entity.CommentLikeId;
 import org.plteco.ploytechcourse.domain.like.commentlike.repository.CommentLikeRepository;
-import org.plteco.ploytechcourse.domain.like.service.LikeService;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CommentLikeService implements LikeService {
+public class CommentLikeService{
 
-    private final CommentLikeRepository repository;
+    private final CommentLikeRepository commentLikeRepository;
 
-    public void addLike(long commentId, long userId) {
-
-        CommentLikeId commentLikeId = CommentLikeId.builder()
-                .commentId(commentId)
-                .userId(userId)
-                .build();
-
+    public void addLike(Comment comment, User user) {
         CommentLike commentLike = CommentLike.builder()
-                .id(commentLikeId)
+                .comment(comment)
+                .user(user)
                 .build();
 
-        repository.save(commentLike);
+        commentLikeRepository.save(commentLike);
     }
 
-    public void removeLike(long commentId, long userId) {
-        CommentLikeId commentLikeId = CommentLikeId.builder()
-                .commentId(commentId)
-                .userId(userId)
+    public void removeLike(Comment comment, User user) {
+        CommentLike commentLike = CommentLike.builder()
+                .comment(comment)
+                .user(user)
                 .build();
 
-        repository.deleteById(commentLikeId);
+        commentLikeRepository.deleteById(commentLike.getId());
     }
 
-    public boolean isLiked(long commentId, long userId) {
-        return repository.existsByCommentIdAndUserId(commentId,userId);
+    public boolean isLiked(Comment comment, User user) {
+        CommentLike commentLike = CommentLike.builder()
+                .comment(comment)
+                .user(user)
+                .build();
+
+        return commentLikeRepository.existsById(commentLike.getId());
     }
 
-    public long getLikes(long commentId) {
-        return repository.countByIdCommentId(commentId);
+    public long getLikes(Comment comment) {
+        return commentLikeRepository.countByIdCommentId(comment.getId());
     }
 }

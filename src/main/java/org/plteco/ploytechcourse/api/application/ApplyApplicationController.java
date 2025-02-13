@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.plteco.ploytechcourse.application.application.dto.ApplyApplicationDto;
 import org.plteco.ploytechcourse.application.application.dto.ShowApplicationDto;
 import org.plteco.ploytechcourse.application.application.service.ApplyApplicationApplication;

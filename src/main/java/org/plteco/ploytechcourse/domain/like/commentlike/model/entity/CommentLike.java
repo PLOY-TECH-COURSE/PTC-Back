@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
+import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.like.documentlike.model.DocumentLikeId;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 @Entity
@@ -17,14 +20,19 @@ public class CommentLike{
     @EmbeddedId
     private CommentLikeId id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @MapsId("commentId")
-//    @JoinColumn(name = "comment_id")
-//    private Commment comment;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("commentId")
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
 
+    public CommentLike(Comment comment, User user) {
+        this.id = new CommentLikeId(comment.getId(), user.getId()); // ID 직접 생성
+        this.comment = comment;
+        this.user = user;
+    }
 }

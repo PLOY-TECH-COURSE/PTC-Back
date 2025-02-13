@@ -1,0 +1,27 @@
+package org.plteco.ploytechcourse.domain.lesson.data.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "track")
+@Getter
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
+public class Track {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "generation", referencedColumnName = "generation")
+    private Tech_course generation;
+
+    private String name;
+
+    private String explanation;
+}

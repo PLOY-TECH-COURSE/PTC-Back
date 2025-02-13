@@ -1,8 +1,9 @@
 package org.plteco.ploytechcourse.api.like.documentlikecontroller;
 
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.domain.like.documentlike.service.DocumentLikeService;
-import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
+import org.plteco.ploytechcourse.application.like.DocumentLikeServiceApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,29 +11,18 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class DocumentLikeController {
 
-    private final DocumentLikeService documentLikeService;
-    private final UserContextUtil userContextUtil;
+    private final DocumentLikeServiceApplication documentLikeServiceApplication;
 
     @PostMapping("/{document-id}")
-    public void like(@PathVariable("document-id") long documentId) {
-        long userId = userContextUtil.getId();
-        documentLikeService.addLike(documentId, userId);
+    public ResponseEntity<Void> like(@PathVariable("document-id") long documentId) {
+        documentLikeServiceApplication.addLike(documentId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{document-id}")
-    public void unlike(@PathVariable("document-id") long documentId) {
-        long userId = userContextUtil.getId();
-        documentLikeService.removeLike(documentId, userId);
+    public ResponseEntity<Void> unlike(@PathVariable("document-id") long documentId) {
+        documentLikeServiceApplication.removeLike(documentId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/{document-id}")
-    public long getlikes(@PathVariable("document-id") long documentId) {
-        return documentLikeService.getLikes(documentId);
-    }
-
-    @GetMapping("/like/{document-id}")
-    public boolean isLiked(@PathVariable("document-id") long documentId) {
-        long userId = userContextUtil.getId();
-        return documentLikeService.isLiked(documentId,userId);
-    }
 }
