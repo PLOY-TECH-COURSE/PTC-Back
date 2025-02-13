@@ -22,8 +22,8 @@ public record ErrorResponse(
     public static ErrorResponse from(int status, String errorCode, String message) {
         return new ErrorResponse(
                 status,
-                errorCode,
                 message,
+                errorCode,
                 LocalDateTime.now()
         );
     }
