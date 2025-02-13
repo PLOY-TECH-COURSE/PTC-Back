@@ -1,8 +1,9 @@
 package org.plteco.ploytechcourse.domain.favorite.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import lombok.*;
+import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import java.io.Serializable;
 
@@ -15,9 +16,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class FavoriteId implements Serializable {
-    @Column(name = "user_id")
-    private long user_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(name = "document_id")
-    private long document_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "document_id", nullable = false)
+    private Document document;
 }

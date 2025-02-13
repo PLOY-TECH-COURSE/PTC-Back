@@ -3,11 +3,14 @@ package org.plteco.ploytechcourse.shared.exception;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class PltecoExceptionHandler {
@@ -20,7 +23,15 @@ public class PltecoExceptionHandler {
     // 유효성 에러
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> ExceptionHandler(MethodArgumentNotValidException ex) {
-        ErrorResponse errorResponse = ErrorResponse.from(400, "INVALID_ARGUMENT", ex.getMessage());
+
+        List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
+
+        // 오류가 존재하는 경우, 첫 번째 오류 메시지만 가져오기
+        String errorMessage = "잘못된 요청입니다."; // 기본 메시지
+        if (!fieldErrors.isEmpty()) {
+            errorMessage = fieldErrors.get(0).getDefaultMessage();
+        }
+        ErrorResponse errorResponse = ErrorResponse.from(400,"INVALID_ARGUMENT", errorMessage);
         return ResponseEntity.status(400).body(errorResponse);
     }
 
@@ -57,5 +68,17 @@ public class PltecoExceptionHandler {
     public ResponseEntity<ErrorResponse> handlePltecoException(Exception ex) {
         ErrorResponse errorResponse = ErrorResponse.from(500, "SERVER_UNKNOWN", ex.getMessage());
         return ResponseEntity.status(500).body(errorResponse);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<ErrorResponse> handleNoSuchElementException(NoSuchElementException ex) {
+        ErrorResponse errorResponse = ErrorResponse.from(404, "NOT_FOUND", "요청한 요소를 찾을 수 없습니다.");
+        return ResponseEntity.status(404).body(errorResponse);
+    }
+
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity<ErrorResponse> runtimeException(RuntimeException ex) {
+        ErrorResponse errorResponse = ErrorResponse.from(403, "부적절한 접근", ex.getMessage());
+        return ResponseEntity.status(403).body(errorResponse);
     }
 }

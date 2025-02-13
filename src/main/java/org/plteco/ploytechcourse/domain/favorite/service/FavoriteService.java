@@ -1,9 +1,15 @@
 package org.plteco.ploytechcourse.domain.favorite.service;
 
+import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.favorite.model.entity.Favorite;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
+
+import java.util.List;
 
 public interface FavoriteService {
-    public Favorite registerFavorite(long user_id, long document_id);
-    // public Optional<List<Document>> getFavorite(long userId, long documentId);
-    public void deleteFavorite(long user_id, long document_id);
+    Favorite registerFavorite(User user, Document document);
+    List<Document> getFavoriteDocuments(User user);
+    void deleteFavoriteByUser(User user, Document document);
+    void deleteFavoriteByDocumentId(long documentId);
+    boolean isFavorite(User user, Document document);
 }
