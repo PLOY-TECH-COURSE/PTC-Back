@@ -8,11 +8,7 @@ import lombok.NoArgsConstructor;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
-import java.io.Serializable;
-
-
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
