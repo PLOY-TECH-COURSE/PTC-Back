@@ -27,7 +27,6 @@ public class CommentServiceApplication {
     private final CommentServiceImpl commentService;
 
     private final DocumentRepository documentRepository;
-    private final CommentRepository commentRepository;
     private final UserContextUtil userContextUtil;
 
     /** 댓글 생성 */
@@ -44,12 +43,7 @@ public class CommentServiceApplication {
     public void updateComment(long commentId, String commentText) {
         User user = userContextUtil.getCurrentUser();
 
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new PltecoException("존재하지 않는 댓글입니다.", HttpStatus.NOT_FOUND));
-
-        if (!comment.getUser().getId().equals(user.getId())) {
-            throw new PltecoException("해당 댓글을 수정할 권한이 없습니다.", HttpStatus.FORBIDDEN);
-        }
+        Comment comment = commentService.getComment(commentId);
 
         commentService.updateComment(user, commentId, commentText);
     }
@@ -58,18 +52,7 @@ public class CommentServiceApplication {
     public void deleteCommentByUser(long commentId) {
         User user = userContextUtil.getCurrentUser();
 
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new PltecoException("존재하지 않는 댓글입니다.", HttpStatus.NOT_FOUND));
-
-        /*
-        * 댓글을 삭제하는 사람 권한이 ADMIN이거나
-        * 댓글을 작성한 사람이 아닐 경우 오류 발생
-         */
-        if (!(user.getRole() == RoleEnum.ROLE_ADMIN || comment.getUser().getId().equals(user.getId()))) {
-            throw new AccessDeniedException("해당 댓글을 삭제할 권한이 없습니다.");
-        }
-
-        commentService.deleteCommentByUser(commentId);
+        commentService.deleteCommentByUser(commentId, user);
     }
 
     /** 댓글 조회 */
