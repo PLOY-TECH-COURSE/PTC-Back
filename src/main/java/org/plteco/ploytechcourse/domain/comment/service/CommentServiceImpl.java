@@ -6,7 +6,11 @@ import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
 import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
+import org.plteco.ploytechcourse.shared.exception.PltecoException;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,9 +27,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getComments(long documentId) {
 
-        List<Comment> comments = commentRepository.findByDocumentId(documentId);
-
-        return comments;
+        return commentRepository.findByDocumentId(documentId);
     }
 
     @Override
@@ -41,24 +43,38 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteCommentByUser(long commentId) {
+    public void deleteCommentByUser(long commentId,User user) {
+        Comment comment = getComment(commentId);
+
+        if (!(user.getRole() == RoleEnum.ROLE_ADMIN || comment.getUser().getId().equals(user.getId()))) {
+            throw new AccessDeniedException("해당 댓글을 삭제할 권한이 없습니다.");
+        }
+
         commentRepository.deleteById(commentId);
     }
 
     @Override
     public void updateComment(User user, long commentId, String commentText) {
 
-        Optional<Comment> oldComment = commentRepository.findById(commentId);
+        Comment oldComment = getComment(commentId);
 
-        if (oldComment.isPresent()) {
-            Comment newComment = Comment.builder()
-                    .id(oldComment.get().getId())
-                    .user(user)
-                    .document(oldComment.get().getDocument())
-                    .comment(commentText)
-                    .build();
-
-            commentRepository.save(newComment); // JPA의 save메서드는 update 기능까지 지원
+        if (!oldComment.getUser().getId().equals(user.getId())) {
+            throw new PltecoException("해당 댓글을 수정할 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
+
+        Comment newComment = Comment.builder()
+                .id(oldComment.getId())
+                .user(user)
+                .document(oldComment.getDocument())
+                .comment(commentText)
+                .build();
+
+        commentRepository.save(newComment); // JPA의 save메서드는 update 기능까지 지원
+    }
+
+    @Override
+    public Comment getComment(long commentId) {
+        return commentRepository.findById(commentId)
+                .orElseThrow(() -> new PltecoException("존재하지 않는 댓글입니다", HttpStatus.NOT_FOUND));
     }
 }
