@@ -24,6 +24,7 @@ public class FavoriteController {
 
     private final FavoriteServiceApplication favoriteServiceApplication;
 
+
     @Operation(summary = "즐겨찾기 추가", description = "특정 문서를 즐겨찾기에 추가합니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "즐겨찾기 추가 성공"),
