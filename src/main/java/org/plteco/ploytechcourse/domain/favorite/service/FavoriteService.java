@@ -10,6 +10,6 @@ public interface FavoriteService {
     Favorite registerFavorite(User user, Document document);
     List<Document> getFavoriteDocuments(User user);
     void deleteFavoriteByUser(User user, Document document);
-    void deleteFavoriteByDocumentId(long documentId);
+    void deleteFavoriteByDocument(Document document);
     boolean isFavorite(User user, Document document);
 }

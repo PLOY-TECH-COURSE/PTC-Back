@@ -20,18 +20,15 @@ public class FavoriteServiceImpl implements FavoriteService {
     private final FavoriteRepository favoriteRepository;
 
     public Favorite registerFavorite(User user, Document document) {
+        FavoriteId favoriteId = new FavoriteId(user.getId(), document.getId());
 
-        FavoriteId favoriteId = FavoriteId.builder()
-                .user(user)
-                .document(document)
-                .build();
-
-        if(favoriteRepository.findById(favoriteId).isPresent() && favoriteRepository.findById(favoriteId).get().getId().equals(favoriteId)) {
+        if (favoriteRepository.existsById(favoriteId)) {
             throw new PltecoException("이미 즐겨찾기 한 문서입니다.", HttpStatus.BAD_REQUEST);
         }
 
-        Favorite favorite = Favorite.builder()
-                .id(favoriteId)
+        Favorite favorite = Favorite.favoriteBuilder()
+                .user(user)
+                .document(document)
                 .build();
 
         return favoriteRepository.save(favorite);
@@ -40,37 +37,27 @@ public class FavoriteServiceImpl implements FavoriteService {
     public List<Document> getFavoriteDocuments(User user) {
         return favoriteRepository.findById_UserId(user.getId())
                 .map(favorites -> favorites.stream()
-                        .map(favorite -> favorite.getId().getDocument())
-                        .toList()
-                )
-                .orElse(List.of());  // null 대신 빈 리스트 반환
+                        .map(Favorite::getDocument)
+                        .toList())
+                .orElse(List.of());
     }
 
     public void deleteFavoriteByUser(User user, Document document) {
-        FavoriteId favoriteId = FavoriteId.builder()
-                .user(user)
-                .document(document)
-                .build();
+        FavoriteId favoriteId = new FavoriteId(user.getId(), document.getId());
 
-        if(favoriteRepository.findById(favoriteId).isEmpty() || !favoriteRepository.findById(favoriteId).get().getId().equals(favoriteId)) {
+        if (!favoriteRepository.existsById(favoriteId)) {
             throw new PltecoException("즐겨찾기 한 글이 아닙니다.", HttpStatus.BAD_REQUEST);
         }
 
         favoriteRepository.deleteById(favoriteId);
     }
 
-    public void deleteFavoriteByDocumentId(long documentId) {
-
-        if(favoriteRepository.existsById_DocumentId(documentId)){
-            favoriteRepository.deleteById_Document_Id(documentId);
-        }
+    public void deleteFavoriteByDocument(Document document) {
+        favoriteRepository.deleteByDocument(document);
     }
 
     public boolean isFavorite(User user, Document document) {
-        FavoriteId favoriteId = FavoriteId.builder()
-                .user(user)
-                .document(document)
-                .build();
+        FavoriteId favoriteId = new FavoriteId(user.getId(), document.getId());
         return favoriteRepository.existsById(favoriteId);
     }
 

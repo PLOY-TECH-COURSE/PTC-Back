@@ -13,7 +13,6 @@ import java.util.Optional;
 public interface FavoriteRepository extends JpaRepository<Favorite, FavoriteId>{
     void deleteById(FavoriteId id);
     Optional<List<Favorite>> findById_UserId(long userId);
-    void deleteById_Document_Id(long documentId);
     boolean existsById_DocumentId(long documentId);
-
+    void deleteByDocument(Document document);
 }
