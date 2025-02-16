@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 @Builder
-public record DocumentWriteRequestDto(
+public record DocumentWriteRequestDTO(
         @NotNull(message = "글 작성시 제목은 필수 항목입니다.")
         String title,
 
@@ -17,5 +17,5 @@ public record DocumentWriteRequestDto(
         String introduction,
 
         @JsonProperty("category")
-        Integer categoryId
+        Long categoryId
 ) {}

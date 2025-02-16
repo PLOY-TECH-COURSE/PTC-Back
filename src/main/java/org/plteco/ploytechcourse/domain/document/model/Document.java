@@ -28,13 +28,13 @@ public class Document {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "thumbnail")
+    @Column(name = "thumbnail", nullable = false)
     private String thumbnail;
 
     @Column(name = "introduction")
     private String introduction;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     private LocalDate createAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,13 +42,13 @@ public class Document {
     private Category category;
 
     @Builder
-    public Document(User user, String title, String content, String thumbnail, String introduction, LocalDate createAt, Category categoryId) {
+    public Document(User user, String title, String content, String thumbnail, String introduction, LocalDate createAt, Category category) {
         this.user = user;
         this.title = title;
         this.content = content;
         this.thumbnail = thumbnail;
         this.introduction = introduction;
         this.createAt = createAt;
-        this.category = categoryId;
+        this.category = category;
     }
 }
