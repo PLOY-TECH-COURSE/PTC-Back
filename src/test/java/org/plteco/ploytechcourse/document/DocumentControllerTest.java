@@ -7,12 +7,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.plteco.ploytechcourse.api.document.DocumentController;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
-import org.plteco.ploytechcourse.application.document.service.DocumentService;
+import org.plteco.ploytechcourse.application.document.service.DocumentServiceApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -29,7 +31,7 @@ public class DocumentControllerTest {
     private ObjectMapper objectMapper; // json으로 변환
 
     @Mock
-    private DocumentService documentService;
+    private DocumentServiceApplication documentService;
 
     @InjectMocks
     private DocumentController documentController;
@@ -41,8 +43,8 @@ public class DocumentControllerTest {
     void titleAndContentError() throws Exception {
         // given
         DocumentWriteRequestDTO request = DocumentWriteRequestDTO.builder()
-                .categoryId(1L)
                 .thumbnail("http://example.com")
+                .hasTag(List.of("html"))
                 .build();
 
         // when
