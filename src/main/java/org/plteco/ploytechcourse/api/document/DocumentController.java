@@ -40,8 +40,10 @@ public class DocumentController {
 
     @GetMapping("/documents/{document-id}")
     public ResponseEntity<DocumentDetailGetResponseDTO> getDocumentDetail(
-            @RequestParam("document-id") Long documentId
+            @PathVariable("document-id") Long documentId
     ) {
-        documentService.getDocumentDetail(documentId);
+        DocumentDetailGetResponseDTO result = documentService.getDocumentDetail(documentId);
+
+        return ResponseEntity.status(200).body(result);
     }
 }

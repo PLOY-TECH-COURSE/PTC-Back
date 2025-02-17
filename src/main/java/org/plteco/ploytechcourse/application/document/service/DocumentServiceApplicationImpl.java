@@ -12,6 +12,7 @@ import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.document.service.DocumentService;
 import org.plteco.ploytechcourse.domain.document.service.Document_HashTagService;
 import org.plteco.ploytechcourse.domain.document.service.HashTagService;
+import org.plteco.ploytechcourse.domain.favorite.service.FavoriteService;
 import org.plteco.ploytechcourse.domain.like.documentlike.service.DocumentLikeService;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
@@ -32,7 +33,7 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
     private final HashTagService hashTagService;
     private final Document_HashTagService documentHashTagService;
     private final DocumentLikeService documentLikeService;
-    private final
+    private final FavoriteService favoriteService;
 
     @Override
     public void writeDocument(DocumentWriteRequestDTO writeRequest) {
@@ -80,6 +81,8 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
                 .toList();
         Long likes = documentLikeService.getLikes(documentId);
         boolean likeOn = documentLikeService.isLiked(document, user);
-        boolean favoriteOn =
+        boolean favoriteOn = favoriteService.isFavorite(user, document);
+
+        return new DocumentDetailGetResponseDTO(documentInfo, userInfo, likes, likeOn, favoriteOn, hashTags);
     }
 }
