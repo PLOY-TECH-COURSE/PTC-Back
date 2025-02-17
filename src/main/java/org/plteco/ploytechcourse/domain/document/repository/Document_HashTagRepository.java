@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface Document_HashTagRepository extends JpaRepository<Document_HashTag, Long> {
     List<Document_HashTag> findAllByDocument(Document document);
+    void deleteAllByDocument(Document document);
 }

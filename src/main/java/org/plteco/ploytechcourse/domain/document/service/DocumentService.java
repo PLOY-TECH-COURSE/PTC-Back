@@ -2,6 +2,7 @@ package org.plteco.ploytechcourse.domain.document.service;
 
 import org.plteco.ploytechcourse.application.document.dto.DocumentInfoDTO;
 import org.plteco.ploytechcourse.application.document.dto.DocumentUserInfoDTO;
+import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
@@ -13,4 +14,5 @@ public interface DocumentService {
     List<Document> getDocuments(Long start, Long end);
     DocumentInfoDTO getDocumentDetail(Long documentId);
     DocumentUserInfoDTO getDocumentUserInfo(Long documentId);
+    Document updateDocument(User user, DocumentUpdateRequestDTO updateRequest);
 }
