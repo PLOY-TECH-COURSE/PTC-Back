@@ -64,4 +64,5 @@ public class ApplyApplicationController {
     public ResponseEntity<List<ShowApplicationDto>> getApplications() {
         return ResponseEntity.ok(showApplicationApplication.showApplication());
     }
+
 }
