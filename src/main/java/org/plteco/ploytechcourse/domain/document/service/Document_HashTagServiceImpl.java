@@ -17,6 +17,11 @@ public class Document_HashTagServiceImpl implements Document_HashTagService {
     private final Document_HashTagRepository documentHashTagRepository;
 
     @Override
+    public void deleteMapping(Document document) {
+        documentHashTagRepository.deleteAllByDocument(document);
+    }
+
+    @Override
     public void mapping(Document document, List<HashTag> hashTags) {
         hashTags.stream()
                 .map(hashTag -> Document_HashTag.builder()
