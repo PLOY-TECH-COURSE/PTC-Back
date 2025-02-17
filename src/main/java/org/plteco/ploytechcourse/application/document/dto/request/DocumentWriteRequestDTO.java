@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
+import java.util.List;
+
 @Builder
-public record DocumentWriteRequestDto(
+public record DocumentWriteRequestDTO(
         @NotNull(message = "글 작성시 제목은 필수 항목입니다.")
         String title,
 
@@ -16,6 +18,6 @@ public record DocumentWriteRequestDto(
 
         String introduction,
 
-        @JsonProperty("category")
-        Integer categoryId
+        @JsonProperty("hash_tag")
+        List<String> hasTag
 ) {}
