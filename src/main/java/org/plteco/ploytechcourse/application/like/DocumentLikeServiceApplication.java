@@ -19,21 +19,24 @@ public class DocumentLikeServiceApplication {
     private final UserContextUtil userContextUtil;
     private final DocumentRepository documentRepository;
 
-    public void addLike(long documentId) {
-        User user = userContextUtil.getCurrentUser();
+    private User getCurrentUser() {
+        return userContextUtil.getCurrentUser();
+    }
 
-        Document document = documentRepository.findById(documentId)
+    private Document getDocument(long documentId){
+        return documentRepository.findById(documentId)
                 .orElseThrow(() -> new PltecoException("존재하지 않는 글입니다.", HttpStatus.NOT_FOUND));
+    }
 
+    public void addLike(long documentId) {
+        User user = getCurrentUser();
+        Document document = getDocument(documentId);
         documentLikeService.addLike(document, user);
     }
 
     public void removeLike(long documentId) {
-        User user = userContextUtil.getCurrentUser();
-
-        Document document = documentRepository.findById(documentId)
-                .orElseThrow(() -> new PltecoException("존재하지 않는 글입니다.", HttpStatus.NOT_FOUND));
-
+        User user = getCurrentUser();
+        Document document = getDocument(documentId);
         documentLikeService.removeLike(document, user);
     }
 
