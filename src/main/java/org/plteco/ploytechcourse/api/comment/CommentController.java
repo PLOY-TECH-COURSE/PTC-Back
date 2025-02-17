@@ -67,33 +67,6 @@ public class CommentController {
     }
 
     /**
-     * 댓글 조회 (GET)
-     * 주어진 문서(document-id)에 등록된 댓글 목록을 조회합니다.
-     *
-     * @param documentId 댓글 목록을 조회할 문서의 고유 아이디.
-     * @return 댓글 조회 성공 시 댓글 DTO 목록과 HTTP 상태 코드 200 (OK)을 반환합니다.
-     *         만약 해당 문서가 없으면 예외가 발생합니다.
-     */
-    @Operation(summary = "댓글 조회", description = "특정 문서에 등록된 댓글 목록을 조회합니다.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "댓글 조회 성공"),
-            @ApiResponse(responseCode = "404", description = "글이 존재하지 않음",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorResponse.class),
-                            examples = @ExampleObject(value = "{\"status\":404,\"message\":\"존재하지 않는 글입니다.\",\"errorCode\":\"Not Found\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
-            @ApiResponse(responseCode = "500", description = "서버 내부 오류")
-    })
-    @GetMapping("/comments/{document-id}")
-    public ResponseEntity<List<CommentDTO>> getComment(
-            @Parameter(description = "글 아이디", required = true)
-            @PathVariable("document-id") Long documentId) {
-
-        List<CommentDTO> comments = commentServiceApplication.getComments(documentId);  // 없으면 빈 리스트 반환
-        return new ResponseEntity<>(comments, HttpStatus.OK);  // 댓글 리스트 반환
-    }
-
-    /**
      * 댓글 삭제 (DELETE)
      * 주어진 댓글(comment-id)을 삭제합니다.
      * 삭제는 댓글 작성자 또는 관리자 권한이 있는 경우에만 허용됩니다.
