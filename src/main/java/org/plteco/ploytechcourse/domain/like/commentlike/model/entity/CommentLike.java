@@ -11,8 +11,6 @@ import org.plteco.ploytechcourse.domain.like.documentlike.model.DocumentLikeId;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 @Entity
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 public class CommentLike{
@@ -30,6 +28,7 @@ public class CommentLike{
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Builder
     public CommentLike(Comment comment, User user) {
         this.id = new CommentLikeId(comment.getId(), user.getId()); // ID 직접 생성
         this.comment = comment;

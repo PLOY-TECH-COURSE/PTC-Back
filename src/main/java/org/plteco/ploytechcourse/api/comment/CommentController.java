@@ -76,7 +76,11 @@ public class CommentController {
      */
     @Operation(summary = "댓글 조회", description = "특정 문서에 등록된 댓글 목록을 조회합니다.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "댓글 조회 성공"),
+            @ApiResponse(responseCode = "200", description = "댓글 조회 성공",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class),
+                            examples = @ExampleObject(value = "[{\"id\": 8, \"userId\": 2, \"comment\": \"조재민 빡빡이\", \"userName\": \"허동운\", \"userProfile\": \"https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png\", \"likeCount\": 1, \"liked\": true}]"))),
             @ApiResponse(responseCode = "404", description = "글이 존재하지 않음",
                     content = @Content(
                             mediaType = "application/json",
@@ -118,7 +122,6 @@ public class CommentController {
             @ApiResponse(responseCode = "500", description = "서버 내부 오류")
     })
     @DeleteMapping("/comments/{comment-id}")
-
     public ResponseEntity<Void> deleteComment(
             @Parameter(description = "댓글 아이디", required = true)
             @PathVariable("comment-id") Long commentId) {

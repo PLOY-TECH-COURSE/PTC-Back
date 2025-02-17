@@ -20,12 +20,10 @@ public class CommentLikeService{
 
     @Transactional
     public void addLike(Comment comment, User user) {
-        CommentLike commentLike = createCommentLike(comment, user);
-
-        if (commentLikeRepository.existsById(commentLike.getId())) {
+        if (commentLikeRepository.existsByCommentIdAndUserId(comment.getId(), user.getId())) {
             throw new PltecoException("이미 좋아요를 눌렀습니다.",HttpStatus.CONFLICT);
         }
-
+        CommentLike commentLike = createCommentLike(comment, user);
         commentLikeRepository.save(commentLike);
     }
 

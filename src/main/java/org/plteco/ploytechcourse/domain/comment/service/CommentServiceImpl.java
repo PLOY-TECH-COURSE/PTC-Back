@@ -26,7 +26,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getComments(long documentId) {
-
         return commentRepository.findByDocumentId(documentId);
     }
 

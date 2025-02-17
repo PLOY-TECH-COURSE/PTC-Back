@@ -73,6 +73,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/document-likes/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/comment-likes/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/comment-likes/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.POST, "/favorite/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/favorite").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/favorite/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .anyRequest().denyAll()
                 )
                 .exceptionHandling(exception -> exception

@@ -3,7 +3,6 @@ package org.plteco.ploytechcourse.shared.exception;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class PltecoExceptionHandler {
@@ -68,6 +68,12 @@ public class PltecoExceptionHandler {
     public ResponseEntity<ErrorResponse> handlePltecoException(Exception ex) {
         ErrorResponse errorResponse = ErrorResponse.from(500, "SERVER_UNKNOWN", ex.getMessage());
         return ResponseEntity.status(500).body(errorResponse);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<ErrorResponse> handleNoSuchElementException(NoSuchElementException ex) {
+        ErrorResponse errorResponse = ErrorResponse.from(404, "NOT_FOUND", "요청한 요소를 찾을 수 없습니다.");
+        return ResponseEntity.status(404).body(errorResponse);
     }
 
     @ExceptionHandler(value = RuntimeException.class)
