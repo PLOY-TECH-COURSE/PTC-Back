@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "category")
-public class Category {
+@Table(name = "hashtag")
+public class HashTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +18,7 @@ public class Category {
     private String name;
 
     @Builder
-    public Category(Long id, String name) {
+    public HashTag(Long id, String name) {
         this.id = id;
         this.name = name;
     }
