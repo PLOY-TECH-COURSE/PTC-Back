@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.plteco.ploytechcourse.application.document.dto.DocumentInfoDTO;
 import org.plteco.ploytechcourse.application.document.dto.DocumentUserInfoDTO;
+import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
@@ -52,5 +53,14 @@ public class DocumentServiceImpl implements DocumentService {
     public DocumentUserInfoDTO getDocumentUserInfo(Long documentId) {
         User user = documentRepository.findById(documentId).orElseThrow(() -> new IllegalArgumentException("글을 찾을 수 없습니다.")).getUser();
         return modelMapper.map(user, DocumentUserInfoDTO.class);
+    }
+
+    @Override
+    public Document updateDocument(User user, DocumentUpdateRequestDTO updateRequest) {
+        Document document = documentRepository.findById(updateRequest.documentId()).orElseThrow(() -> new IllegalArgumentException("글을 찾을 수 없습니다."));
+        if(!document.getUser().equals(user)) throw new IllegalArgumentException("글 작성자만 수정할 수 있습니다.");
+
+        Document newDocument = Document.from(document, updateRequest);
+        return documentRepository.save(newDocument);
     }
 }

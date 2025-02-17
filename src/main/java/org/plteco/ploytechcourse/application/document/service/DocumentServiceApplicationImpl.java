@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.application.document.service;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.document.dto.DocumentInfoDTO;
 import org.plteco.ploytechcourse.application.document.dto.DocumentUserInfoDTO;
+import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentDetailGetResponseDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
@@ -84,5 +85,17 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
         boolean favoriteOn = favoriteService.isFavorite(user, document);
 
         return new DocumentDetailGetResponseDTO(documentInfo, userInfo, likes, likeOn, favoriteOn, hashTags);
+    }
+
+    @Override
+    public void updateDocument(DocumentUpdateRequestDTO documentUpdateRequestDto) {
+        User user = userRepository.findById(userContextUtil.getId()).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        Document document = documentService.updateDocument(user, documentUpdateRequestDto);
+
+        List<HashTag> hashTags = hashTagService.addHashTag(documentUpdateRequestDto.hasTag());
+
+        documentHashTagService.deleteMapping(document);
+        documentHashTagService.mapping(document, hashTags);
     }
 }
