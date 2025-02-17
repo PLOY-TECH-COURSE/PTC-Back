@@ -4,8 +4,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
+import org.plteco.ploytechcourse.application.document.dto.response.DocumentDetailGetResponseDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
-import org.plteco.ploytechcourse.application.document.service.DocumentService;
+import org.plteco.ploytechcourse.application.document.service.DocumentServiceApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class DocumentController {
-    private final DocumentService documentService;
+    private final DocumentServiceApplication documentService;
 
     @PostMapping("/documents")
     public ResponseEntity<String> writeDocument(
@@ -37,10 +38,10 @@ public class DocumentController {
         return ResponseEntity.status(200).body(result);
     }
 
-   /* @GetMapping("/documents/{document-id}")
-    public ResponseEntity<> getDocumentDetail(
+    @GetMapping("/documents/{document-id}")
+    public ResponseEntity<DocumentDetailGetResponseDTO> getDocumentDetail(
             @RequestParam("document-id") Long documentId
     ) {
-
-    }*/
+        documentService.getDocumentDetail(documentId);
+    }
 }
