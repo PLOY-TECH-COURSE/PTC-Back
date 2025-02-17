@@ -58,6 +58,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/applications").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/applications").hasAnyRole("ADMIN","SUPERADMIN")
+                        .requestMatchers(HttpMethod.POST,"/accept").hasAnyRole("ADMIN","SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH,  "/permissions").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/permissions").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/tech-course","/class","/track").hasAnyRole("SUPERADMIN")
