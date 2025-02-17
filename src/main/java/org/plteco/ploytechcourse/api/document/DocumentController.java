@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.api.document;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentDetailGetResponseDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
@@ -45,5 +46,14 @@ public class DocumentController {
         DocumentDetailGetResponseDTO result = documentService.getDocumentDetail(documentId);
 
         return ResponseEntity.status(200).body(result);
+    }
+
+    @PatchMapping("/documents")
+    public ResponseEntity<String> updateDocument(
+        @RequestBody @Valid DocumentUpdateRequestDTO documentUpdateRequestDto
+    ) {
+        documentService.updateDocument(documentUpdateRequestDto);
+
+        return ResponseEntity.status(200).body("글 수정에 성공하였습니다.");
     }
 }

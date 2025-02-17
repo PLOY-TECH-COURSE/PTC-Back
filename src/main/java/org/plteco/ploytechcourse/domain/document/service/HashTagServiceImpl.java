@@ -17,8 +17,8 @@ public class HashTagServiceImpl implements HashTagService {
     @Override
     public List<HashTag> addHashTag(List<String> hashTags) {
         return hashTags.stream()
-                .map(hashTag -> HashTag.builder().name(hashTag).build())
-                .map(hashTagRepository::save)
+                .map(hashTag -> hashTagRepository.findByName(hashTag)
+                        .orElseGet(() -> hashTagRepository.save(HashTag.builder().name(hashTag).build()))) // Lazy Evaluation
                 .toList();
     }
 }
