@@ -25,12 +25,12 @@ public class CommentLikeServiceApplication {
         commentLikeService.addLike(comment, user);
     }
 
-    public void removeLike(long commentId) {
+    public void unLike(long commentId) {
         User user = userContextUtil.getCurrentUser();
 
         Comment comment = commentService.getComment(commentId);
 
-        commentLikeService.removeLike(comment, user);
+        commentLikeService.unLike(comment, user);
     }
 
 }
