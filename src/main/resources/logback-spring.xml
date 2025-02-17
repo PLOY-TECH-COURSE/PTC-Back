@@ -7,18 +7,6 @@
         </encoder>
     </appender>
 
-    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>D:/logs/error.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>D:/logs/backup/error%d{yyyy-MM-dd}.log.zip</fileNamePattern>
-            <maxHistory>90</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <pattern>%boldMagenta(%d{MM-dd HH:mm:ss}) [%boldYellow(%-5level)] %cyan(%logger{5}.%M) - %msg %n</pattern>
-            <ImmediateFlush>true</ImmediateFlush>
-        </encoder>
-    </appender>
-
     <logger name="jdbc" level="OFF" />
     <logger name="jdbc.sqlonly" level="OFF" />
     <logger name="jdbc.sqltiming" level="OFF" />
@@ -29,6 +17,5 @@
 
     <root level="ERROR">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="error" />
     </root>
 </configuration>
