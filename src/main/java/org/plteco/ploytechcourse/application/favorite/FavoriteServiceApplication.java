@@ -1,0 +1,56 @@
+package org.plteco.ploytechcourse.application.favorite;
+
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.plteco.ploytechcourse.application.document.dto.response.DocumentSpreadDto;
+import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
+import org.plteco.ploytechcourse.domain.favorite.service.FavoriteService;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
+import org.plteco.ploytechcourse.shared.exception.PltecoException;
+import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class FavoriteServiceApplication {
+
+    private final FavoriteService favoriteService;
+
+    private final ModelMapper modelMapper;
+    private final UserContextUtil userContextUtil;
+    private final DocumentRepository documentRepository;
+
+    private User getCurrentUser() {
+        return userContextUtil.getCurrentUser();
+    }
+
+    private Document getDocument(long documentId) {
+        return documentRepository.findById(documentId)
+                .orElseThrow(() -> new PltecoException("존재하지 않는 글입니다.", HttpStatus.NOT_FOUND));
+    }
+
+    public void registerFavorite(long documentId) {
+        User user = getCurrentUser();
+        Document document = getDocument(documentId);
+        favoriteService.registerFavorite(user, document);
+    }
+
+    public List<DocumentSpreadDto> getFavoriteDocuments() {
+        User user = getCurrentUser();
+        return favoriteService.getFavoriteDocuments(user)
+                .stream()
+                .map(document -> modelMapper.map(document, DocumentSpreadDto.class))
+                .collect(Collectors.toList());
+    }
+
+    public void deleteFavoriteByUser(long documentId) {
+        User user = getCurrentUser();
+        Document document = getDocument(documentId);
+        favoriteService.deleteFavoriteByUser(user, document);
+    }
+}

@@ -1,13 +1,16 @@
 package org.plteco.ploytechcourse.application.comment.service;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
 import org.plteco.ploytechcourse.domain.comment.service.CommentServiceImpl;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
+import org.plteco.ploytechcourse.domain.like.commentlike.service.CommentLikeService;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.exception.PltecoException;
@@ -26,22 +29,32 @@ public class CommentServiceApplication {
 
     private final CommentServiceImpl commentService;
 
+    private final CommentLikeService commentLikeService;
     private final DocumentRepository documentRepository;
     private final UserContextUtil userContextUtil;
+    private final ModelMapper modelMapper;
+
+    private User getCurrentUser() {
+        return userContextUtil.getCurrentUser();
+    }
+
+    private Document getDocument(long documentId) {
+        return documentRepository.findById(documentId)
+                .orElseThrow(() -> new PltecoException("존재하지 않는 글입니다.", HttpStatus.NOT_FOUND));
+    }
 
     /** 댓글 생성 */
     public void createComment(long documentId, String commentText) {
-        User user = userContextUtil.getCurrentUser();
+        User user = getCurrentUser();
 
-        Document document = documentRepository.findById(documentId)
-                .orElseThrow(() -> new PltecoException("존재하지 않는 글입니다.", HttpStatus.NOT_FOUND));
+        Document document = getDocument(documentId);
 
         commentService.createComment(user, document, commentText);
     }
 
     /** 댓글 수정 */
     public void updateComment(long commentId, String commentText) {
-        User user = userContextUtil.getCurrentUser();
+        User user = getCurrentUser();
 
         Comment comment = commentService.getComment(commentId);
 
@@ -50,10 +63,11 @@ public class CommentServiceApplication {
 
     /** 댓글 삭제 */
     public void deleteCommentByUser(long commentId) {
-        User user = userContextUtil.getCurrentUser();
+        User user = getCurrentUser();
 
         commentService.deleteCommentByUser(commentId, user);
     }
+
 
     /** 댓글 조회 */
     public List<CommentDTO> getComments(long documentId) {
@@ -62,9 +76,15 @@ public class CommentServiceApplication {
         }
 
         List<Comment> comments = commentService.getComments(documentId);
+
         // Comment → CommentDTO 변환
         return comments.stream()
-                .map(CommentDTO::new)
+                .map(comment -> {
+                    CommentDTO dto = modelMapper.map(comment, CommentDTO.class);
+                    dto.setLikeCount(commentLikeService.getLikes(comment));
+                    dto.setLiked(commentLikeService.isLiked(comment,getCurrentUser()));
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 }

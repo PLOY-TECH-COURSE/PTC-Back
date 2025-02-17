@@ -13,8 +13,8 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class CommentLikeId implements Serializable {
     @Column(name = "comment_id")
-    private Long commentId;
+    private long commentId;
 
     @Column(name = "user_id")
-    private Long userId;
+    private long userId;
 }
