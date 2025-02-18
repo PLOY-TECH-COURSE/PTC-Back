@@ -6,6 +6,7 @@ import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import java.util.List;
 
 public interface Document_HashTagService {
+    void deleteMapping(Document document);
     void mapping(Document document, List<HashTag> hashTags);
     List<HashTag> getHashTagsForDocument(Document document);
 }

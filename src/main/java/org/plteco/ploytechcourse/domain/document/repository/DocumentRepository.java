@@ -12,4 +12,8 @@ import java.util.List;
 public interface DocumentRepository extends JpaRepository<Document, Long> {
     @Query(value = "SELECT * FROM document ORDER BY created_at DESC LIMIT :start, :size", nativeQuery = true)
     List<Document> findWithPagination(@Param("start") Long start, @Param("size") Long size);
+
+
+    @Query("SELECT COUNT(d) FROM Document d WHERE d.user.id = :userId")
+    Long countByUserId(@Param("userId") Long userId);
 }

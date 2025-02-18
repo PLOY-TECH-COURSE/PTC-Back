@@ -61,5 +61,5 @@ public class User {
     public void updateRole(RoleEnum role) {
         this.role = role;
     }
-
+    public void updateProfile(String profile) {this.profile = profile;}
 }
