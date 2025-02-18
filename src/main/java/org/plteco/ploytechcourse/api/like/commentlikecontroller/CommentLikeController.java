@@ -57,7 +57,7 @@ public class CommentLikeController {
     public ResponseEntity<Void> unlike(
             @Parameter(description = "댓글 아이디", required = true)
             @PathVariable("comment-id") long commentId) {
-        commentLikeService.removeLike(commentId);
+        commentLikeService.unLike(commentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

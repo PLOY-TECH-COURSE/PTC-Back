@@ -28,7 +28,7 @@ public class CommentLikeService{
     }
 
     @Transactional
-    public void removeLike(Comment comment, User user) {
+    public void unLike(Comment comment, User user) {
         CommentLike commentLike = createCommentLike(comment, user);
 
         if (!commentLikeRepository.existsById(commentLike.getId())) {
@@ -36,6 +36,11 @@ public class CommentLikeService{
         }
 
         commentLikeRepository.delete(commentLike);
+    }
+
+    @Transactional
+    public void deleteLikeByCommentId(long commentId) {
+        commentLikeRepository.deleteByCommentId(commentId);
     }
 
     @Transactional(readOnly = true)
