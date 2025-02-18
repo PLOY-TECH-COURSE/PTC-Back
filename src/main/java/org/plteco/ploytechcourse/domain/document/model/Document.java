@@ -1,15 +1,21 @@
 package org.plteco.ploytechcourse.domain.document.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Optional;
 
 @Entity
 @NoArgsConstructor      // 매개변수 없는 생성자를 만들어서 JPA가 객체를 생성할 수 있도록 함
+@AllArgsConstructor
+@Builder
 @Getter
 @Table(name = "document")
 public class Document {
@@ -37,13 +43,15 @@ public class Document {
     @Column(name = "created_at", nullable = false)
     private LocalDate createAt;
 
-    @Builder
-    public Document(User user, String title, String content, String thumbnail, String introduction, LocalDate createAt) {
-        this.user = user;
-        this.title = title;
-        this.content = content;
-        this.thumbnail = thumbnail;
-        this.introduction = introduction;
-        this.createAt = createAt;
+    public static Document from(Document beforeDocs, DocumentUpdateRequestDTO updateRequestDTO) {
+        return new Document(
+                beforeDocs.getId(),
+                beforeDocs.getUser(),
+                updateRequestDTO.title(),
+                updateRequestDTO.content(),
+                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("기본 썸네일 이미지"),
+                updateRequestDTO.introduction(),
+                LocalDate.now(ZoneId.of("Asia/Seoul"))
+        );
     }
 }
