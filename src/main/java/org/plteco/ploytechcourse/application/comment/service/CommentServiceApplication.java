@@ -65,7 +65,8 @@ public class CommentServiceApplication {
     public void deleteCommentByUser(long commentId) {
         User user = getCurrentUser();
 
-        commentService.deleteCommentByUser(commentId, user);
+        commentLikeService.deleteLikeByCommentId(commentId); // 댓글 좋아요 삭제 후
+        commentService.deleteCommentByUser(commentId, user); // 댓글 삭제
     }
 
 
