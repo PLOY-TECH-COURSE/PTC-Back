@@ -6,9 +6,16 @@ import org.plteco.ploytechcourse.application.document.dto.DocumentInfoDTO;
 import org.plteco.ploytechcourse.application.document.dto.DocumentUserInfoDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
+import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
+import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +29,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
     private final DocumentRepository documentRepository;
+    private final StudentRepository studentRepository;
+    private final UserContextUtil userContextUtil;
     private final ModelMapper modelMapper;
 
     @Override
@@ -62,5 +71,27 @@ public class DocumentServiceImpl implements DocumentService {
 
         Document newDocument = Document.from(document, updateRequest);
         return documentRepository.save(newDocument);
+    }
+
+    @Override
+    public Long getUserGeneration(Document document) {
+        Long userId =document.getUser().getId();
+        return studentRepository.findTechCourseIdByUserId(userId).orElse(null);
+    }
+    @Override
+    public void deleteDocument(Long documentId) {
+        documentRepository.findUserById(documentId)
+                .filter(writer -> writer.equals(userContextUtil.getCurrentUser()))
+                .ifPresentOrElse(
+                        writer -> documentRepository.deleteById(documentId),
+                        () -> {
+                            throw new IllegalArgumentException("작성자를 찾을 수 없거나 글 삭제는 작성자만 할 수 있습니다.");
+                        }
+                );
+    }
+
+    @Override
+    public Page<Document> searchDocument(String title, Pageable pageable) {
+        return documentRepository.searchAllByTitle(title, pageable);
     }
 }

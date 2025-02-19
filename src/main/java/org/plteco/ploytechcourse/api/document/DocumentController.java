@@ -8,6 +8,7 @@ import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteR
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentDetailGetResponseDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
 import org.plteco.ploytechcourse.application.document.service.DocumentServiceApplication;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,17 @@ public class DocumentController {
         return ResponseEntity.status(200).body(result);
     }
 
+    @GetMapping("/documents/search")
+    public ResponseEntity<List<DocumentsGetResponseDTO>> searchDocument(
+            @Param("title") String title,
+            @Param("sort") String sortMethod,
+            @RequestParam("start") int start
+    ) {
+        List<DocumentsGetResponseDTO> result = documentService.searchDocument(title, sortMethod, start);
+
+        return ResponseEntity.status(200).body(result);
+    }
+
     @GetMapping("/documents/{document-id}")
     public ResponseEntity<DocumentDetailGetResponseDTO> getDocumentDetail(
             @PathVariable("document-id") Long documentId
@@ -55,5 +67,13 @@ public class DocumentController {
         documentService.updateDocument(documentUpdateRequestDto);
 
         return ResponseEntity.status(200).body("글 수정에 성공하였습니다.");
+    }
+
+    @DeleteMapping("/documents")
+    public ResponseEntity<String> deleteDocument(
+            @RequestParam("document_id") Long documentId
+    ) {
+        documentService.deleteDocument(documentId);
+        return ResponseEntity.status(200).body("글 삭제에 성공하였습니다.");
     }
 }

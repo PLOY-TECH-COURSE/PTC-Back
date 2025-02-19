@@ -6,6 +6,7 @@ import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.repository.HashTagRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -20,5 +21,10 @@ public class HashTagServiceImpl implements HashTagService {
                 .map(hashTag -> hashTagRepository.findByName(hashTag)
                         .orElseGet(() -> hashTagRepository.save(HashTag.builder().name(hashTag).build()))) // Lazy Evaluation
                 .toList();
+    }
+
+    @Override
+    public HashTag toHashTags(String hashStr) {
+        return hashTagRepository.findByName(hashStr).orElse(null);
     }
 }
