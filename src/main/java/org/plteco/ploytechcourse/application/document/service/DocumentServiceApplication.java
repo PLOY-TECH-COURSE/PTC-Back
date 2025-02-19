@@ -4,7 +4,6 @@ import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdate
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentDetailGetResponseDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
-import org.plteco.ploytechcourse.domain.document.model.Document;
 
 import java.util.List;
 

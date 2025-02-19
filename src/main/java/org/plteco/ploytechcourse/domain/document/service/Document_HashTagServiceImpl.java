@@ -8,7 +8,6 @@ import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.repository.Document_HashTagRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
