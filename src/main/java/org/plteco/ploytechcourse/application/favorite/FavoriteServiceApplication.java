@@ -2,10 +2,13 @@ package org.plteco.ploytechcourse.application.favorite;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.plteco.ploytechcourse.application.document.dto.response.DocumentSpreadDto;
+import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
 import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
+import org.plteco.ploytechcourse.domain.document.service.Document_HashTagService;
 import org.plteco.ploytechcourse.domain.favorite.service.FavoriteService;
+import org.plteco.ploytechcourse.domain.like.documentlike.service.DocumentLikeService;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.exception.PltecoException;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
@@ -13,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +26,8 @@ public class FavoriteServiceApplication {
     private final ModelMapper modelMapper;
     private final UserContextUtil userContextUtil;
     private final DocumentRepository documentRepository;
-
+    private final DocumentLikeService documentLikeService;
+    private final Document_HashTagService documentHashTagService;
     private User getCurrentUser() {
         return userContextUtil.getCurrentUser();
     }
@@ -40,12 +43,15 @@ public class FavoriteServiceApplication {
         favoriteService.registerFavorite(user, document);
     }
 
-    public List<DocumentSpreadDto> getFavoriteDocuments() {
+    public List<DocumentsGetResponseDTO> getFavoriteDocuments() {
         User user = getCurrentUser();
         return favoriteService.getFavoriteDocuments(user)
                 .stream()
-                .map(document -> modelMapper.map(document, DocumentSpreadDto.class))
-                .collect(Collectors.toList());
+                .map(document ->
+                        DocumentsGetResponseDTO.from(
+                                document, documentHashTagService.getHashTagsForDocument(document).stream().map(HashTag::getName).toList(),
+                                documentLikeService.getLikes(document.getId())))
+                .toList();
     }
 
     public void deleteFavoriteByUser(long documentId) {
