@@ -42,11 +42,11 @@ public class DocumentController {
 
     @GetMapping("/documents/search")
     public ResponseEntity<List<DocumentsGetResponseDTO>> searchDocument(
-            @Param("title") String title,
-            @Param("sort") String sortMethod,
+            @RequestParam("query") String query,
+            @RequestParam("sort") String sortMethod,
             @RequestParam("start") int start
     ) {
-        List<DocumentsGetResponseDTO> result = documentService.searchDocument(title, sortMethod, start);
+        List<DocumentsGetResponseDTO> result = documentService.searchDocument(query, sortMethod, start);
 
         return ResponseEntity.status(200).body(result);
     }

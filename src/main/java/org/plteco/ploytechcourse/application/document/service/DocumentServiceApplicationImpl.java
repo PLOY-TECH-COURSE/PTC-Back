@@ -111,16 +111,16 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
     }
 
     @Override
-    public List<DocumentsGetResponseDTO> searchDocument(String title, String sortMethod, int start) {
+    public List<DocumentsGetResponseDTO> searchDocument(String query, String sortMethod, int start) {
         Pageable pageable = PageRequest.of(start, 20);
 
         Page<Document> documents;
-        if(title.charAt(0) == '#') {
-            HashTag hashTag = hashTagService.toHashTags(title.replace("#", ""));
-            documents = documentHashTagService.searchDocument(hashTag, pageable);
+        if(query.charAt(0) == '#') {
+            HashTag hashTag = hashTagService.toHashTags(query.replace("#", ""));
+            documents = documentHashTagService.searchDocument(hashTag, pageable, sortMethod);
         }
         else
-            documents = documentService.searchDocument(title, pageable);
+            documents = documentService.searchDocument(query, pageable, sortMethod);
 
         return documents.stream()
                 .map(document -> {

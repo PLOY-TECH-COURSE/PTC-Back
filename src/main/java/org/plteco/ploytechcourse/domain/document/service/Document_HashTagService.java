@@ -11,5 +11,5 @@ public interface Document_HashTagService {
     void deleteMapping(Document document);
     void mapping(Document document, List<HashTag> hashTags);
     List<HashTag> getHashTagsForDocument(Document document);
-    Page<Document> searchDocument(HashTag hashTag, Pageable pageable);
+    Page<Document> searchDocument(HashTag hashTag, Pageable pageable, String sortMethod);
 }

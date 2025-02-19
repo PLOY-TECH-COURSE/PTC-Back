@@ -88,7 +88,9 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public Page<Document> searchDocument(String title, Pageable pageable) {
-        return documentRepository.searchAllByTitle(title, pageable);
+    public Page<Document> searchDocument(String query, Pageable pageable, String sortMethod) {
+        if(sortMethod.equals("create_at"))
+            return documentRepository.searchAllByTitleLikeOrderByLike(query, pageable);
+        return documentRepository.searchAllByTitleLikeOrderByLike(query, pageable);
     }
 }

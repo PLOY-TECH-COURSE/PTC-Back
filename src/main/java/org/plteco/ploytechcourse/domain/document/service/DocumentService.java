@@ -19,5 +19,5 @@ public interface DocumentService {
     Document updateDocument(User user, DocumentUpdateRequestDTO updateRequest);
     Long getUserGeneration(Document document);
     void deleteDocument(Long documentId);
-    Page<Document> searchDocument(String title, Pageable pageable);
+    Page<Document> searchDocument(String query, Pageable pageable, String sortMethod);
 }

@@ -42,7 +42,9 @@ public class Document_HashTagServiceImpl implements Document_HashTagService {
     }
 
     @Override
-    public Page<Document> searchDocument(HashTag hashTag, Pageable pageable) {
-        return documentHashTagRepository.searchAllByHashTag(hashTag.getName(), pageable);
+    public Page<Document> searchDocument(HashTag hashTag, Pageable pageable, String sortMethod) {
+        if(sortMethod.equals("create_at"))
+            return documentHashTagRepository.searchAllByHashTagOrderByCreateAt(hashTag.getName(), pageable);
+        return documentHashTagRepository.searchAllByHashTagOrderByLike(hashTag.getName(), pageable);
     }
 }

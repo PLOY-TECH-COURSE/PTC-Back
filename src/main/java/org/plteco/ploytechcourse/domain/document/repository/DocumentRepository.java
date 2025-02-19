@@ -24,7 +24,10 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
     @Query("SELECT d.user FROM Document d WHERE d.id = :documentId")
     Optional<User> findUserById(@Param("documentId") Long documentId);
 
-    @Query("SELECT d FROM Document d WHERE d.title LIKE '%'+:title+'%' ORDER BY d.createAt DESC")
-    Page<Document> searchAllByTitle(
-            @Param("title") String title, Pageable pageable);
+    // like 추가되면 ORDER BY d.like DESC 이거 추가해주세요
+    @Query("SELECT d FROM Document d WHERE d.title LIKE CONCAT('%', :query, '%')")
+    Page<Document> searchAllByTitleLikeOrderByLike(@Param("query") String query, Pageable pageable);
+
+    @Query("SELECT d FROM Document d WHERE d.title LIKE CONCAT('%', :query, '%') ORDER BY d.createAt DESC")
+    Page<Document> searchAllByTitleOrderByCreateAt(@Param("query") String query, Pageable pageable);
 }
