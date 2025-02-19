@@ -6,6 +6,9 @@ import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.model.Document_HashTag;
 import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.repository.Document_HashTagRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +40,10 @@ public class Document_HashTagServiceImpl implements Document_HashTagService {
         return documentHashTagRepository.findAllByDocument(document).stream()
                 .map(Document_HashTag::getHashtag)
                 .toList();
+    }
+
+    @Override
+    public Page<Document> searchDocument(HashTag hashTag, Pageable pageable) {
+        return documentHashTagRepository.searchAllByHashTag(hashTag.getName(), pageable);
     }
 }

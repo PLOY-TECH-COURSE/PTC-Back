@@ -18,6 +18,10 @@ import org.plteco.ploytechcourse.domain.like.documentlike.service.DocumentLikeSe
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -80,11 +84,14 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
         List<String> hashTags = documentHashTagService.getHashTagsForDocument(document).stream()
                 .map(HashTag::getName)
                 .toList();
+
+        Long generation = documentService.getUserGeneration(document);
+
         Long likes = documentLikeService.getLikes(documentId);
         boolean likeOn = documentLikeService.isLiked(document, user);
         boolean favoriteOn = favoriteService.isFavorite(user, document);
 
-        return new DocumentDetailGetResponseDTO(documentInfo, userInfo, likes, likeOn, favoriteOn, hashTags);
+        return new DocumentDetailGetResponseDTO(documentInfo, userInfo, likes, likeOn, favoriteOn, generation, hashTags);
     }
 
     @Override
@@ -97,5 +104,34 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
 
         documentHashTagService.deleteMapping(document);
         documentHashTagService.mapping(document, hashTags);
+    }
+
+    @Override
+    public void deleteDocument(Long documentId) {
+        documentService.deleteDocument(documentId);
+    }
+
+    @Override
+    public List<DocumentsGetResponseDTO> searchDocument(String title, String sortMethod, int start) {
+        Pageable pageable = PageRequest.of(start, 20);
+
+        Page<Document> documents;
+        if(title.charAt(0) == '#') {
+            HashTag hashTag = hashTagService.toHashTags(title.replace("#", ""));
+            documents = documentHashTagService.searchDocument(hashTag, pageable);
+        }
+        else
+            documents = documentService.searchDocument(title, pageable);
+
+        return documents.stream()
+                .map(document -> {
+                    Long like = documentLikeService.getLikes(document.getId());
+                    List<String> hashTags = documentHashTagService.getHashTagsForDocument(document).stream()
+                            .map(HashTag::getName)
+                            .toList();
+
+                    return DocumentsGetResponseDTO.from(document, hashTags, like);
+                })
+                .toList();
     }
 }

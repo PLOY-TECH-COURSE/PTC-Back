@@ -1,12 +1,16 @@
 package org.plteco.ploytechcourse.domain.document.repository;
 
 import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface DocumentRepository extends JpaRepository<Document, Long> {
@@ -16,4 +20,11 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
 
     @Query("SELECT COUNT(d) FROM Document d WHERE d.user.id = :userId")
     Long countByUserId(@Param("userId") Long userId);
+
+    @Query("SELECT d.user FROM Document d WHERE d.id = :documentId")
+    Optional<User> findUserById(@Param("documentId") Long documentId);
+
+    @Query("SELECT d FROM Document d WHERE d.title LIKE '%'+:title+'%' ORDER BY d.createAt DESC")
+    Page<Document> searchAllByTitle(
+            @Param("title") String title, Pageable pageable);
 }

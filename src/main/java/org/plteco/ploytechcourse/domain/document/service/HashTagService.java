@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface HashTagService {
     List<HashTag> addHashTag(List<String> hashTags);
+    HashTag toHashTags(String hashStr);
 }
