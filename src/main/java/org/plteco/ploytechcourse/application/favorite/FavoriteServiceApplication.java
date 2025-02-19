@@ -2,7 +2,7 @@ package org.plteco.ploytechcourse.application.favorite;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.plteco.ploytechcourse.application.document.dto.response.DocumentSpreadDto;
+import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.favorite.service.FavoriteService;
@@ -40,11 +40,11 @@ public class FavoriteServiceApplication {
         favoriteService.registerFavorite(user, document);
     }
 
-    public List<DocumentSpreadDto> getFavoriteDocuments() {
+    public List<DocumentsGetResponseDTO> getFavoriteDocuments() {
         User user = getCurrentUser();
         return favoriteService.getFavoriteDocuments(user)
                 .stream()
-                .map(document -> modelMapper.map(document, DocumentSpreadDto.class))
+                .map(document -> modelMapper.map(document, DocumentsGetResponseDTO.class))
                 .collect(Collectors.toList());
     }
 

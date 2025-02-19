@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.application.document.dto.response.DocumentSpreadDto;
+import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
 import org.plteco.ploytechcourse.application.favorite.FavoriteServiceApplication;
 import org.plteco.ploytechcourse.shared.exception.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -52,8 +52,8 @@ public class FavoriteController {
             @ApiResponse(responseCode = "200", description = "즐겨찾기된 글 조회 성공"),
     })
     @GetMapping("/favorite")
-    public ResponseEntity<List<DocumentSpreadDto>> getFavoriteDocuments() {
-        List<DocumentSpreadDto> documentSpreadDtos = favoriteServiceApplication.getFavoriteDocuments();
+    public ResponseEntity<List<DocumentsGetResponseDTO>> getFavoriteDocuments() {
+        List<DocumentsGetResponseDTO> documentSpreadDtos = favoriteServiceApplication.getFavoriteDocuments();
         return new ResponseEntity<>(documentSpreadDtos, HttpStatus.OK);
     }
 
