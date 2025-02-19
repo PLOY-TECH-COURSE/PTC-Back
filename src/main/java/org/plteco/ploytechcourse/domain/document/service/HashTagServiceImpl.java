@@ -6,7 +6,6 @@ import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.repository.HashTagRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service

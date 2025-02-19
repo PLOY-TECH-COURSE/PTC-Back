@@ -8,14 +8,11 @@ import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdate
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.document.model.Document;
-import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
