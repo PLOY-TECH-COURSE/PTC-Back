@@ -32,6 +32,7 @@ public class DocumentLikeService{
                 .build();
 
         documentLikeRepository.save(documentLike);
+        document.increaseLike();
     }
 
     @Transactional
@@ -42,6 +43,7 @@ public class DocumentLikeService{
                 .orElseThrow(() -> new PltecoException("좋아요를 누르지 않았습니다.", HttpStatus.NOT_FOUND));
 
         documentLikeRepository.delete(documentLike);
+        document.decreaseLike();
     }
 
 
