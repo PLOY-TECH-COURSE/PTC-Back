@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
+import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import java.time.LocalDate;
@@ -53,5 +54,16 @@ public class Document {
                 updateRequestDTO.introduction(),
                 LocalDate.now(ZoneId.of("Asia/Seoul"))
         );
+    }
+
+    public static Document from(User user, DocumentWriteRequestDTO writeRequest) {
+        return Document.builder()
+                .user(user)
+                .title(writeRequest.title())
+                .content(writeRequest.content())
+                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("기본 썸네일 이미지"))
+                .introduction(writeRequest.introduction())
+                .createAt(LocalDate.now(ZoneId.of("Asia/Seoul")))
+                .build();
     }
 }
