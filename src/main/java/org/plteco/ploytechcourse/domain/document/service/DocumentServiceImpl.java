@@ -1,25 +1,18 @@
 package org.plteco.ploytechcourse.domain.document.service;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.plteco.ploytechcourse.application.document.dto.DocumentInfoDTO;
-import org.plteco.ploytechcourse.application.document.dto.DocumentUserInfoDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
-import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -27,20 +20,10 @@ import java.util.Optional;
 public class DocumentServiceImpl implements DocumentService {
     private final DocumentRepository documentRepository;
     private final StudentRepository studentRepository;
-    private final UserContextUtil userContextUtil;
-    private final ModelMapper modelMapper;
 
     @Override
     public Document writeDocument(User user, DocumentWriteRequestDTO writeRequest) {
-        Document document = Document.builder()
-                .user(user)
-                .title(writeRequest.title())
-                .content(writeRequest.content())
-                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("기본 썸네일 이미지"))
-                .introduction(writeRequest.introduction())
-                .createAt(LocalDate.now(ZoneId.of("Asia/Seoul")))
-                .build();
-
+        Document document = Document.from(user, writeRequest);
         return documentRepository.save(document);
     }
 
@@ -50,20 +33,18 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public DocumentInfoDTO getDocumentDetail(Long documentId) {
-        Document document = documentRepository.findById(documentId).orElseThrow(() -> new IllegalArgumentException("글을 찾을 수 없습니다."));
-        return modelMapper.map(document, DocumentInfoDTO.class);
+    public Document getDocument(Long documentId) {
+        return documentRepository.findById(documentId).orElseThrow(() -> new IllegalArgumentException("글을 찾을 수 없습니다."));
     }
 
     @Override
-    public DocumentUserInfoDTO getDocumentUserInfo(Long documentId) {
-        User user = documentRepository.findById(documentId).orElseThrow(() -> new IllegalArgumentException("글을 찾을 수 없습니다.")).getUser();
-        return modelMapper.map(user, DocumentUserInfoDTO.class);
+    public User getDocumentUser(Long documentId) {
+        return documentRepository.findById(documentId).orElseThrow(() -> new IllegalArgumentException("글을 찾을 수 없습니다.")).getUser();
     }
 
     @Override
     public Document updateDocument(User user, DocumentUpdateRequestDTO updateRequest) {
-        Document document = documentRepository.findById(updateRequest.documentId()).orElseThrow(() -> new IllegalArgumentException("글을 찾을 수 없습니다."));
+        Document document = getDocument(updateRequest.documentId());
         if(!document.getUser().equals(user)) throw new IllegalArgumentException("글 작성자만 수정할 수 있습니다.");
 
         Document newDocument = Document.from(document, updateRequest);
@@ -76,9 +57,9 @@ public class DocumentServiceImpl implements DocumentService {
         return studentRepository.findTechCourseIdByUserId(userId).orElse(null);
     }
     @Override
-    public void deleteDocument(Long documentId) {
+    public void deleteDocument(Long documentId, User user) {
         documentRepository.findUserById(documentId)
-                .filter(writer -> writer.equals(userContextUtil.getCurrentUser()))
+                .filter(writer -> writer.equals(user))
                 .ifPresentOrElse(
                         writer -> documentRepository.deleteById(documentId),
                         () -> {
