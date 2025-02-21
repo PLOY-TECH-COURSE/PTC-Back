@@ -5,9 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementWriteRequestDTO;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Optional;
 
 @Entity
 @NoArgsConstructor      // 매개변수 없는 생성자를 만들어서 JPA가 객체를 생성할 수 있도록 함
@@ -39,4 +42,15 @@ public class Announcement {
 
     @Column(name = "created_at", nullable = false)
     private LocalDate createAt;
+
+    public static Announcement from(User user, AnnouncementWriteRequestDTO writeRequest) {
+        return Announcement.builder()
+                .user(user)
+                .title(writeRequest.title())
+                .content(writeRequest.content())
+                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("기본 썸네일 이미지"))
+                .introduction(writeRequest.introduction())
+                .createAt(LocalDate.now(ZoneId.of("Asia/Seoul")))
+                .build();
+    }
 }
