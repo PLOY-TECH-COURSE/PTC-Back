@@ -47,6 +47,7 @@ public class Document {
     @Column(name = "created_at", nullable = false)
     private LocalDate createAt;
 
+    @Builder.Default
     @Column(name = "document_like_count", nullable = false)
     private Long documentLikeCount = 0L;
 
@@ -60,6 +61,13 @@ public class Document {
     public void decreaseLike() {
         if (this.documentLikeCount > 0)
             this.documentLikeCount--;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.documentLikeCount == null) {
+            this.documentLikeCount = 0L;
+        }
     }
 
     public static Document from(Document beforeDocs, DocumentUpdateRequestDTO updateRequestDTO) {

@@ -25,8 +25,8 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
 
     @Override
-    public List<Comment> getComments(long documentId) {
-        return commentRepository.findByDocumentId(documentId);
+    public List<Comment> getComments(Document document) {
+        return commentRepository.findByDocumentId(document.getId());
     }
 
     @Override
@@ -42,20 +42,17 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteCommentByUser(long commentId,User user) {
-        Comment comment = getComment(commentId);
-
+    public void deleteCommentByUser(Comment comment,User user) {
         if (!(user.getRole() == RoleEnum.ROLE_ADMIN || comment.getUser().getId().equals(user.getId()))) {
             throw new AccessDeniedException("해당 댓글을 삭제할 권한이 없습니다.");
         }
 
-        commentRepository.deleteById(commentId);
+        commentRepository.delete(comment);
     }
 
     @Override
-    public void updateComment(User user, long commentId, String commentText) {
+    public void updateComment(User user, Comment oldComment, String commentText) {
 
-        Comment oldComment = getComment(commentId);
 
         if (!oldComment.getUser().getId().equals(user.getId())) {
             throw new PltecoException("해당 댓글을 수정할 권한이 없습니다.", HttpStatus.FORBIDDEN);
