@@ -7,10 +7,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
+import org.plteco.ploytechcourse.domain.like.documentlike.model.DocumentLike;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -44,6 +47,21 @@ public class Document {
     @Column(name = "created_at", nullable = false)
     private LocalDate createAt;
 
+    @Column(name = "document_like_count", nullable = false)
+    private Long documentLikeCount = 0L;
+
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DocumentLike> likes = new ArrayList<>();
+
+    public void increaseLike() {
+        this.documentLikeCount++;
+    }
+
+    public void decreaseLike() {
+        if (this.documentLikeCount > 0)
+            this.documentLikeCount--;
+    }
+
     public static Document from(Document beforeDocs, DocumentUpdateRequestDTO updateRequestDTO) {
         return new Document(
                 beforeDocs.getId(),
@@ -52,10 +70,11 @@ public class Document {
                 updateRequestDTO.content(),
                 Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("기본 썸네일 이미지"),
                 updateRequestDTO.introduction(),
-                LocalDate.now(ZoneId.of("Asia/Seoul"))
+                LocalDate.now(ZoneId.of("Asia/Seoul")),
+                beforeDocs.getDocumentLikeCount(),
+                beforeDocs.getLikes()
         );
     }
-
     public static Document from(User user, DocumentWriteRequestDTO writeRequest) {
         return Document.builder()
                 .user(user)
