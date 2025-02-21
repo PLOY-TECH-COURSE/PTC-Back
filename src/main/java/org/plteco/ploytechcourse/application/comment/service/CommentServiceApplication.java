@@ -10,6 +10,7 @@ import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
+import org.plteco.ploytechcourse.domain.document.service.DocumentService;
 import org.plteco.ploytechcourse.domain.like.commentlike.service.CommentLikeService;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
@@ -30,7 +31,7 @@ public class CommentServiceApplication {
     private final CommentServiceImpl commentService;
 
     private final CommentLikeService commentLikeService;
-    private final DocumentRepository documentRepository;
+    private final DocumentService documentService;
     private final UserContextUtil userContextUtil;
     private final ModelMapper modelMapper;
 
@@ -39,8 +40,11 @@ public class CommentServiceApplication {
     }
 
     private Document getDocument(long documentId) {
-        return documentRepository.findById(documentId)
-                .orElseThrow(() -> new PltecoException("존재하지 않는 글입니다.", HttpStatus.NOT_FOUND));
+        return documentService.getDocument(documentId);
+    }
+
+    private Comment getComment(long commentId) {
+        return commentService.getComment(commentId);
     }
 
     /** 댓글 생성 */
@@ -56,33 +60,31 @@ public class CommentServiceApplication {
     public void updateComment(long commentId, String commentText) {
         User user = getCurrentUser();
 
-        Comment comment = commentService.getComment(commentId);
+        Comment comment = getComment(commentId);
 
-        commentService.updateComment(user, commentId, commentText);
+        commentService.updateComment(user, comment, commentText);
     }
 
     /** 댓글 삭제 */
     public void deleteCommentByUser(long commentId) {
         User user = getCurrentUser();
 
-        commentLikeService.deleteLikeByCommentId(commentId); // 댓글 좋아요 삭제 후
-        commentService.deleteCommentByUser(commentId, user); // 댓글 삭제
+        Comment comment = getComment(commentId);
+
+        commentService.deleteCommentByUser(comment, user);
     }
 
 
     /** 댓글 조회 */
     public List<CommentDTO> getComments(long documentId) {
-        if(!documentRepository.existsById(documentId)){
-            throw new PltecoException("글이 존재하지 않습니다.",HttpStatus.NOT_FOUND);
-        }
+        Document document = getDocument(documentId);
 
-        List<Comment> comments = commentService.getComments(documentId);
+        List<Comment> comments = commentService.getComments(document);
 
         // Comment → CommentDTO 변환
         return comments.stream()
                 .map(comment -> {
                     CommentDTO dto = modelMapper.map(comment, CommentDTO.class);
-                    dto.setLikeCount(commentLikeService.getLikes(comment));
                     dto.setLiked(commentLikeService.isLiked(comment,getCurrentUser()));
                     return dto;
                 })

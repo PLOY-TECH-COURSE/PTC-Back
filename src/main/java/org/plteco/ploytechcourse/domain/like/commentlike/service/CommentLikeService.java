@@ -25,6 +25,7 @@ public class CommentLikeService{
         }
         CommentLike commentLike = createCommentLike(comment, user);
         commentLikeRepository.save(commentLike);
+        comment.increaseLike();
     }
 
     @Transactional
@@ -36,11 +37,7 @@ public class CommentLikeService{
         }
 
         commentLikeRepository.delete(commentLike);
-    }
-
-    @Transactional
-    public void deleteLikeByCommentId(long commentId) {
-        commentLikeRepository.deleteByCommentId(commentId);
+        comment.decreaseLike();
     }
 
     @Transactional(readOnly = true)
