@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface Document_HashTagRepository extends JpaRepository<Document_HashTag, Long> {
     List<Document_HashTag> findAllByDocument(Document document);
+
     void deleteAllByDocument(Document document);
 
     // like 컬럼 추가 되면 ORDER BY dh.document.like DESC 이거 붙여주세요

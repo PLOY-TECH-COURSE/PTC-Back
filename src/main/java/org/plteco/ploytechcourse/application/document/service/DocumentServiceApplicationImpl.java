@@ -10,6 +10,7 @@ import org.plteco.ploytechcourse.application.document.dto.response.DocumentDetai
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
 import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.document.model.SortMethod;
 import org.plteco.ploytechcourse.domain.document.service.DocumentService;
 import org.plteco.ploytechcourse.domain.document.service.Document_HashTagService;
 import org.plteco.ploytechcourse.domain.document.service.HashTagService;
@@ -36,6 +37,15 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
     private final DocumentLikeService documentLikeService;
     private final FavoriteService favoriteService;
 
+    private DocumentsGetResponseDTO mapToDocumentsResponseDTO(Document document) {
+        Long like = documentLikeService.getLikes(document.getId());
+        List<String> hashTags = documentHashTagService.getHashTagsForDocument(document).stream()
+                .map(HashTag::getName)
+                .toList();
+
+        return DocumentsGetResponseDTO.from(document, hashTags, like);
+    }
+
     @Override
     public void writeDocument(DocumentWriteRequestDTO writeRequest) {
         User user = userContextUtil.getCurrentUser();
@@ -44,31 +54,21 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
 
         List<HashTag> hashTags = hashTagService.addHashTag(writeRequest.hasTag());
 
-        documentHashTagService.mapping(document, hashTags);
+        documentHashTagService.mapDocumentToHashTags(document, hashTags);
     }
 
     @Override
     public List<DocumentsGetResponseDTO> getDocuments(Long start) {
 
-        if(start < 0) throw new IllegalArgumentException("start 값이 올바르지 않습니다.");
-
         List<Document> documents = documentService.getDocuments(start, start + 20);
 
         return documents.stream()
-                .map(document -> {
-                    Long like = documentLikeService.getLikes(document.getId());
-                    List<String> hashTags = documentHashTagService.getHashTagsForDocument(document).stream()
-                            .map(HashTag::getName)
-                            .toList();
-
-                    return DocumentsGetResponseDTO.from(document, hashTags, like);
-                })
+                .map(this::mapToDocumentsResponseDTO)
                 .toList();
     }
 
     @Override
     public DocumentDetailGetResponseDTO getDocumentDetail(Long documentId) {
-        if(documentId == null || documentId < 1) throw new IllegalArgumentException("document_id(글 id)가 존재하지 않습니다.");
 
         User user = userContextUtil.getCurrentUser();
 
@@ -82,7 +82,7 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
                 .map(HashTag::getName)
                 .toList();
 
-        Long generation = documentService.getUserGeneration(document);
+        Long generation = documentService.getUserGeneration(document).orElse(null);
 
         Long likes = documentLikeService.getLikes(documentId);
         boolean likeOn = documentLikeService.isLiked(document, user);
@@ -99,8 +99,8 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
 
         List<HashTag> hashTags = hashTagService.addHashTag(documentUpdateRequestDto.hasTag());
 
-        documentHashTagService.deleteMapping(document);
-        documentHashTagService.mapping(document, hashTags);
+        documentHashTagService.deleteAllMappingForDocument(document);
+        documentHashTagService.mapDocumentToHashTags(document, hashTags);
     }
 
     @Override
@@ -109,26 +109,18 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
     }
 
     @Override
-    public List<DocumentsGetResponseDTO> searchDocument(String query, String sortMethod, int start) {
+    public List<DocumentsGetResponseDTO> searchDocument(String query, SortMethod sortMethod, int start) {
         Pageable pageable = PageRequest.of(start, 20);
 
         Page<Document> documents;
         if(query.charAt(0) == '#') {
-            HashTag hashTag = hashTagService.toHashTags(query.replace("#", ""));
-            documents = documentHashTagService.searchDocument(hashTag, pageable, sortMethod);
+            documents = documentHashTagService.searchDocument(query.replace("#", ""), pageable, sortMethod);
         }
         else
             documents = documentService.searchDocument(query, pageable, sortMethod);
 
         return documents.stream()
-                .map(document -> {
-                    Long like = documentLikeService.getLikes(document.getId());
-                    List<String> hashTags = documentHashTagService.getHashTagsForDocument(document).stream()
-                            .map(HashTag::getName)
-                            .toList();
-
-                    return DocumentsGetResponseDTO.from(document, hashTags, like);
-                })
+                .map(this::mapToDocumentsResponseDTO)
                 .toList();
     }
 }
