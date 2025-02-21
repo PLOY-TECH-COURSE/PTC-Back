@@ -132,7 +132,7 @@ public class DocumentController {
             @ApiResponse(responseCode = "200", description = "자세한 글 내용 조회 성공",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = DocumentsGetResponseDTO.class)
+                            schema = @Schema(implementation = DocumentDetailGetResponseDTO.class)
                     )
             ),
             @ApiResponse(responseCode = "403", description = "권한 부족",
@@ -213,7 +213,6 @@ public class DocumentController {
             @NotNull(message = "document-id 파라미터는 필수입니다.")
             @Min(value = 1, message = "document-id 값은 1 이상이어야 합니다.") Long documentId
     ) {
-        if(documentId == null || documentId < 1) throw new IllegalArgumentException("글 id가 올바르지 않습니다.");
         documentService.deleteDocument(documentId);
         return ResponseEntity.status(204).body("글 삭제에 성공하였습니다.");
     }
