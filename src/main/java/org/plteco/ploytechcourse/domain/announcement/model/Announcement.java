@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementWriteRequestDTO;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
@@ -42,6 +43,18 @@ public class Announcement {
 
     @Column(name = "created_at", nullable = false)
     private LocalDate createAt;
+
+    public static Announcement from(Announcement beforeDocs, AnnouncementUpdateRequestDTO updateRequestDTO) {
+        return new Announcement(
+                beforeDocs.getId(),
+                beforeDocs.getUser(),
+                updateRequestDTO.title(),
+                updateRequestDTO.content(),
+                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("기본 썸네일 이미지"),
+                updateRequestDTO.introduction(),
+                LocalDate.now(ZoneId.of("Asia/Seoul"))
+        );
+    }
 
     public static Announcement from(User user, AnnouncementWriteRequestDTO writeRequest) {
         return Announcement.builder()
