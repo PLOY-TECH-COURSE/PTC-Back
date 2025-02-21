@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    @Query("SELECT s.techCourse.id FROM Student s WHERE s.user.id = :userId")
+    @Query("SELECT s.techCourse.generation FROM Student s WHERE s.user.id = :userId")
     Optional<Long> findTechCourseIdByUserId(@Param("userId") Long userId);
 }
