@@ -15,8 +15,7 @@ public interface Document_HashTagRepository extends JpaRepository<Document_HashT
 
     void deleteAllByDocument(Document document);
 
-    // like 컬럼 추가 되면 ORDER BY dh.document.like DESC 이거 붙여주세요
-    @Query("SELECT dh.document FROM Document_HashTag dh WHERE dh.hashtag.name LIKE CONCAT('%', :hashTag, '%')")
+    @Query("SELECT dh.document FROM Document_HashTag dh WHERE dh.hashtag.name LIKE CONCAT('%', :hashTag, '%') ORDER BY dh.document.documentLikeCount DESC")
     Page<Document> searchAllByHashTagOrderByLike(@Param("hashTag") String hashTag, Pageable pageable);
 
     @Query("SELECT dh.document FROM Document_HashTag dh WHERE dh.hashtag.name LIKE CONCAT('%', :hashTag, '%')  ORDER BY dh.document.createAt DESC")
