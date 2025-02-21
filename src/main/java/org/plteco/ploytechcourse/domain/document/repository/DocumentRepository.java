@@ -17,17 +17,14 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
     @Query(value = "SELECT * FROM document ORDER BY created_at DESC LIMIT :start, :size", nativeQuery = true)
     List<Document> findWithPagination(@Param("start") Long start, @Param("size") Long size);
 
-
     @Query("SELECT COUNT(d) FROM Document d WHERE d.user.id = :userId")
     Long countByUserId(@Param("userId") Long userId);
 
     @Query("SELECT d.user FROM Document d WHERE d.id = :documentId")
     Optional<User> findUserById(@Param("documentId") Long documentId);
 
-    // like 추가되면 ORDER BY d.like DESC 이거 추가해주세요
-    @Query("SELECT d FROM Document d WHERE d.title LIKE CONCAT('%', :query, '%')")
-    Page<Document> searchAllByTitleLikeOrderByLike(@Param("query") String query, Pageable pageable);
+    // like 추가되면 주석풀어주세요
+    // Page<Document> findByTitleContainingOrderByLikeDesc(String query, Pageable pageable);
 
-    @Query("SELECT d FROM Document d WHERE d.title LIKE CONCAT('%', :query, '%') ORDER BY d.createAt DESC")
-    Page<Document> searchAllByTitleOrderByCreateAt(@Param("query") String query, Pageable pageable);
+    Page<Document> findByTitleContainingOrderByCreateAtDesc(String query, Pageable pageable);
 }
