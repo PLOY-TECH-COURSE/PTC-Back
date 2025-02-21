@@ -81,10 +81,7 @@ public class DocumentServiceImpl implements DocumentService {
     public Page<Document> searchDocument(String query, Pageable pageable, SortMethod sortMethod) {
         return switch (sortMethod) {
             case CREATE_AT -> documentRepository.findByTitleContainingOrderByCreateAtDesc(query, pageable);
-            // like 추가되면 아래 주석을 풀어주세요
-            // case LIKE -> documentRepository.findByTitleContainingOrderByLikeDesc(query, pageable);
-            // like 추가되면 아래 case LIKE -> null;도 삭제 해주세요
-            case LIKE -> null;
+            case LIKE -> documentRepository.findByTitleContainingOrderByDocumentLikeCountDesc(query, pageable);
         };
     }
 }

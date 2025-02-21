@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
+import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
+import org.plteco.ploytechcourse.domain.favorite.model.entity.Favorite;
 import org.plteco.ploytechcourse.domain.like.documentlike.model.DocumentLike;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
@@ -54,6 +56,12 @@ public class Document {
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentLike> likes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Favorite> favorite = new ArrayList<>();
+
     public void increaseLike() {
         this.documentLikeCount++;
     }
@@ -80,7 +88,9 @@ public class Document {
                 updateRequestDTO.introduction(),
                 LocalDate.now(ZoneId.of("Asia/Seoul")),
                 beforeDocs.getDocumentLikeCount(),
-                beforeDocs.getLikes()
+                beforeDocs.getLikes(),
+                beforeDocs.getComments(),
+                beforeDocs.getFavorite()
         );
     }
     public static Document from(User user, DocumentWriteRequestDTO writeRequest) {
