@@ -4,6 +4,7 @@ import org.plteco.ploytechcourse.application.document.dto.request.DocumentUpdate
 import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteRequestDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentDetailGetResponseDTO;
 import org.plteco.ploytechcourse.application.document.dto.response.DocumentsGetResponseDTO;
+import org.plteco.ploytechcourse.domain.document.model.SortMethod;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface DocumentServiceApplication {
     List<DocumentsGetResponseDTO> getDocuments(Long start);
     DocumentDetailGetResponseDTO getDocumentDetail(Long documentId);
     void updateDocument(DocumentUpdateRequestDTO documentUpdateRequestDto);
+    void deleteDocument(Long documentId);
+    List<DocumentsGetResponseDTO> searchDocument(String query, SortMethod sortMethod, int start);
 }
