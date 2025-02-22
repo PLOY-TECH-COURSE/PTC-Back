@@ -48,7 +48,7 @@ public class Announcement {
     private LocalDate createAt;
 
     @OneToMany(mappedBy = "announcement", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
+    private List<AnnouncementComment> comments = new ArrayList<>();
 
     public static Announcement from(Announcement beforeDocs, AnnouncementUpdateRequestDTO updateRequestDTO) {
         return new Announcement(

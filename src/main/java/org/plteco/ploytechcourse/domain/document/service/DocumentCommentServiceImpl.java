@@ -32,8 +32,8 @@ public class DocumentCommentServiceImpl extends CommentServiceImpl implements Do
         this.documentCommentRepository = documentCommentRepository;
     }
 
-    public List<Comment> getComments(Document document) {
-        return commentRepository.findByDocumentId(document.getId());
+    public List<DocumentComment> getComments(Document document) {
+        return documentCommentRepository.findByDocument(document);
     }
 
     public void createComment(User user, Document document, String commentText) {
@@ -43,12 +43,13 @@ public class DocumentCommentServiceImpl extends CommentServiceImpl implements Do
                 .comment(commentText)
                 .build();
 
+        commentRepository.save(comment);
+
         DocumentComment documentComment = DocumentComment.builder()
                 .document(document)
                 .comment(comment)
                 .build();
 
-        commentRepository.save(comment);
         documentCommentRepository.save(documentComment);
     }
 

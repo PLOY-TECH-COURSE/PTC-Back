@@ -6,7 +6,9 @@ import org.plteco.ploytechcourse.domain.announcement.repository.AnnouncementComm
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
 import org.plteco.ploytechcourse.domain.comment.service.CommentServiceImpl;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

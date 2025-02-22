@@ -57,7 +57,7 @@ public class Document {
     private List<DocumentLike> likes = new ArrayList<>();
 
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
+    private List<DocumentComment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorite> favorite = new ArrayList<>();

@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
+import org.plteco.ploytechcourse.domain.document.model.DocumentComment;
 import org.plteco.ploytechcourse.domain.document.service.DocumentCommentServiceImpl;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
@@ -71,8 +72,10 @@ public class DocumentCommentServiceApplication {
     /** 댓글 조회 */
     public List<CommentDTO> getComments(long documentId) {
         Document document = getDocument(documentId);
-
-        List<Comment> comments = documentCommentService.getComments(document);
+        List<DocumentComment> documentComments = documentCommentService.getComments(document);
+        List<Comment> comments = documentComments.stream()
+                .map(documentComment -> getComment(documentComment.getComment().getId()))
+                .toList();
 
         // Comment → CommentDTO 변환
         return comments.stream()
