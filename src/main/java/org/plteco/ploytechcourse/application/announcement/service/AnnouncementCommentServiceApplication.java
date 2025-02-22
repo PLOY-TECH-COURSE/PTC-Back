@@ -1,23 +1,16 @@
-package org.plteco.ploytechcourse.application.comment.service;
+package org.plteco.ploytechcourse.application.announcement.service;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
-import org.plteco.ploytechcourse.domain.comment.service.CommentServiceImpl;
-import org.plteco.ploytechcourse.domain.document.model.Document;
-import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
+import org.plteco.ploytechcourse.domain.announcement.service.AnnouncementCommentServiceImpl;
+import org.plteco.ploytechcourse.domain.announcement.service.AnnouncementService;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
-import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
-import org.plteco.ploytechcourse.domain.document.service.DocumentService;
 import org.plteco.ploytechcourse.domain.like.commentlike.service.CommentLikeService;
-import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
-import org.plteco.ploytechcourse.shared.exception.PltecoException;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,12 +19,12 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CommentServiceApplication {
+public class AnnouncementCommentServiceApplication {
 
-    private final CommentServiceImpl commentService;
+    private final AnnouncementCommentServiceImpl announcementCommentService;
 
     private final CommentLikeService commentLikeService;
-    private final DocumentService documentService;
+    private final AnnouncementService announcementService;
     private final UserContextUtil userContextUtil;
     private final ModelMapper modelMapper;
 
@@ -39,21 +32,21 @@ public class CommentServiceApplication {
         return userContextUtil.getCurrentUser();
     }
 
-    private Document getDocument(long documentId) {
-        return documentService.getDocument(documentId);
+    private Announcement getAnnouncement(long announcementId) {
+        return announcementService.getAnnouncement(announcementId);
     }
 
     private Comment getComment(long commentId) {
-        return commentService.getComment(commentId);
+        return announcementCommentService.getComment(commentId);
     }
 
     /** 댓글 생성 */
-    public void createComment(long documentId, String commentText) {
+    public void createComment(long announcementId, String commentText) {
         User user = getCurrentUser();
 
-        Document document = getDocument(documentId);
+        Announcement announcement = getAnnouncement(announcementId);
 
-        commentService.createComment(user, document, commentText);
+        announcementCommentService.createComment(user, announcement, commentText);
     }
 
     /** 댓글 수정 */
@@ -62,7 +55,7 @@ public class CommentServiceApplication {
 
         Comment comment = getComment(commentId);
 
-        commentService.updateComment(user, comment, commentText);
+        announcementCommentService.updateComment(user, comment, commentText);
     }
 
     /** 댓글 삭제 */
@@ -71,15 +64,15 @@ public class CommentServiceApplication {
 
         Comment comment = getComment(commentId);
 
-        commentService.deleteCommentByUser(comment, user);
+        announcementCommentService.deleteCommentByUser(comment, user);
     }
 
 
     /** 댓글 조회 */
-    public List<CommentDTO> getComments(long documentId) {
-        Document document = getDocument(documentId);
+    public List<CommentDTO> getComments(long announcementId) {
+        Announcement announcement = getAnnouncement(announcementId);
 
-        List<Comment> comments = commentService.getComments(document);
+        List<Comment> comments = announcementCommentService.getComments(announcement);
 
         // Comment → CommentDTO 변환
         return comments.stream()

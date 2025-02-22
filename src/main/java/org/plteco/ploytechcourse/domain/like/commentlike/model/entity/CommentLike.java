@@ -1,13 +1,10 @@
 package org.plteco.ploytechcourse.domain.like.commentlike.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
-import org.plteco.ploytechcourse.domain.document.model.Document;
-import org.plteco.ploytechcourse.domain.like.documentlike.model.DocumentLikeId;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 @Entity
