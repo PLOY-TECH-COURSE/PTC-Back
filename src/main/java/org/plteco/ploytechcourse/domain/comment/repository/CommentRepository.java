@@ -1,5 +1,6 @@
 package org.plteco.ploytechcourse.domain.comment.repository;
 
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

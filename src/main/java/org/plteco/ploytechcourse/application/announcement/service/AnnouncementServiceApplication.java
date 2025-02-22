@@ -8,7 +8,7 @@ import org.plteco.ploytechcourse.application.announcement.dto.request.Announceme
 import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementWriteRequestDTO;
 import org.plteco.ploytechcourse.application.announcement.dto.response.AnnouncementDetailGetResponseDTO;
 import org.plteco.ploytechcourse.application.announcement.dto.response.AnnouncementGetResponseDTO;
-import org.plteco.ploytechcourse.domain.announcement.model.Announcement;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
 import org.plteco.ploytechcourse.domain.announcement.service.AnnouncementService;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
