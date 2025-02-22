@@ -3,7 +3,9 @@ package org.plteco.ploytechcourse.domain.comment.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.AnnouncementComment;
 import org.plteco.ploytechcourse.domain.document.model.Document;
+import org.plteco.ploytechcourse.domain.document.model.DocumentComment;
 import org.plteco.ploytechcourse.domain.like.commentlike.model.entity.CommentLike;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
@@ -35,14 +37,12 @@ public class Comment {
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CommentLike> likes = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "announcement_id") // Announcement와의 관계 설정
-    private Announcement announcement;
+    @OneToOne(mappedBy = "comment", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private DocumentComment documentComment;
 
+    @OneToOne(mappedBy = "comment", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private AnnouncementComment announcementComment;
 
-    @ManyToOne
-    @JoinColumn(name = "document_id") // Document와의 관계 설정
-    private Document document;
 
     public void increaseLike() {
         this.commentLikeCount++;

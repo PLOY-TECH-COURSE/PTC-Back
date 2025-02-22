@@ -21,21 +21,6 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
 
-    public List<Comment> getComments(Document document) {
-        return commentRepository.findByDocumentId(document.getId());
-    }
-
-    public void createComment(User user, Document document, String commentText) {
-
-        Comment comment = Comment.builder()
-                .user(user)
-                .comment(commentText)
-                .build();
-
-        commentRepository.save(comment);
-    }
-
-    @Override
     public void deleteCommentByUser(Comment comment,User user) {
         if (!(user.getRole() == RoleEnum.ROLE_ADMIN || comment.getUser().getId().equals(user.getId()))) {
             throw new AccessDeniedException("해당 댓글을 삭제할 권한이 없습니다.");
