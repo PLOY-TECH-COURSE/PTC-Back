@@ -31,7 +31,7 @@ public class AnnouncementCommentController {
      * 댓글 등록 (POST)
      * 주어진 문서(document-id)에 대해 요청 본문에 포함된 댓글 데이터를 사용하여 댓글을 등록합니다.
      *
-     * @param documentId  댓글이 등록될 문서의 고유 아이디.
+     * @param announcementId  댓글이 등록될 문서의 고유 아이디.
      * @param commentData 요청 본문으로 전달되는 댓글 DTO.
      * @return 댓글 생성 성공 시 HTTP 상태 코드 201 (Created)을 반환합니다.
      * @throws PltecoException 요청 데이터가 잘못되었거나, 글이 존재하지 않는 경우 예외가 발생합니다.
@@ -55,12 +55,12 @@ public class AnnouncementCommentController {
     })
     @PostMapping("/comments/{document-id}")
     public ResponseEntity<Void> createComment(
-            @Parameter(description = "글 아이디", required = true)
-            @PathVariable("document-id") Long documentId,
+            @Parameter(description = "공지 글 아이디", required = true)
+            @PathVariable("announcement-id") Long announcementId,
             @Valid @RequestBody RequestCommentDTO commentData) {
 
         String commentText = commentData.getCommentText();
-        announcementCommentServiceApplication.createComment(documentId, commentText);
+        announcementCommentServiceApplication.createComment(announcementId, commentText);
         return new ResponseEntity<>(HttpStatus.CREATED);  // 성공적으로 생성된 경우 201 반환
     }
 
@@ -68,7 +68,7 @@ public class AnnouncementCommentController {
      * 댓글 조회 (GET)
      * 주어진 문서(document-id)에 등록된 댓글 목록을 조회합니다.
      *
-     * @param documentId 댓글 목록을 조회할 문서의 고유 아이디.
+     * @param announcementId 댓글 목록을 조회할 문서의 고유 아이디.
      * @return 댓글 조회 성공 시 댓글 DTO 목록과 HTTP 상태 코드 200 (OK)을 반환합니다.
      *         만약 해당 문서가 없으면 예외가 발생합니다.
      */
@@ -88,10 +88,10 @@ public class AnnouncementCommentController {
     })
     @GetMapping("/comments/{document-id}")
     public ResponseEntity<List<CommentDTO>> getComment(
-            @Parameter(description = "글 아이디", required = true)
-            @PathVariable("document-id") Long documentId) {
+            @Parameter(description = "공지 글 아이디", required = true)
+            @PathVariable("announcement-id") Long announcementId) {
 
-        List<CommentDTO> comments = announcementCommentServiceApplication.getComments(documentId);  // 없으면 빈 리스트 반환
+        List<CommentDTO> comments = announcementCommentServiceApplication.getComments(announcementId);  // 없으면 빈 리스트 반환
         return new ResponseEntity<>(comments, HttpStatus.OK);  // 댓글 리스트 반환
     }
 
