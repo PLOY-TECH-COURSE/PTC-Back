@@ -53,7 +53,7 @@ public class AnnouncementCommentController {
                             examples = @ExampleObject(value = "{\"status\":404,\"message\":\"존재하지 않는 글입니다.\",\"errorCode\":\"Not Found\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
             @ApiResponse(responseCode = "500", description = "서버 내부 오류")
     })
-    @PostMapping("/comments/{document-id}")
+    @PostMapping("/comments/{announcement-id}")
     public ResponseEntity<Void> createComment(
             @Parameter(description = "공지 글 아이디", required = true)
             @PathVariable("announcement-id") Long announcementId,
@@ -78,7 +78,7 @@ public class AnnouncementCommentController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = @ExampleObject(value = "[{\"id\": 8, \"userId\": 2, \"comment\": \"조재민 빡빡이\", \"userName\": \"허동운\", \"userProfile\": \"https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png\", \"likeCount\": 1, \"liked\": true}]"))),
+                            examples = @ExampleObject(value = "[{\"id\": 8, \"userId\": 2, \"comment\": \"허동운 빡빡이\", \"userName\": \"허동운\", \"userProfile\": \"https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png\", \"likeCount\": 1, \"liked\": true}]"))),
             @ApiResponse(responseCode = "404", description = "글이 존재하지 않음",
                     content = @Content(
                             mediaType = "application/json",
@@ -86,7 +86,7 @@ public class AnnouncementCommentController {
                             examples = @ExampleObject(value = "{\"status\":404,\"message\":\"존재하지 않는 글입니다.\",\"errorCode\":\"Not Found\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
             @ApiResponse(responseCode = "500", description = "서버 내부 오류")
     })
-    @GetMapping("/comments/{document-id}")
+    @GetMapping("/comments/{announcement-id}")
     public ResponseEntity<List<CommentDTO>> getComment(
             @Parameter(description = "공지 글 아이디", required = true)
             @PathVariable("announcement-id") Long announcementId) {

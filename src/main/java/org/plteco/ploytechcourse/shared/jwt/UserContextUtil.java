@@ -82,7 +82,11 @@ public class UserContextUtil {
      * @return 사용자의 정보
      */
     public User getCurrentUser() {
-        return userRepository.findByEmail(getEmail());
+        try {
+            return userRepository.findByEmail(getEmail());
+        } catch (Exception e) {
+            return null; // 로그인하지 않은 경우 null 반환
+        }
     }
 
     /**

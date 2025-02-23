@@ -17,7 +17,7 @@ public class CommentLike{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("commentId")
-    @JoinColumn(name = "comment_id")
+    @JoinColumn(name = "comment_id", nullable = false)
     private Comment comment;
 
     @ManyToOne(fetch = FetchType.LAZY)
