@@ -14,6 +14,7 @@ import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,6 +80,8 @@ public class AnnouncementCommentServiceApplication {
 
         // Comment → CommentDTO 변환
         return comments.stream()
+                .sorted(Comparator.comparing(Comment::getCommentLikeCount).reversed()
+                        .thenComparing(Comment::getId).reversed())
                 .map(comment -> {
                     CommentDTO dto = modelMapper.map(comment, CommentDTO.class);
                     dto.setLiked(commentLikeService.isLiked(comment,getCurrentUser()));
