@@ -53,37 +53,49 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**","/v3/api-docs/**","/swagger-resources/**","/webjars/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/documents", "/documents/{document-id}", "/users/search/{user-name}", "/documents/search", "/comments/{document-id}", "/favorites", "/announcements", "/announcements/{announcement-id}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/logout", "/comments/{document-id}", "/favorites/{document-id}", "/documents").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+
                         .requestMatchers(HttpMethod.GET, "/users/{user-id}","mypage").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/announcements").hasAnyRole("ADMIN", "SUPERADMIN")
+
                         .requestMatchers(HttpMethod.POST, "/applications").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/applications").hasAnyRole("ADMIN","SUPERADMIN")
+
                         .requestMatchers(HttpMethod.POST,"/accept").hasAnyRole("ADMIN","SUPERADMIN")
+
                         .requestMatchers(HttpMethod.POST,"/announcements").hasAnyRole("ADMIN","SUPERADMIN")
-                        .requestMatchers(HttpMethod.PATCH,  "/permissions").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH,  "/announcements").hasAnyRole("ADMIN","SUPERADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/announcements").hasAnyRole("ADMIN", "SUPERADMIN")
+
                         .requestMatchers(HttpMethod.GET, "/permissions").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.PATCH,  "/permissions").hasRole("SUPERADMIN")
+
                         .requestMatchers(HttpMethod.POST, "/tech-course","/class","/track").hasAnyRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/tech-course","/class","/class/{generation}","/track","/track/{id}").permitAll()
-                        .requestMatchers(HttpMethod.PATCH, "/documents", "/comments/{document-id}/{comment-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/documents", "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.POST, "/likes/{document-id}").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
+
+                        .requestMatchers(HttpMethod.PATCH, "/documents").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/documents").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
+
                         .requestMatchers(HttpMethod.POST, "/S3","/profile").hasAnyRole("USER","STUDENT", "ADMIN", "SUPERADMIN")
+
                         .requestMatchers(HttpMethod.POST, "/document/comments/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/document/comments/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/document/comments/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.GET, "/document/comments/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/document/comments/{document-id}").permitAll()
 
-                        .requestMatchers(HttpMethod.POST, "/comments/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/announcement/comments/{announcement-id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/announcement/comments/{announcement-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/announcement/comments/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/announcement/comments/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.POST, "/announcement/document-likes/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/document-likes/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/document-likes/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/comment-likes/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/comment-likes/{comment-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+
                         .requestMatchers(HttpMethod.POST, "/favorite/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/favorite").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/favorite/{document-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+
                         .anyRequest().denyAll()
                 )
                 .exceptionHandling(exception -> exception

@@ -16,5 +16,5 @@ public class CommentLikeId implements Serializable {
     private long commentId;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 }

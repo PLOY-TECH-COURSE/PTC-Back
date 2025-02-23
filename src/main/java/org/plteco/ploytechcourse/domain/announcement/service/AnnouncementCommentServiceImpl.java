@@ -29,7 +29,7 @@ public class AnnouncementCommentServiceImpl extends CommentServiceImpl implement
     }
 
     @Override
-    public List<Comment> getComments(Announcement announcement) {
+    public List<AnnouncementComment> getComments(Announcement announcement) {
         return announcementCommentRepository.findCommentsByAnnouncement(announcement);
     }
 

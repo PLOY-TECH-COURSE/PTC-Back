@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
 import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.AnnouncementComment;
 import org.plteco.ploytechcourse.domain.announcement.service.AnnouncementCommentServiceImpl;
 import org.plteco.ploytechcourse.domain.announcement.service.AnnouncementService;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
@@ -71,8 +72,10 @@ public class AnnouncementCommentServiceApplication {
     /** 댓글 조회 */
     public List<CommentDTO> getComments(long announcementId) {
         Announcement announcement = getAnnouncement(announcementId);
-
-        List<Comment> comments = announcementCommentService.getComments(announcement);
+        List<AnnouncementComment> announcementComments = announcementCommentService.getComments(announcement);
+        List<Comment> comments = announcementComments.stream()
+                .map(announcementComment -> getComment(announcementComment.getComment().getId()))
+                .toList();
 
         // Comment → CommentDTO 변환
         return comments.stream()
