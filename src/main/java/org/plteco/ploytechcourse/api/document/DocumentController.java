@@ -110,7 +110,7 @@ public class DocumentController {
                             schema = @Schema(implementation = ErrorResponse.class),
                             examples = @ExampleObject(value = "{\"status\":400,\"message\":\"start 파라미터는 필수입니다.\",\"errorCode\":\"INVALID_ARGUMENT\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
     })
-    @GetMapping("/documents/search")
+    @GetMapping("/documents/search/filter")
     public ResponseEntity<List<DocumentsGetResponseDTO>> searchDocument(
             @RequestParam("query")
             @NotNull(message = "query 파라미터는 필수입니다.") String query,
