@@ -53,12 +53,15 @@ public class Document {
     @Column(name = "document_like_count", nullable = false)
     private Long documentLikeCount = 0L;
 
+    @Builder.Default
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentLike> likes = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentComment> comments = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorite> favorite = new ArrayList<>();
 

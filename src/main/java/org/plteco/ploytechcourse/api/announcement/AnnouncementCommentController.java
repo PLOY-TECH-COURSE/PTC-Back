@@ -168,6 +168,6 @@ public class AnnouncementCommentController {
 
         String commentText = commentData.getCommentText();
         announcementCommentServiceApplication.updateComment(commentId, commentText);
-        return new ResponseEntity<>(HttpStatus.OK); // 성공적으로 수정된 경우 200 반환
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 성공적으로 수정된 경우 200 반환
     }
 }
