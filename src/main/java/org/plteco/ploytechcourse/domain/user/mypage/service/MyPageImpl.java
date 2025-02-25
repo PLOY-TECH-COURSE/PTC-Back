@@ -6,6 +6,7 @@ import org.plteco.ploytechcourse.domain.application.model.Student;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.like.commentlike.repository.CommentLikeRepository;
+import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.stereotype.Service;
 
@@ -20,39 +21,40 @@ public class MyPageImpl implements MyPage {
     private final DocumentRepository documentRepository;
     private final CommentLikeRepository commentLikeRepository;
     private final StudentRepository studentRepository;
+    private final UserRepository userRepository;
 
     @Override
-    public String getName() {
-        return userContextUtil.getCurrentUser().getName();
+    public String getName(Long id) {
+        return userRepository.findById(id).get().getName();
     }
 
     @Override
-    public String getBio() {
-        return userContextUtil.getCurrentUser().getBio();
+    public String getBio(Long id) {
+        return userRepository.findById(id).get().getBio();
     }
 
     @Override
-    public Long getNumberOfPosts() {
-        return Optional.ofNullable(documentRepository.countByUserId(userContextUtil.getId())).orElse(0L);
+    public Long getNumberOfPosts(Long id) {
+        return Optional.ofNullable(documentRepository.countByUserId(id)).orElse(0L);
     }
 
     @Override
-    public Long getNumberOfLove() {
-        return Optional.ofNullable(commentLikeRepository.countTotalLikesByUserId(userContextUtil.getId())).orElse(0L);
+    public Long getNumberOfLove(Long id) {
+        return Optional.ofNullable(commentLikeRepository.countTotalLikesByUserId(id)).orElse(0L);
     }
 
     @Override
-    public String getProfile() {
-        return userContextUtil.getCurrentUser().getProfile();
+    public String getProfile(Long id) {
+        return userRepository.findById(id).get().getProfile();
     }
 
     @Override
-    public Long getGeneration() {
-        return studentRepository.findTechCourseIdByUserId(userContextUtil.getId()).orElse(null);
+    public Long getGeneration(Long id) {
+        return studentRepository.findTechCourseIdByUserId(id).orElse(null);
     }
 
     @Override
-    public String getUid() {
-        return userContextUtil.getCurrentUser().getUid();
+    public String getUid(Long id) {
+        return userRepository.findById(id).get().getUid();
     }
 }

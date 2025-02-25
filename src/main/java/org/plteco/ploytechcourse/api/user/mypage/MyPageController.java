@@ -1,13 +1,11 @@
 package org.plteco.ploytechcourse.api.user.mypage;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.mypage.dto.ResponseMypage;
 import org.plteco.ploytechcourse.application.user.mypage.service.MyPageApplication;
-import org.plteco.ploytechcourse.application.user.profile.dto.RequestProfile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +24,11 @@ public class MyPageController {
             @ApiResponse(responseCode = "200", description = "가져오기 성공"),
             @ApiResponse(responseCode = "400", description = "잘못된 요청")
     })
-    @GetMapping
+    @GetMapping("/{user-id}")
     public ResponseEntity<ResponseMypage> mypage(
+            @PathVariable("user-id")
+            Long userId
     ){
-        return ResponseEntity.ok(myPageApplication.getMyPage());
+        return ResponseEntity.ok(myPageApplication.getMyPage(userId));
     }
 }
