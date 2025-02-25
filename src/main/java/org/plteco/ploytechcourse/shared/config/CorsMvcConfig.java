@@ -27,6 +27,7 @@ public class CorsMvcConfig implements WebMvcConfigurer {
                 .allowedOriginPatterns("http://192.168.10.51:5173")
                 .allowedOriginPatterns("http://192.168.45.90:5173")
                 .allowedOriginPatterns("http://172.30.1.15:5173")
+                .allowedOriginPatterns("http://192.168.219.110:5173")
                 .allowCredentials(true); // 자격 증명 허용
     }
 }
