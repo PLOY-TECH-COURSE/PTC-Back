@@ -57,6 +57,9 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     public boolean isFavorite(User user, Document document) {
+        if (user == null){
+            return false;
+        }
         FavoriteId favoriteId = new FavoriteId(user.getId(), document.getId());
         return favoriteRepository.existsById(favoriteId);
     }
