@@ -12,15 +12,15 @@ public class MyPageApplicationImpl implements MyPageApplication {
     private final MyPage myPage;
 
     @Override
-    public ResponseMypage getMyPage() {
+    public ResponseMypage getMyPage(Long id) {
         return ResponseMypage.builder()
-                .name(myPage.getName())
-                .bio(myPage.getBio())
-                .numberOfPosts(myPage.getNumberOfPosts())
-                .numberOfLove(myPage.getNumberOfLove())
-                .profile(myPage.getProfile())
-                .generation(myPage.getGeneration())
-                .uid(myPage.getUid())
+                .name(myPage.getName(id))
+                .bio(myPage.getBio(id))
+                .numberOfPosts(myPage.getNumberOfPosts(id))
+                .numberOfLove(myPage.getNumberOfLove(id))
+                .profile(myPage.getProfile(id))
+                .generation(myPage.getGeneration(id))
+                .uid(myPage.getUid(id))
                 .build();
     }
 }
