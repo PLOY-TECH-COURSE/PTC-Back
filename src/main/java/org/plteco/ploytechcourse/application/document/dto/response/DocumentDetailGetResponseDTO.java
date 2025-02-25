@@ -24,7 +24,7 @@ public record DocumentDetailGetResponseDTO(
         @NotNull(message = "글 자세히 보기에 favorite_on(즐겨찾기)이 비어있습니다.")
         boolean favorite_on,
 
-        Long generation,
+        String generation,
 
         @NotNull(message = "글 자세히 보기에 hash_tag(해시 테그)가 비어있습니다.")
         List<String> hash_tag

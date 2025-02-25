@@ -2,7 +2,6 @@ package org.plteco.ploytechcourse.domain.comment.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
 import org.plteco.ploytechcourse.domain.document.model.Document;
@@ -14,8 +13,6 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -24,24 +21,6 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
 
-    @Override
-    public List<Comment> getComments(Document document) {
-        return commentRepository.findByDocumentId(document.getId());
-    }
-
-    @Override
-    public void createComment(User user, Document document, String commentText) {
-
-        Comment comment = Comment.builder()
-                .user(user)
-                .document(document)
-                .comment(commentText)
-                .build();
-
-        commentRepository.save(comment);
-    }
-
-    @Override
     public void deleteCommentByUser(Comment comment,User user) {
         if (!(user.getRole() == RoleEnum.ROLE_ADMIN || comment.getUser().getId().equals(user.getId()))) {
             throw new AccessDeniedException("해당 댓글을 삭제할 권한이 없습니다.");
@@ -61,7 +40,6 @@ public class CommentServiceImpl implements CommentService {
         Comment newComment = Comment.builder()
                 .id(oldComment.getId())
                 .user(user)
-                .document(oldComment.getDocument())
                 .comment(commentText)
                 .build();
 

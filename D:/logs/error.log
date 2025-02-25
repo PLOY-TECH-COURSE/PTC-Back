@@ -288,7 +288,7 @@
 [1;35m02-17 16:08:10[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
 [1;35m02-17 16:08:10[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 4 ms 
 [1;35m02-17 16:08:10[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:08:10[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:08:10[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:08:10[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:08:10[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@4eb9c899]] 
 [1;35m02-17 16:08:10[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
@@ -559,7 +559,7 @@
 [1;35m02-17 16:21:58[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.resolveException[0;39m - Resolved [org.plteco.ploytechcourse.shared.exception.PltecoException: 이미 좋아요를 눌렀습니다.] 
 [1;35m02-17 16:21:58[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 409 CONFLICT 
 [1;35m02-17 16:22:11[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:22:11[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:22:11[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:22:12[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:22:12[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@364b88bf]] 
 [1;35m02-17 16:22:12[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
@@ -616,7 +616,7 @@
 [1;35m02-17 16:24:27[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
 [1;35m02-17 16:24:27[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 9 ms 
 [1;35m02-17 16:24:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:24:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:24:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:24:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:24:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@45c9b122]] 
 [1;35m02-17 16:24:28[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
@@ -716,7 +716,7 @@
 [1;35m02-17 16:28:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
 [1;35m02-17 16:28:02[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 3 ms 
 [1;35m02-17 16:28:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:28:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:28:02[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:28:03[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:28:03[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@a414292]] 
 [1;35m02-17 16:28:03[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
@@ -840,7 +840,7 @@ java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1575)
 [1;35m02-17 16:31:56[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:31:56[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:31:56[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:31:56[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:31:56[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@7488af47]] 
 [1;35m02-17 16:31:56[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
@@ -897,7 +897,7 @@ java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류
 [1;35m02-17 16:32:14[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
 [1;35m02-17 16:32:14[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 4 ms 
 [1;35m02-17 16:32:14[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:32:14[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:32:14[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:32:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:32:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@370e07a8]] 
 [1;35m02-17 16:32:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
@@ -954,7 +954,7 @@ java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류
 [1;35m02-17 16:32:36[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
 [1;35m02-17 16:32:36[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 9 ms 
 [1;35m02-17 16:32:36[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:32:36[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:32:36[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:32:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:32:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@256582a0]] 
 [1;35m02-17 16:32:37[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
@@ -1011,7 +1011,7 @@ java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류
 [1;35m02-17 16:33:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
 [1;35m02-17 16:33:06[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 6 ms 
 [1;35m02-17 16:33:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:33:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:33:06[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:33:07[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:33:07[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@65ed12f3]] 
 [1;35m02-17 16:33:07[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 
@@ -1068,7 +1068,7 @@ java.lang.RuntimeException: 토큰에서 카테고리를 추출하는 중 오류
 [1;35m02-17 16:36:14[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data 
 [1;35m02-17 16:36:14[0;39m [[1;33mINFO [0;39m] [36mo.s.w.s.DispatcherServlet.initServletBean[0;39m - Completed initialization in 10 ms 
 [1;35m02-17 16:36:14[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.traceDebug[0;39m - GET "/comments/2", parameters={} 
-[1;35m02-17 16:36:14[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.comment.CommentController#getComment(Long) 
+[1;35m02-17 16:36:14[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.RequestMappingHandlerMapping.getHandler[0;39m - Mapped to org.plteco.ploytechcourse.api.document.DocumentCommentController#getComment(Long)
 [1;35m02-17 16:36:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.writeWithMessageConverters[0;39m - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml] 
 [1;35m02-17 16:36:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.m.m.a.HttpEntityMethodProcessor.traceDebug[0;39m - Writing [[org.plteco.ploytechcourse.application.comment.dto.CommentDTO@47bd7082]] 
 [1;35m02-17 16:36:15[0;39m [[1;33mDEBUG[0;39m] [36mo.s.w.s.DispatcherServlet.logResult[0;39m - Completed 200 OK 

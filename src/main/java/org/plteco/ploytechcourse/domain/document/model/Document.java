@@ -53,12 +53,15 @@ public class Document {
     @Column(name = "document_like_count", nullable = false)
     private Long documentLikeCount = 0L;
 
+    @Builder.Default
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentLike> likes = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
+    private List<DocumentComment> comments = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorite> favorite = new ArrayList<>();
 
@@ -84,7 +87,7 @@ public class Document {
                 beforeDocs.getUser(),
                 updateRequestDTO.title(),
                 updateRequestDTO.content(),
-                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("기본 썸네일 이미지"),
+                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/11.png"),
                 updateRequestDTO.introduction(),
                 LocalDate.now(ZoneId.of("Asia/Seoul")),
                 beforeDocs.getDocumentLikeCount(),
@@ -98,7 +101,7 @@ public class Document {
                 .user(user)
                 .title(writeRequest.title())
                 .content(writeRequest.content())
-                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("기본 썸네일 이미지"))
+                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/11.png"))
                 .introduction(writeRequest.introduction())
                 .createAt(LocalDate.now(ZoneId.of("Asia/Seoul")))
                 .build();

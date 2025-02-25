@@ -8,7 +8,7 @@ import org.plteco.ploytechcourse.application.announcement.dto.request.Announceme
 import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementWriteRequestDTO;
 import org.plteco.ploytechcourse.application.announcement.dto.response.AnnouncementDetailGetResponseDTO;
 import org.plteco.ploytechcourse.application.announcement.dto.response.AnnouncementGetResponseDTO;
-import org.plteco.ploytechcourse.domain.announcement.model.Announcement;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
 import org.plteco.ploytechcourse.domain.announcement.service.AnnouncementService;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
@@ -50,8 +50,9 @@ public class AnnouncementServiceApplication {
         AnnouncementUserInfoDTO userInfo = modelMapper.map(writer, AnnouncementUserInfoDTO.class);
 
         Long generation = announcementService.getUserGeneration(announcement).orElse(null);
+        String generationStr = generation == null ? "멘토" : String.valueOf(generation);
 
-        return new AnnouncementDetailGetResponseDTO(announcementInfo, userInfo, generation);
+        return new AnnouncementDetailGetResponseDTO(announcementInfo, userInfo, generationStr);
     }
 
     public void updateAnnouncement(AnnouncementUpdateRequestDTO announcementUpdateRequestDTO) {
