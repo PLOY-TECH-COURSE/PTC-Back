@@ -106,7 +106,7 @@ public class AnnouncementCommentController {
      */
     @Operation(summary = "댓글 삭제", description = "특정 댓글을 삭제합니다. (작성자 또는 관리자 권한 필요)")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "댓글 조회 성공"),
+            @ApiResponse(responseCode = "204", description = "댓글 삭제 성공"),
             @ApiResponse(responseCode = "403", description = "삭제 권한 부족",
                     content = @Content(
                             mediaType = "application/json",
@@ -140,7 +140,7 @@ public class AnnouncementCommentController {
      */
     @Operation(summary = "댓글 수정", description = "특정 댓글의 내용을 수정합니다.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "댓글 수정 성공"),
+            @ApiResponse(responseCode = "204", description = "댓글 수정 성공"),
             @ApiResponse(responseCode = "400", description = "잘못된 요청 - 댓글 내용 누락 또는 500자 초과 등",
                     content = @Content(
                             mediaType = "application/json",
@@ -168,6 +168,6 @@ public class AnnouncementCommentController {
 
         String commentText = commentData.getCommentText();
         announcementCommentServiceApplication.updateComment(commentId, commentText);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 성공적으로 수정된 경우 200 반환
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 성공적으로 수정된 경우 204 반환
     }
 }

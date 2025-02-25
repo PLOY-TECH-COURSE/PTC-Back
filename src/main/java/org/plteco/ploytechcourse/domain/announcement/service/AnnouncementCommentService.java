@@ -6,7 +6,7 @@ import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import java.util.List;
 
-public interface AnnouncommentService {
+public interface AnnouncementCommentService {
     List<AnnouncementComment> getComments(Announcement announcement);
     void createComment(User user, Announcement announcement, String commentText);
 }
