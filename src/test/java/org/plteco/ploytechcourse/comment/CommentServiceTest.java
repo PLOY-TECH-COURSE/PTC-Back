@@ -6,7 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.plteco.ploytechcourse.application.comment.service.CommentServiceApplication;
+import org.plteco.ploytechcourse.application.document.service.DocumentCommentServiceApplication;
 import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.comment.repository.CommentRepository;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
@@ -20,7 +20,7 @@ public class CommentServiceTest {
     private CommentRepository commentRepository;
 
     @InjectMocks
-    private CommentServiceApplication commentService;
+    private DocumentCommentServiceApplication commentService;
 
     @Test
     public void testCreateComment() {
