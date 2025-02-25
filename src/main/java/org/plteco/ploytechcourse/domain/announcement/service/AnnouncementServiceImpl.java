@@ -3,7 +3,7 @@ package org.plteco.ploytechcourse.domain.announcement.service;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementWriteRequestDTO;
-import org.plteco.ploytechcourse.domain.announcement.model.Announcement;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
 import org.plteco.ploytechcourse.domain.announcement.repository.AnnouncementRepository;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;

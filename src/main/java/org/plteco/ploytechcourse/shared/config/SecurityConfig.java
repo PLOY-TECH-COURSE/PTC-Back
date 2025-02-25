@@ -53,7 +53,7 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**","/v3/api-docs/**","/swagger-resources/**","/webjars/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/documents", "/documents/{document-id}", "/users/search/{user-name}", "/documents/search", "/comments/{document-id}", "/favorites", "/announcements", "/announcements/{announcement-id}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/logout", "/comments/{document-id}", "/favorites/{document-id}", "/documents").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.GET, "/users/{user-id}","/mypage/{user-id}").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/users/{user-id}","mypage").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/announcements").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/applications").hasRole("USER")

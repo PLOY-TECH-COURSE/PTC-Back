@@ -2,7 +2,7 @@ package org.plteco.ploytechcourse.application.announcement.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
-import org.plteco.ploytechcourse.domain.announcement.model.Announcement;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
 
 import java.time.LocalDate;
 

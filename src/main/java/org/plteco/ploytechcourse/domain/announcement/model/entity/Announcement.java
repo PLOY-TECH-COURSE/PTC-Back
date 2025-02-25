@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.domain.announcement.model;
+package org.plteco.ploytechcourse.domain.announcement.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,10 +7,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementUpdateRequestDTO;
 import org.plteco.ploytechcourse.application.announcement.dto.request.AnnouncementWriteRequestDTO;
+import org.plteco.ploytechcourse.domain.comment.model.entity.Comment;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -44,15 +47,20 @@ public class Announcement {
     @Column(name = "created_at", nullable = false)
     private LocalDate createAt;
 
+    @Builder.Default
+    @OneToMany(mappedBy = "announcement", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AnnouncementComment> comments = new ArrayList<>();
+
     public static Announcement from(Announcement beforeDocs, AnnouncementUpdateRequestDTO updateRequestDTO) {
         return new Announcement(
                 beforeDocs.getId(),
                 beforeDocs.getUser(),
                 updateRequestDTO.title(),
                 updateRequestDTO.content(),
-                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("기본 썸네일 이미지"),
+                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/11.png"),
                 updateRequestDTO.introduction(),
-                LocalDate.now(ZoneId.of("Asia/Seoul"))
+                LocalDate.now(ZoneId.of("Asia/Seoul")),
+                beforeDocs.getComments()
         );
     }
 
@@ -61,7 +69,7 @@ public class Announcement {
                 .user(user)
                 .title(writeRequest.title())
                 .content(writeRequest.content())
-                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("기본 썸네일 이미지"))
+                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/11.png"))
                 .introduction(writeRequest.introduction())
                 .createAt(LocalDate.now(ZoneId.of("Asia/Seoul")))
                 .build();
