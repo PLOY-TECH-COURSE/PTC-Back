@@ -13,5 +13,5 @@ public record AnnouncementDetailGetResponseDTO(
         @NotNull(message = "글 자세히 보기에 user_id(작성자 id)이 비어있습니다.")
         AnnouncementUserInfoDTO userInfoDTO,
 
-        Long generation
+        String generation
 ) {}

@@ -84,11 +84,13 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
 
         Long generation = documentService.getUserGeneration(document).orElse(null);
 
+        String generationStr = generation == null ? "멘토" : String.valueOf(generation);
+
         Long likes = documentLikeService.getLikes(documentId);
         boolean likeOn = documentLikeService.isLiked(document, user);
         boolean favoriteOn = favoriteService.isFavorite(user, document);
 
-        return new DocumentDetailGetResponseDTO(documentInfo, userInfo, likes, likeOn, favoriteOn, generation, hashTags);
+        return new DocumentDetailGetResponseDTO(documentInfo, userInfo, likes, likeOn, favoriteOn, generationStr, hashTags);
     }
 
     @Override

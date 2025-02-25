@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 public interface DocumentRepository extends JpaRepository<Document, Long> {
-    @Query(value = "SELECT * FROM document ORDER BY created_at DESC LIMIT :start, :size", nativeQuery = true)
+    @Query(value = "SELECT * FROM document ORDER BY id DESC LIMIT :start, :size", nativeQuery = true)
     List<Document> findWithPagination(@Param("start") Long start, @Param("size") Long size);
 
     @Query("SELECT COUNT(d) FROM Document d WHERE d.user.id = :userId")
@@ -25,5 +25,5 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
 
     Page<Document> findByTitleContainingOrderByDocumentLikeCountDesc(String query, Pageable pageable);
 
-    Page<Document> findByTitleContainingOrderByCreateAtDesc(String query, Pageable pageable);
+    Page<Document> findByTitleContainingOrderByIdDesc(String query, Pageable pageable);
 }

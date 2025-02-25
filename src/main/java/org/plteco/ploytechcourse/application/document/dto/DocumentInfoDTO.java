@@ -16,4 +16,6 @@ public class DocumentInfoDTO {
     private String title;
     private String content;
     private LocalDate createAt;
+    private String thumbnail;
+    private String introduction;
 }

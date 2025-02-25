@@ -57,7 +57,7 @@ public class Announcement {
                 beforeDocs.getUser(),
                 updateRequestDTO.title(),
                 updateRequestDTO.content(),
-                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("기본 썸네일 이미지"),
+                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/11.png"),
                 updateRequestDTO.introduction(),
                 LocalDate.now(ZoneId.of("Asia/Seoul")),
                 beforeDocs.getComments()
@@ -69,7 +69,7 @@ public class Announcement {
                 .user(user)
                 .title(writeRequest.title())
                 .content(writeRequest.content())
-                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("기본 썸네일 이미지"))
+                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/11.png"))
                 .introduction(writeRequest.introduction())
                 .createAt(LocalDate.now(ZoneId.of("Asia/Seoul")))
                 .build();

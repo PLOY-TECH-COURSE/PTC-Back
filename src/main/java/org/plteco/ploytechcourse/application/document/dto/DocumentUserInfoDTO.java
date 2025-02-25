@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class DocumentUserInfoDTO {
     private Long id;
-    private String uid;
+    private String name;
     private String profile;
 }
