@@ -49,6 +49,9 @@ public class DocumentLikeService{
 
     @Transactional(readOnly = true)
     public boolean isLiked(Document document, User user) {
+        if (user == null){
+            return false;
+        }
         DocumentLikeId id = new DocumentLikeId(document.getId(), user.getId());
 
         return documentLikeRepository.existsById(id);
