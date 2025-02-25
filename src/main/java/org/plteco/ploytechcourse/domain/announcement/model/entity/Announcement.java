@@ -47,6 +47,7 @@ public class Announcement {
     @Column(name = "created_at", nullable = false)
     private LocalDate createAt;
 
+    @Builder.Default
     @OneToMany(mappedBy = "announcement", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AnnouncementComment> comments = new ArrayList<>();
 

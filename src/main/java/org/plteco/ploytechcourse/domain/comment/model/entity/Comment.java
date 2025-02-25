@@ -34,6 +34,7 @@ public class Comment {
     @Column(name = "comment_like_count", nullable = false)
     private Long commentLikeCount = 0L;
 
+    @Builder.Default
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CommentLike> likes = new ArrayList<>();
 
