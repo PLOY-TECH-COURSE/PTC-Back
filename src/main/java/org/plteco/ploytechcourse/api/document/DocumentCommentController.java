@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.api.comment;
+package org.plteco.ploytechcourse.api.document;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,7 +12,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.comment.dto.CommentDTO;
 import org.plteco.ploytechcourse.application.comment.dto.RequestCommentDTO;
-import org.plteco.ploytechcourse.application.comment.service.CommentServiceApplication;
+import org.plteco.ploytechcourse.application.document.service.DocumentCommentServiceApplication;
 import org.plteco.ploytechcourse.shared.exception.ErrorResponse;
 import org.plteco.ploytechcourse.shared.exception.PltecoException;
 import org.springframework.http.HttpStatus;
@@ -20,14 +20,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Tag(name = "comment-controller", description = "댓글 생성, 조회, 수정, 삭제 API")
 @RestController
+@RequestMapping("/document")
 @RequiredArgsConstructor
-public class CommentController {
+public class DocumentCommentController {
 
-    private final CommentServiceApplication commentServiceApplication;
+    private final DocumentCommentServiceApplication commentServiceApplication;
 
     /**
      * 댓글 등록 (POST)

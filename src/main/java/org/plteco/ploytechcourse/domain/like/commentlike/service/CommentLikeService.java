@@ -42,6 +42,9 @@ public class CommentLikeService{
 
     @Transactional(readOnly = true)
     public boolean isLiked(Comment comment, User user) {
+        if (user == null) {
+            return false;
+        }
         CommentLikeId id = new CommentLikeId(comment.getId(), user.getId());
 
         return commentLikeRepository.existsById(id);
