@@ -113,7 +113,7 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
         Pageable pageable = PageRequest.of(start, 20);
 
         Page<Document> documents;
-        if(!query.isEmpty() && query.charAt(0) == '#') {
+        if(query != null && !query.isEmpty() && query.charAt(0) == '#') {
             documents = documentHashTagService.searchDocument(query.replace("#", ""), pageable, sortMethod);
         }
         else
