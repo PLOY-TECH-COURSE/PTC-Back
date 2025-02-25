@@ -80,7 +80,7 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public Page<Document> searchDocument(String query, Pageable pageable, SortMethod sortMethod) {
         return switch (sortMethod) {
-            case CREATE_AT -> documentRepository.findByTitleContainingOrderByCreateAtDesc(query, pageable);
+            case CREATE_AT -> documentRepository.findByTitleContainingOrderByIdDesc(query, pageable);
             case LIKE -> documentRepository.findByTitleContainingOrderByDocumentLikeCountDesc(query, pageable);
         };
     }

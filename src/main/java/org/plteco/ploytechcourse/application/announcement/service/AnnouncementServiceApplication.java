@@ -50,8 +50,9 @@ public class AnnouncementServiceApplication {
         AnnouncementUserInfoDTO userInfo = modelMapper.map(writer, AnnouncementUserInfoDTO.class);
 
         Long generation = announcementService.getUserGeneration(announcement).orElse(null);
+        String generationStr = generation == null ? "멘토" : String.valueOf(generation);
 
-        return new AnnouncementDetailGetResponseDTO(announcementInfo, userInfo, generation);
+        return new AnnouncementDetailGetResponseDTO(announcementInfo, userInfo, generationStr);
     }
 
     public void updateAnnouncement(AnnouncementUpdateRequestDTO announcementUpdateRequestDTO) {
