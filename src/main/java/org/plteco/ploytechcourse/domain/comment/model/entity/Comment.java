@@ -27,6 +27,7 @@ public class Comment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Setter
     @Column(name = "comment", nullable = false, length = 500)
     private String comment;
 
