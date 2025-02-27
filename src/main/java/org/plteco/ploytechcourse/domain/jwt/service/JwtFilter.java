@@ -54,11 +54,17 @@ public class JwtFilter extends OncePerRequestFilter {
 
         // 토큰 만료 여부 확인, 만료시 다음 필터로 넘기지 않음
         try {
-            jwtUtil.isExpired(accessToken);
-        } catch (ExpiredJwtException e) {
+            if (jwtUtil.isExpired(accessToken)) {
+                // 만료된 토큰일 경우 응답 본문에 메시지 출력 및 상태 코드 설정
+                PrintWriter writer = response.getWriter();
+                writer.print("access token expired");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
+            }
+        }catch(RuntimeException runtimeException){
             // 만료된 토큰일 경우 응답 본문에 메시지 출력 및 상태 코드 설정
             PrintWriter writer = response.getWriter();
-            writer.print("access token expired");
+            writer.print("invalid access token");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }

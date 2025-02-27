@@ -62,4 +62,6 @@ public class User {
         this.role = role;
     }
     public void updateProfile(String profile) {this.profile = profile;}
+    public void updateBio(String bio) {this.bio = bio;}
+    public void updatePassword(String password) {this.password = password;}
 }
