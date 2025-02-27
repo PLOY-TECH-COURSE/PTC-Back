@@ -113,7 +113,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         // 사용자의 역할을 기반으로 JWT를 생성
         RoleEnum role = RoleEnum.valueOf(auth.getAuthority());
-        String access = jwtUtil.createJwt("access", email, uid, role, 1800000L);
+        String access = jwtUtil.createJwt("access", email, uid, role, 86400000L);
         String refresh = jwtUtil.createJwt("refresh", email, uid, role, 1209600000L);
 
         // refresh 토큰을 저장
