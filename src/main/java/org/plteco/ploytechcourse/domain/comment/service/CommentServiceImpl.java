@@ -31,19 +31,13 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void updateComment(User user, Comment oldComment, String commentText) {
-
-
-        if (!oldComment.getUser().getId().equals(user.getId())) {
+        boolean isOwner = oldComment.getUser().getId().equals(user.getId());
+        boolean isAdmin = user.getRole() == RoleEnum.ROLE_SUPERADMIN || user.getRole() == RoleEnum.ROLE_ADMIN;
+        if (!isOwner && !isAdmin) { // 🚨 작성자가 아니고, 관리자도 아니라면 수정 권한 없음
             throw new PltecoException("해당 댓글을 수정할 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
 
-        Comment newComment = Comment.builder()
-                .id(oldComment.getId())
-                .user(user)
-                .comment(commentText)
-                .build();
-
-        commentRepository.save(newComment); // JPA의 save메서드는 update 기능까지 지원
+        oldComment.setComment(commentText);
     }
 
     @Override
