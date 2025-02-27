@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.application.application.service;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.application.dto.AcceptApplicationDto;
 import org.plteco.ploytechcourse.domain.application.service.AcceptApplicationService;
+import org.plteco.ploytechcourse.domain.application.service.DeclineApplicationService;
 import org.plteco.ploytechcourse.shared.exception.PltecoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class AcceptApplicationImpl implements AcceptApplication {
 
     private final AcceptApplicationService acceptApplicationService;
+    private final DeclineApplicationService declineApplicationService;
 
     @Override
     public void accept(AcceptApplicationDto acceptApplicationDto) {
@@ -26,5 +28,10 @@ public class AcceptApplicationImpl implements AcceptApplication {
                     acceptApplicationDto.getGeneration(),
                     acceptApplicationDto.getTrackId()
                     );
+    }
+
+    @Override
+    public void decline(Long id) {
+        declineApplicationService.declineApplication(id);
     }
 }

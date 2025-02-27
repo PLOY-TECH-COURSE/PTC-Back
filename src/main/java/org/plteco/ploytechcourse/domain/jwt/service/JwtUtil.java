@@ -130,7 +130,7 @@ public class JwtUtil {
      * @return 생성된 JWT 토큰
      * @throws RuntimeException 토큰 생성 중 오류 발생 시 예외 발생
      */
-    public String createJwt(String category, String email, String uid, RoleEnum role, Long expiredMs) {
+    public String createJwt(String category,String email, String uid, RoleEnum role, Long expiredMs) {
         try {
             // JWT 토큰을 생성하고 반환합니다.
             return Jwts.builder()
