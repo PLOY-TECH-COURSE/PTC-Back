@@ -72,7 +72,7 @@ public class ProcessTokenReissueImpl implements ProcessTokenReissue {
         String uid = jwtUtil.getUid(refresh);
         RoleEnum role = jwtUtil.getRole(refresh);
 
-        String newAccess = jwtUtil.createJwt("access", email, uid, role, 1800000L);
+        String newAccess = jwtUtil.createJwt("access", email, uid, role, 86400000L);
         String newRefresh = jwtUtil.createJwt("refresh", email, uid, role, 1209600000L);
 
         refreshRepository.deleteByToken(refresh);
