@@ -158,6 +158,10 @@ public class SecurityConfig {
 
                 // 모든 출처 허용
                 configuration.addAllowedOriginPattern("https://ptc-front-bves.vercel.app"); // allowedOriginPatterns 사용
+                configuration.addAllowedOriginPattern("http://192.168.10.51:5173");
+                configuration.addAllowedOriginPattern("http://192.168.45.90:5173");
+                configuration.addAllowedOriginPattern("http://172.30.1.51:5173");
+                configuration.addAllowedOriginPattern("http://192.168.219.110:5173");
                 configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
                 configuration.setAllowedHeaders(Arrays.asList("*"));
                 configuration.setAllowCredentials(true); // allowCredentials 설정
