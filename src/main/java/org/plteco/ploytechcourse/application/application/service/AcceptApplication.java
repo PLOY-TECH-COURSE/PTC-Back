@@ -4,4 +4,5 @@ import org.plteco.ploytechcourse.application.application.dto.AcceptApplicationDt
 
 public interface AcceptApplication {
     void accept(AcceptApplicationDto acceptApplicationDto);
+    void decline(Long id);
 }
