@@ -95,6 +95,12 @@ public class SecurityConfig {
                         //Refresh-controller
                         .requestMatchers(HttpMethod.POST, "/refresh").permitAll()
 
+                        //회원탈퇴
+                        .requestMatchers(HttpMethod.DELETE, "/withdrawal").hasAnyRole("ADMIN", "SUPERADMIN","USER","STUDENT")
+
+                        //거절
+                        .requestMatchers(HttpMethod.POST, "/decline").hasAnyRole("ADMIN", "SUPERADMIN")
+
                         //Profile-controller
                         .requestMatchers(HttpMethod.POST, "/profile").hasAnyRole("USER","STUDENT", "ADMIN", "SUPERADMIN")
 
@@ -129,7 +135,10 @@ public class SecurityConfig {
 
                         // MyPage-controoller
                         .requestMatchers(HttpMethod.GET, "/mypage/{user-id}").hasAnyRole("USER","STUDENT","ADMIN","SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/real-mypage").hasAnyRole("USER","STUDENT","ADMIN","SUPERADMIN")
 
+                        .requestMatchers(HttpMethod.POST,"/re/validate","/re/send","/re/make").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/re/bio").hasAnyRole("USER","STUDENT","ADMIN","SUPERADMIN")
 
                         .requestMatchers(HttpMethod.POST,"/login","/verify").permitAll()
                         .requestMatchers(HttpMethod.POST, "/logout").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
