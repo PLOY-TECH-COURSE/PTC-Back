@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.image.dto.GCSRequest;
 import org.plteco.ploytechcourse.application.image.dto.GCSResponse;
@@ -16,6 +17,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Image-controller : 허동운")
 public class ImageController {
 
     private final GCSServiceApplication gcsServiceApplication;

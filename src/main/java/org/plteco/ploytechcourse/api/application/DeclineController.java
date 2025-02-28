@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.api.application;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.application.dto.AcceptApplicationDto;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/decline")
+@Tag(name = "decline-controller : 허동운", description = "공지 댓글 작성, 수정, 보기 API를 제공합니다.")
 public class DeclineController {
     private final AcceptApplication acceptApplication;
     @Operation(

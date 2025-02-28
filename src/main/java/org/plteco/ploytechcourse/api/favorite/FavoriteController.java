@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@Tag(name = "favorite-controller", description = "favorite 관련 API")
+@Tag(name = "favorite-controller : 조재민", description = "favorite 관련 API")
 @RestController
 @RequiredArgsConstructor
 public class FavoriteController {

@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "commentLike-controller", description = "댓글 좋아요 추가, 삭제 API")
+@Tag(name = "commentLike-controller : 조재민", description = "댓글 좋아요 추가, 삭제 API")
 @RestController
 @RequestMapping("/comment-likes")
 @RequiredArgsConstructor

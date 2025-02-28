@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.like.DocumentLikeServiceApplication;
 import org.plteco.ploytechcourse.shared.exception.ErrorResponse;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/document-likes")
 @RequiredArgsConstructor
+@Tag(name = "DocumentLike-controller : 조재민", description = "글 좋아요 추가, 삭제 API")
 public class DocumentLikeController {
 
     private final DocumentLikeServiceApplication documentLikeServiceApplication;

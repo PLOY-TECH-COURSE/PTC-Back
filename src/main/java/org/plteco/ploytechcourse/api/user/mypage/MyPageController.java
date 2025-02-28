@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.api.user.mypage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.mypage.dto.ResponseMypage;
 import org.plteco.ploytechcourse.application.user.mypage.service.MyPageApplication;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mypage")
+@Tag(name = "MyPage-controller : 허동운")
 public class MyPageController {
 
     private final MyPageApplication myPageApplication;

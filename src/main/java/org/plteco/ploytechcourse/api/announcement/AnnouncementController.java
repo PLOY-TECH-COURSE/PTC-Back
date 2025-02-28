@@ -25,7 +25,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "announcment(공지사항 관련 api)", description = "공지사항 작성, 수정, 보기 등 공지사항과 관련된 API를 제공합니다.")
+@Tag(name = "Announcement-controller(공지사항 관련 api) : 허온", description = "공지사항 작성, 수정, 보기 등 공지사항과 관련된 API를 제공합니다.")
 public class AnnouncementController {
     private final AnnouncementServiceApplication announcementServiceApplication;
 
