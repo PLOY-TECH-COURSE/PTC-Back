@@ -26,7 +26,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "document(글 관련 api)", description = "글 작성, 수정, 보기 등 글과 관련된 API를 제공합니다.")
+@Tag(name = "Document-controller(글 관련 api) : 허온", description = "글 작성, 수정, 보기 등 글과 관련된 API를 제공합니다.")
 public class DocumentController {
     private final DocumentServiceApplication documentService;
 

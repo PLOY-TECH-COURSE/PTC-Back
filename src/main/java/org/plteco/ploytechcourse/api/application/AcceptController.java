@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.api.application;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.application.dto.AcceptApplicationDto;
@@ -20,6 +21,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/accept")
+@Tag(name = "accept-controller : 허동운")
 public class AcceptController {
     private final AcceptApplication acceptApplication;
     @Operation(
