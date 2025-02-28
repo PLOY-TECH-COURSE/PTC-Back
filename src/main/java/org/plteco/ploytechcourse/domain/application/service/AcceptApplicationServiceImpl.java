@@ -7,6 +7,7 @@ import org.plteco.ploytechcourse.domain.application.repository.ApplicationReposi
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.lesson.repository.Tech_courseRepository;
 import org.plteco.ploytechcourse.domain.lesson.repository.TrackRepository;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,10 @@ public class AcceptApplicationServiceImpl implements AcceptApplicationService {
     private final TrackRepository trackRepository;
 
     @Override
+    @Transactional
     public void acceptApplication(Long id,Long generation,Long track) {
+        userRepository.findById(id).orElse(null).updateRole(RoleEnum.ROLE_STUDENT);
+        applicationRepository.deleteByUserId(id);
         studentRepository.save(
                 Student.builder()
                         .user(userRepository.findById(id).orElse(null))
