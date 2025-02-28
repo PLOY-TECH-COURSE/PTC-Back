@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.api.user.repassword;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.repassword.dto.PasswordRequestDTO;
 import org.plteco.ploytechcourse.application.user.repassword.service.EmailValidation;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/re")
+@Tag(name = "RePassword-controller : 허동운")
 public class RepasswordController {
 
     private final EmailValidation emailValidation;

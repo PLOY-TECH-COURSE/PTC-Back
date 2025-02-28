@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.announcement.service.AnnouncementCommentServiceApplication;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/announcement")
+@Tag(name = "AnnouncementComment-controller : 조재민", description = "공지 댓글 작성, 수정, 보기 API를 제공합니다.")
 @RequiredArgsConstructor
 public class AnnouncementCommentController {
 
