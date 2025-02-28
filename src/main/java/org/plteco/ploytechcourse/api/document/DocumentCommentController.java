@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "comment-controller", description = "댓글 생성, 조회, 수정, 삭제 API")
+@Tag(name = "DocumentComment-controller : 조재민", description = "댓글 생성, 조회, 수정, 삭제 API")
 @RestController
 @RequestMapping("/document")
 @RequiredArgsConstructor

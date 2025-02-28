@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.lesson.dto.TrackDto;
 import org.plteco.ploytechcourse.domain.lesson.service.ClassServiceImpl;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/track")
 @RequiredArgsConstructor
+@Tag(name = "Track-controller : 허동운")
 public class TrackController {
 
     private final ClassServiceImpl classService;

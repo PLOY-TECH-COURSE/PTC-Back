@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.profile.dto.RequestProfile;
 import org.plteco.ploytechcourse.application.user.profile.service.UpdateProfileApplication;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/re")
+@Tag(name = "ReBio-controller : 허동운")
 public class ReBioController {
 
     private final ReBioServiceApplication reBioServiceApplication;
