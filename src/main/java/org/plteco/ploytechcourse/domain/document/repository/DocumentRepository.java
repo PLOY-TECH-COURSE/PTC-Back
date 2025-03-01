@@ -23,6 +23,8 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
     @Query("SELECT d.user FROM Document d WHERE d.id = :documentId")
     Optional<User> findUserById(@Param("documentId") Long documentId);
 
+    List<Document> findByUserUid(String uid);
+
     Page<Document> findByTitleContainingOrderByDocumentLikeCountDesc(String query, Pageable pageable);
 
     Page<Document> findByTitleContainingOrderByIdDesc(String query, Pageable pageable);
