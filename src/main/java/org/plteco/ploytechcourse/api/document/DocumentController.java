@@ -90,6 +90,37 @@ public class DocumentController {
         return ResponseEntity.status(200).body(result);
     }
 
+    @Operation(summary = "유저 id로 글 목록 조회", description = "user-id로 글을 가져옵니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "글 목록 가져오기 성공",
+                    content = @Content(
+                            mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = DocumentsGetResponseDTO.class))
+                    )
+            ),
+            @ApiResponse(responseCode = "403", description = "권한 부족",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)
+                    )
+            ),
+            @ApiResponse(responseCode = "400", description = "잘못된 형식의 요청",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class),
+                            examples = @ExampleObject(value = "{\"status\":400,\"message\":\"user_id 파라미터는 필수입니다.\",\"errorCode\":\"INVALID_ARGUMENT\",\"timestamp\":\"2025-02-04T02:30:22.220365\"}"))),
+    })
+    @GetMapping("/documents/by-user")
+    public ResponseEntity<List<DocumentsGetResponseDTO>> getDocuments(
+            @RequestParam("user_id")
+            @NotNull(message = "start 파라미터는 필수입니다.")
+            String userId
+    ) {
+        List<DocumentsGetResponseDTO> result = documentService.getDocumentsByUserId(userId);
+
+        return ResponseEntity.status(200).body(result);
+    }
+
     @Operation(summary = "글 검색", description = "글 제목 또는 해시테그를 통해 검색어로 글들을 검색합니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "글 검색 성공",
