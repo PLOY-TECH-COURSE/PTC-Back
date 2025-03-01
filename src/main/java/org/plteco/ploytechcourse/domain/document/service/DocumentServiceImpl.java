@@ -37,6 +37,11 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
+    public List<Document> getDocuments(String userId) {
+        return documentRepository.findByUserUid(userId);
+    }
+
+    @Override
     @Transactional
     public Document getDocument(Long documentId) {
         return documentRepository.findById(documentId).orElseThrow(() -> new IllegalArgumentException("글을 찾을 수 없습니다."));

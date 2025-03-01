@@ -68,6 +68,16 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
     }
 
     @Override
+    public List<DocumentsGetResponseDTO> getDocuments(String userId) {
+
+        List<Document> documents = documentService.getDocuments(userId);
+
+        return documents.stream()
+                .map(this::mapToDocumentsResponseDTO)
+                .toList();
+    }
+
+    @Override
     public DocumentDetailGetResponseDTO getDocumentDetail(Long documentId) {
 
         User user = userContextUtil.getCurrentUser();
