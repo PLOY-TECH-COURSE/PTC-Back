@@ -11,7 +11,7 @@ import java.util.List;
 public interface DocumentServiceApplication {
     void writeDocument(DocumentWriteRequestDTO documentWriteRequestDto);
     List<DocumentsGetResponseDTO> getDocuments(Long start);
-    List<DocumentsGetResponseDTO> getDocuments(String userId);
+    List<DocumentsGetResponseDTO> getDocumentsByUserId(String userId);
     DocumentDetailGetResponseDTO getDocumentDetail(Long documentId);
     void updateDocument(DocumentUpdateRequestDTO documentUpdateRequestDto);
     void deleteDocument(Long documentId);

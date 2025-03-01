@@ -116,7 +116,7 @@ public class DocumentController {
             @NotNull(message = "start 파라미터는 필수입니다.")
             String userId
     ) {
-        List<DocumentsGetResponseDTO> result = documentService.getDocuments(userId);
+        List<DocumentsGetResponseDTO> result = documentService.getDocumentsByUserId(userId);
 
         return ResponseEntity.status(200).body(result);
     }

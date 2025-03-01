@@ -37,7 +37,7 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public List<Document> getDocuments(String userId) {
+    public List<Document> getDocumentsByUserId(String userId) {
         return documentRepository.findByUserUid(userId);
     }
 

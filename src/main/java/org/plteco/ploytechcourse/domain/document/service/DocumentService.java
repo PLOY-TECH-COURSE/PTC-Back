@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface DocumentService {
     Document writeDocument(User user, DocumentWriteRequestDTO writeRequest);
     List<Document> getDocuments(Long start, Long end);
-    List<Document> getDocuments(String userId);
+    List<Document> getDocumentsByUserId(String userId);
     Document getDocument(Long documentId);
     User getDocumentUser(Long documentId);
     Document updateDocument(User user, DocumentUpdateRequestDTO updateRequest);
