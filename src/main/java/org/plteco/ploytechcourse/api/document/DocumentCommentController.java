@@ -80,7 +80,7 @@ public class DocumentCommentController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = @ExampleObject(value = "[{\"id\": 8, \"userId\": 2, \"comment\": \"조재민 빡빡이\", \"userName\": \"허동운\", \"userProfile\": \"https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png\", \"likeCount\": 1, \"liked\": true}]"))),
+                            examples = @ExampleObject(value = "[{\"id\": 8, \"uid\": \"123isi\", \"comment\": \"조재민 빡빡이\", \"userName\": \"허동운\", \"userProfile\": \"https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png\", \"likeCount\": 1, \"liked\": true}]"))),
             @ApiResponse(responseCode = "404", description = "글이 존재하지 않음",
                     content = @Content(
                             mediaType = "application/json",

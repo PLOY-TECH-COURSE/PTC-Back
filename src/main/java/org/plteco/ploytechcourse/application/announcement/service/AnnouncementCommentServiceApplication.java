@@ -73,8 +73,7 @@ public class AnnouncementCommentServiceApplication {
     /** 댓글 조회 */
     public List<CommentDTO> getComments(long announcementId) {
         Announcement announcement = getAnnouncement(announcementId);
-        List<AnnouncementComment> announcementComments = announcementCommentService.getComments(announcement);
-        List<Comment> comments = announcementComments.stream()
+        List<Comment> comments = announcementCommentService.getComments(announcement).stream()
                 .map(announcementComment -> getComment(announcementComment.getComment().getId()))
                 .toList();
 
@@ -85,6 +84,7 @@ public class AnnouncementCommentServiceApplication {
                 .map(comment -> {
                     CommentDTO dto = modelMapper.map(comment, CommentDTO.class);
                     dto.setLiked(commentLikeService.isLiked(comment,getCurrentUser()));
+                    dto.setUid(comment.getUser().getUid());
                     return dto;
                 })
                 .collect(Collectors.toList());
