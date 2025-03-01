@@ -73,8 +73,8 @@ public class DocumentCommentServiceApplication {
     /** 댓글 조회 */
     public List<CommentDTO> getComments(long documentId) {
         Document document = getDocument(documentId);
-        List<DocumentComment> documentComments = documentCommentService.getComments(document);
-        List<Comment> comments = documentComments.stream()
+        List<Comment> comments = documentCommentService.getComments(document)
+                .stream()
                 .map(documentComment -> getComment(documentComment.getComment().getId()))
                 .toList();
 
@@ -85,6 +85,7 @@ public class DocumentCommentServiceApplication {
                 .map(comment -> {
                     CommentDTO dto = modelMapper.map(comment, CommentDTO.class);
                     dto.setLiked(commentLikeService.isLiked(comment,getCurrentUser()));
+                    dto.setUid(comment.getUser().getUid());
                     return dto;
                 })
                 .collect(Collectors.toList());
