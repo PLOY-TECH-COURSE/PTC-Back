@@ -75,7 +75,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/documents").permitAll()
                         .requestMatchers(HttpMethod.GET, "/documents/{document-id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/documents/search").permitAll()
-                        .requestMatchers(HttpMethod.POST, "documents").hasAnyRole("STUDENT","ADMIN","SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/documents/by-user").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/documents").hasAnyRole("STUDENT","ADMIN","SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/documents").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/documents").hasAnyRole("STUDENT", "ADMIN", "SUPERADMIN")
 
