@@ -8,6 +8,7 @@ import lombok.Setter;
 public class CommentDTO {
     private long id;
     private String comment;
+    private String userId;
     private String uid;
     private String userName;
     private String userProfile;
