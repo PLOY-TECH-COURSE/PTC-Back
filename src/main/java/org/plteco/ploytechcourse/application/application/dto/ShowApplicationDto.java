@@ -1,6 +1,7 @@
 package org.plteco.ploytechcourse.application.application.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +34,12 @@ public class ShowApplicationDto {
     @Schema(description = "신청자의 자기소개", example = "저는 개발에 관심이 많은 학생입니다.")
     private String introduction;
 
-    @Schema(description = "신청자의 다짐", example = "저는 이 테크코스를 통해 많이 배우겠습니다.")
-    private String resolution;
+    @Schema(description = "기술경험", example = "스프링 써봄ㅋ")
+    private String skill;
+
+    @Schema(description = "배우고싶은것", example = "코루틴 써보고 싶음")
+    private String study;
+
+    @Schema(description = "기대하는점", example = "세계 정복을 꿈꾸고 있습니다.")
+    private String expectation;
 }

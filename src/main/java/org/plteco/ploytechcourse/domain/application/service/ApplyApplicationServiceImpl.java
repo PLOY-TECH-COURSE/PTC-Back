@@ -23,7 +23,10 @@ public class ApplyApplicationServiceImpl implements ApplyApplicationService {
         return applicationRepository.save(TechCourseForm.builder()
                         .user(userContextUtil.getCurrentUser())
                         .introduction(applyApplicationDto.getIntroduction())
-                        .resolution(applyApplicationDto.getResolution()).build());
+                        .expectation(applyApplicationDto.getExpectation())
+                        .skill(applyApplicationDto.getSkill())
+                        .study(applyApplicationDto.getStudy())
+                .build());
     }
 
     @Override

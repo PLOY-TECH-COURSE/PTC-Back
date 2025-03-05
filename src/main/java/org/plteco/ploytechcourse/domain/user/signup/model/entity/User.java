@@ -45,6 +45,7 @@ public class User {
     @Column(nullable = false)
     private Long number;
 
+
     @Builder
     public User(String uid, String name, String email, String password, String profile, RoleEnum role, String bio, Long grade, Long classNumber, Long number) {
         this.uid = uid;

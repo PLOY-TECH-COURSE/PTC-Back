@@ -53,6 +53,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String email = null;
         String password = null;
+        boolean is_deleted=false;
 
         try {
             if (request.getContentType() != null && request.getContentType().equalsIgnoreCase("application/json")) {
