@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
 import org.plteco.ploytechcourse.domain.application.model.Student;
+import org.plteco.ploytechcourse.domain.application.model.TechCourseForm;
 import org.plteco.ploytechcourse.domain.document.model.Document;
 
 import java.util.ArrayList;
@@ -64,7 +65,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Student> students = new ArrayList<>();
 
-
+    @Builder.Default
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TechCourseForm> techCourseForms = new ArrayList<>();
 
     @Builder
     public User(String uid, String name, String email, String password, String profile, RoleEnum role, String bio, Long grade, Long classNumber, Long number) {
