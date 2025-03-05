@@ -25,12 +25,21 @@ public class TechCourseForm {
     private String introduction;
 
     @Column(columnDefinition = "TEXT")
-    private String resolution;
+    private String skill;
+
+    @Column(columnDefinition = "TEXT")
+    private String study;
+
+    @Column(columnDefinition = "TEXT")
+    private String expectation;
 
     @Builder
-    public TechCourseForm(User user, String introduction, String resolution) {
+    public TechCourseForm(Long id, User user, String introduction, String skill,  String study, String expectation) {
+        this.id = id;
         this.user = user;
         this.introduction = introduction;
-        this.resolution = resolution;
+        this.skill = skill;
+        this.study = study;
+        this.expectation = expectation;
     }
 }

@@ -12,6 +12,7 @@ public class WithdrawalImpl implements Withdrawal {
 
     private final UserRepository userRepository;
 
+
     @Override
     public void withdraw(Long id) {
         userRepository.deleteById(id);
