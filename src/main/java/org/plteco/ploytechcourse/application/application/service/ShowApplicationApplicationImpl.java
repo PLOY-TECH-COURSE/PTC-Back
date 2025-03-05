@@ -38,7 +38,9 @@ public class ShowApplicationApplicationImpl implements ShowApplicationApplicatio
                         .email(course.getUser().getEmail())
                         .profile(course.getUser().getProfile())
                         .introduction(course.getIntroduction())
-                        .resolution(course.getResolution())
+                        .expectation(course.getExpectation())
+                        .skill(course.getSkill())
+                        .study(course.getStudy())
                         .build()
         ).collect(Collectors.toList());
 

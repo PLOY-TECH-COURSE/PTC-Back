@@ -25,8 +25,18 @@ public class ApplyApplicationDto {
     @Size(min = 1, max = 500)
     private String introduction;
 
-    @Schema(description = "테크코스 신청자의 다짐", example = "제가 뽑힌다면 선배님을 위해 가방을 매일매일 들고다니겠습니다.")
+    @Schema(description = "기술경험", example = "스프링 써봄ㅋ")
     @NotNull
     @Size(min = 1, max = 500)
-    private String resolution;
+    private String skill;
+
+    @Schema(description = "배우고싶은것", example = "코루틴 써보고 싶음")
+    @NotNull
+    @Size(min = 1, max = 500)
+    private String study;
+
+    @Schema(description = "기대하는점", example = "세계 정복을 꿈꾸고 있습니다.")
+    @NotNull
+    @Size(min = 1, max = 500)
+    private String expectation;
 }
