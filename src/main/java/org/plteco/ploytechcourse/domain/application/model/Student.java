@@ -5,10 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
 import org.plteco.ploytechcourse.domain.lesson.data.model.Tech_course;
 import org.plteco.ploytechcourse.domain.lesson.data.model.Track;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Builder
 @Entity
 @Getter
 @NoArgsConstructor
@@ -31,6 +36,10 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "track_id")
     private Track track;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tech_course> techCourses = new ArrayList<>();
 
     @Builder
     public Student(User user, Tech_course techCourse, Track track) {
