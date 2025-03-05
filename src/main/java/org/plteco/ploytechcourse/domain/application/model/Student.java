@@ -37,10 +37,6 @@ public class Student {
     @JoinColumn(name = "track_id")
     private Track track;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Tech_course> techCourses = new ArrayList<>();
-
     @Builder
     public Student(User user, Tech_course techCourse, Track track) {
         this.user = user;
