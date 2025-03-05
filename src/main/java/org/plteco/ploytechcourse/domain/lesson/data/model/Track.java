@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "track")
@@ -24,4 +28,8 @@ public class Track {
     private String name;
 
     private String explanation;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "track", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ClassEntity> classEntities = new ArrayList<>();
 }

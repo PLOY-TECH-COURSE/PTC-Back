@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.plteco.ploytechcourse.domain.announcement.model.entity.Announcement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tech_course")
@@ -20,4 +24,7 @@ public class Tech_course {
     private String name;
 
     private String explanation;
+    @Builder.Default
+    @OneToMany(mappedBy = "tech_course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Track> tracks = new ArrayList<>();
 }
