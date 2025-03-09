@@ -18,9 +18,6 @@ import org.plteco.ploytechcourse.domain.favorite.service.FavoriteService;
 import org.plteco.ploytechcourse.domain.like.documentlike.service.DocumentLikeService;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -121,15 +118,15 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
     }
 
     @Override
-    public List<DocumentsGetResponseDTO> searchDocument(String query, SortMethod sortMethod, int start) {
-        Pageable pageable = PageRequest.of(start, 20);
+    public List<DocumentsGetResponseDTO> searchDocument(String query, SortMethod sortMethod, Long start) {
+        Long size = 20L;
 
-        Page<Document> documents;
+        List<Document> documents;
         if(query != null && !query.isEmpty() && query.charAt(0) == '#') {
-            documents = documentHashTagService.searchDocument(query.replace("#", ""), pageable, sortMethod);
+            documents = documentHashTagService.searchDocument(query.replace("#", ""), start, size, sortMethod);
         }
         else
-            documents = documentService.searchDocument(query, pageable, sortMethod);
+            documents = documentService.searchDocument(query, start, size, sortMethod);
 
         return documents.stream()
                 .map(this::mapToDocumentsResponseDTO)
