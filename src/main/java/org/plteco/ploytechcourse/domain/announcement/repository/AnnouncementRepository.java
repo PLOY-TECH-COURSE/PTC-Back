@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface AnnouncementRepository extends JpaRepository<Announcement, Long> {
-    @Query(value = "SELECT * FROM announcement ORDER BY created_at DESC LIMIT :start, :size", nativeQuery = true)
+    @Query(value = "SELECT * FROM announcement ORDER BY id DESC LIMIT :start, :size", nativeQuery = true)
     List<Announcement> findWithPagination(@Param("start") Long start, @Param("size") Long size);
 }
