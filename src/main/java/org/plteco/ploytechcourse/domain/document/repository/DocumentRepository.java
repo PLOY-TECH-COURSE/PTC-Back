@@ -2,8 +2,6 @@ package org.plteco.ploytechcourse.domain.document.repository;
 
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -25,7 +23,9 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
 
     List<Document> findByUserUid(String uid);
 
-    Page<Document> findByTitleContainingOrderByDocumentLikeCountDesc(String query, Pageable pageable);
+    @Query(value = "SELECT * FROM document where title like concat('%', :query, '%') ORDER BY document_like_count DESC LIMIT :start, :size", nativeQuery = true)
+    List<Document> findByTitleContainingOrderByDocumentLikeCountDescWithPagination(String query, @Param("start") Long start, @Param("size") Long size);
 
-    Page<Document> findByTitleContainingOrderByIdDesc(String query, Pageable pageable);
+    @Query(value = "SELECT * FROM document where title like concat('%', :query, '%') ORDER BY id DESC LIMIT :start, :size", nativeQuery = true)
+    List<Document> findByTitleContainingOrderByIdDescWithPagination(String query, @Param("start") Long start, @Param("size") Long size);
 }

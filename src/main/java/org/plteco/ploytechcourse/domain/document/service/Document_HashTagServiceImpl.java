@@ -7,8 +7,6 @@ import org.plteco.ploytechcourse.domain.document.model.Document_HashTag;
 import org.plteco.ploytechcourse.domain.document.model.HashTag;
 import org.plteco.ploytechcourse.domain.document.model.SortMethod;
 import org.plteco.ploytechcourse.domain.document.repository.Document_HashTagRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,10 +42,10 @@ public class Document_HashTagServiceImpl implements Document_HashTagService {
     }
 
     @Override
-    public Page<Document> searchDocument(String hashTag, Pageable pageable, SortMethod sortMethod) {
+    public List<Document> searchDocument(String hashTag, Long start, Long size, SortMethod sortMethod) {
         return switch (sortMethod) {
-            case CREATE_AT -> documentHashTagRepository.searchAllByHashTagOrderByCreateAt(hashTag, pageable);
-            case LIKE -> documentHashTagRepository.searchAllByHashTagOrderByLike(hashTag, pageable);
+            case CREATE_AT -> documentHashTagRepository.searchAllByHashTagOrderByCreateAtWithPagination(hashTag, start, size);
+            case LIKE -> documentHashTagRepository.searchAllByHashTagOrderByLikeWithPagination(hashTag, start, size);
         };
     }
 }

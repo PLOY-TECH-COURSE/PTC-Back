@@ -34,7 +34,7 @@ public class AnnouncementServiceApplication {
     }
 
     public List<AnnouncementGetResponseDTO> getAnnouncements(Long start) {
-        List<Announcement> announcements = announcementService.getAnnouncements(start, start + 20);
+        List<Announcement> announcements = announcementService.getAnnouncements(start, 20L);
 
         return announcements.stream()
                 .map(this::mapToAnnouncementsResponseDTO)
