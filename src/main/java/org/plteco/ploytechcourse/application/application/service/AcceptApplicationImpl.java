@@ -17,7 +17,7 @@ public class AcceptApplicationImpl implements AcceptApplication {
 
     @Override
     public void accept(AcceptApplicationDto acceptApplicationDto) {
-            if(acceptApplicationService.isApplicationAccepted(acceptApplicationDto.getUserId())){
+            if(!acceptApplicationService.isApplicationAccepted(acceptApplicationDto.getUserId())){
                 throw new PltecoException("신청안한 유저인데요", HttpStatus.BAD_REQUEST);
             }
             else if(acceptApplicationService.isDuplicationApplicationAccepted(acceptApplicationDto.getUserId())){
