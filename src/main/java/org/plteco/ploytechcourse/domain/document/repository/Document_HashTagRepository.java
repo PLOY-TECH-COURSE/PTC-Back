@@ -13,16 +13,16 @@ public interface Document_HashTagRepository extends JpaRepository<Document_HashT
 
     void deleteAllByDocument(Document document);
 
-    @Query(value = "SELECT d.* FROM Document_HashTag dh " +
-            "JOIN Document d ON dh.document_id = d.id " +
-            "JOIN HashTag h ON dh.hashtag_id = h.id " +
+    @Query(value = "SELECT d.* FROM document_hashtag dh " +
+            "JOIN document d ON dh.document_id = d.id " +
+            "JOIN hashtag h ON dh.hashtag_id = h.id " +
             "WHERE h.name LIKE CONCAT('%', :hashTag, '%') " +
             "ORDER BY d.document_like_count DESC LIMIT :start, :size", nativeQuery = true)
     List<Document> searchAllByHashTagOrderByLikeWithPagination(@Param("hashTag") String hashTag, @Param("start") Long start, @Param("size") Long size);
 
-    @Query(value = "SELECT d.* FROM Document_HashTag dh " +
-            "JOIN Document d ON dh.document_id = d.id " +
-            "JOIN HashTag h ON dh.hashtag_id = h.id " +
+    @Query(value = "SELECT d.* FROM document_hashtag dh " +
+            "JOIN document d ON dh.document_id = d.id " +
+            "JOIN hashtag h ON dh.hashtag_id = h.id " +
             "WHERE h.name LIKE CONCAT('%', :hashTag, '%') " +
             "ORDER BY d.id DESC LIMIT :start, :size", nativeQuery = true)
     List<Document> searchAllByHashTagOrderByCreateAtWithPagination(@Param("hashTag") String hashTag, @Param("start") Long start, @Param("size") Long size);
