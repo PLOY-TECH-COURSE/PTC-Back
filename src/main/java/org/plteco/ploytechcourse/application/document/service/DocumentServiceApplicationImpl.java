@@ -57,7 +57,7 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
     @Override
     public List<DocumentsGetResponseDTO> getDocuments(Long start) {
 
-        List<Document> documents = documentService.getDocuments(start, start + 20);
+        List<Document> documents = documentService.getDocuments(start, 21L);
 
         return documents.stream()
                 .map(this::mapToDocumentsResponseDTO)
@@ -119,7 +119,7 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
 
     @Override
     public List<DocumentsGetResponseDTO> searchDocument(String query, SortMethod sortMethod, Long start) {
-        Long size = 20L;
+        Long size = 21L;
 
         List<Document> documents;
         if(query != null && !query.isEmpty() && query.charAt(0) == '#') {
