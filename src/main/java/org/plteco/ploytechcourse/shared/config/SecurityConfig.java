@@ -135,7 +135,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/permissions").hasRole("SUPERADMIN")
 
                         // MyPage-controoller
-                        .requestMatchers(HttpMethod.GET, "/mypage/{user-id}").hasAnyRole("USER","STUDENT","ADMIN","SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/mypage/{user-id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/real-mypage").hasAnyRole("USER","STUDENT","ADMIN","SUPERADMIN")
 
                         .requestMatchers(HttpMethod.POST,"/re/validate","/re/send","/re/make").permitAll()
