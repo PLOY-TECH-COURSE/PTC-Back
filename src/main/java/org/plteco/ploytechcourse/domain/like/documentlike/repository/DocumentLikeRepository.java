@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface DocumentLikeRepository extends JpaRepository<DocumentLike, DocumentLikeId> {
     long countByDocumentId(Long documentId);
+    long countTotalLikesByUserId(Long id);
 }
