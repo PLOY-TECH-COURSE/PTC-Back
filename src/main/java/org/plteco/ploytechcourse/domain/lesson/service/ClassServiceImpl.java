@@ -75,7 +75,7 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public void Saveclass(ClassDto classDto) {
         ClassEntity classEntity = ClassEntity.builder()
-                .trackId(trackRepository.findById(classDto.getTrackId()).orElse(null))
+                .track(trackRepository.findById(classDto.getTrackId()).orElse(null))
                 .name(classDto.getName())
                 .content(classDto.getContent())
                 .thumbnail(classDto.getThumbnail())
