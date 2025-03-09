@@ -2,8 +2,6 @@ package org.plteco.ploytechcourse.domain.document.repository;
 
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.model.Document_HashTag;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,9 +13,17 @@ public interface Document_HashTagRepository extends JpaRepository<Document_HashT
 
     void deleteAllByDocument(Document document);
 
-    @Query("SELECT dh.document FROM Document_HashTag dh WHERE dh.hashtag.name LIKE CONCAT('%', :hashTag, '%') ORDER BY dh.document.documentLikeCount DESC")
-    Page<Document> searchAllByHashTagOrderByLike(@Param("hashTag") String hashTag, Pageable pageable);
+    @Query(value = "SELECT d.* FROM Document_HashTag dh " +
+            "JOIN Document d ON dh.document_id = d.id " +
+            "JOIN HashTag h ON dh.hashtag_id = h.id " +
+            "WHERE h.name LIKE CONCAT('%', :hashTag, '%') " +
+            "ORDER BY d.document_like_count DESC LIMIT :start, :size", nativeQuery = true)
+    List<Document> searchAllByHashTagOrderByLikeWithPagination(@Param("hashTag") String hashTag, @Param("start") Long start, @Param("size") Long size);
 
-    @Query("SELECT dh.document FROM Document_HashTag dh WHERE dh.hashtag.name LIKE CONCAT('%', :hashTag, '%')  ORDER BY dh.document.createAt DESC")
-    Page<Document> searchAllByHashTagOrderByCreateAt(@Param("hashTag") String hashTag, Pageable pageable);
+    @Query(value = "SELECT d.* FROM Document_HashTag dh " +
+            "JOIN Document d ON dh.document_id = d.id " +
+            "JOIN HashTag h ON dh.hashtag_id = h.id " +
+            "WHERE h.name LIKE CONCAT('%', :hashTag, '%') " +
+            "ORDER BY d.id DESC LIMIT :start, :size", nativeQuery = true)
+    List<Document> searchAllByHashTagOrderByCreateAtWithPagination(@Param("hashTag") String hashTag, @Param("start") Long start, @Param("size") Long size);
 }
