@@ -80,7 +80,7 @@ public class DocumentCommentServiceApplication {
 
         // Comment → CommentDTO 변환
         return comments.stream()
-                .sorted(Comparator.comparing(Comment::getCommentLikeCount).reversed()
+                .sorted(Comparator.comparing(Comment::getCommentLikeCount)
                         .thenComparing(Comment::getId).reversed())
                 .map(comment -> {
                     CommentDTO dto = modelMapper.map(comment, CommentDTO.class);

@@ -5,8 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.checkerframework.checker.units.qual.A;
+import org.plteco.ploytechcourse.domain.lesson.data.model.Track;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Builder
 @Entity
 @Table(name = "tech_course_form")
 @Getter
