@@ -15,5 +15,5 @@ public interface DocumentServiceApplication {
     DocumentDetailGetResponseDTO getDocumentDetail(Long documentId);
     void updateDocument(DocumentUpdateRequestDTO documentUpdateRequestDto);
     void deleteDocument(Long documentId);
-    List<DocumentsGetResponseDTO> searchDocument(String query, SortMethod sortMethod, int start);
+    List<DocumentsGetResponseDTO> searchDocument(String query, SortMethod sortMethod, Long start);
 }

@@ -151,7 +151,7 @@ public class DocumentController {
 
             @RequestParam("start")
             @NotNull(message = "start 파라미터는 필수입니다.")
-            @Min(value = 0, message = "start 값은 0 이상이어야 합니다.") int start
+            @Min(value = 0, message = "start 값은 0 이상이어야 합니다.") Long start
     ) {
         List<DocumentsGetResponseDTO> result = documentService.searchDocument(query, sortMethod, start);
 
