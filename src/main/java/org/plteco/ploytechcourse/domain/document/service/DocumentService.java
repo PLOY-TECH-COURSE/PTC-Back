@@ -5,8 +5,6 @@ import org.plteco.ploytechcourse.application.document.dto.request.DocumentWriteR
 import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.model.SortMethod;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,5 +18,5 @@ public interface DocumentService {
     Document updateDocument(User user, DocumentUpdateRequestDTO updateRequest);
     Optional<Long> getUserGeneration(Document document);
     void deleteDocument(Long documentId, User user);
-    Page<Document> searchDocument(String query, Pageable pageable, SortMethod sortMethod);
+    List<Document> searchDocument(String query, Long start, Long size, SortMethod sortMethod);
 }

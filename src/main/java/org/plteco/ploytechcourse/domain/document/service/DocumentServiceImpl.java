@@ -8,8 +8,6 @@ import org.plteco.ploytechcourse.domain.document.model.Document;
 import org.plteco.ploytechcourse.domain.document.model.SortMethod;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -83,10 +81,10 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public Page<Document> searchDocument(String query, Pageable pageable, SortMethod sortMethod) {
+    public List<Document> searchDocument(String query, Long start, Long size, SortMethod sortMethod) {
         return switch (sortMethod) {
-            case CREATE_AT -> documentRepository.findByTitleContainingOrderByIdDesc(query, pageable);
-            case LIKE -> documentRepository.findByTitleContainingOrderByDocumentLikeCountDesc(query, pageable);
+            case CREATE_AT -> documentRepository.findByTitleContainingOrderByIdDescWithPagination(query, start, size);
+            case LIKE -> documentRepository.findByTitleContainingOrderByDocumentLikeCountDescWithPagination(query, start, size);
         };
     }
 }
