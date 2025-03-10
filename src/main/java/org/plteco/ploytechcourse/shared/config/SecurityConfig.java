@@ -142,6 +142,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/re/bio").hasAnyRole("USER","STUDENT","ADMIN","SUPERADMIN")
 
                         .requestMatchers(HttpMethod.POST,"/login","/verify").permitAll()
+
+                        //프로메테우스
+                        .requestMatchers("/actuator","/actuator/prometheus","/actuator/info","/actuator/health","/actuator/health/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/logout").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
 
                         .requestMatchers("/swagger-ui/**","/v3/api-docs/**","/swagger-resources/**","/webjars/**").permitAll()
