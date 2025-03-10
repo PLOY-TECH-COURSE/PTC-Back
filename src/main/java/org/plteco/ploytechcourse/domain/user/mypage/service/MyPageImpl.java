@@ -6,6 +6,7 @@ import org.plteco.ploytechcourse.domain.application.model.Student;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.like.commentlike.repository.CommentLikeRepository;
+import org.plteco.ploytechcourse.domain.like.documentlike.repository.DocumentLikeRepository;
 import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class MyPageImpl implements MyPage {
     private final UserContextUtil userContextUtil;
     private final DocumentRepository documentRepository;
     private final CommentLikeRepository commentLikeRepository;
+    private final DocumentLikeRepository documentLikeRepository;
     private final StudentRepository studentRepository;
     private final UserRepository userRepository;
 
@@ -40,7 +42,7 @@ public class MyPageImpl implements MyPage {
 
     @Override
     public Long getNumberOfLove(Long id) {
-        return Optional.ofNullable(commentLikeRepository.countTotalLikesByUserId(id)).orElse(0L);
+        return Optional.ofNullable(documentLikeRepository.countTotalLikesByUserId(id)).orElse(0L);
     }
 
     @Override
