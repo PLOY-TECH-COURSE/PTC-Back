@@ -89,7 +89,7 @@ jobs:
             docker rmi -f $(docker images -q ploytechcourse:plte) 2>/dev/null || echo "이미지 없음"
   
             echo "📌 새로운 이미지 빌드 및 컨테이너 실행..."
-            docker compose up -d --build ploytechcourse
+            docker compose up -d --build
   
             echo "🚀 배포 완료!"
           EOF
