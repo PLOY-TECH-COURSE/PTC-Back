@@ -13,6 +13,11 @@ java {
 	}
 }
 
+jar {
+	archiveBaseName.set("app")  // JAR 파일명을 app.jar로 설정
+	archiveVersion.set("")      // 버전 정보 제거
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
