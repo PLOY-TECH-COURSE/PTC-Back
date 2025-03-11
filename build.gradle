@@ -13,9 +13,9 @@ java {
 	}
 }
 
-jar {
-	archiveBaseName.set("app")  // JAR 파일명을 app.jar로 설정
-	archiveVersion.set("")      // 버전 정보 제거
+tasks.named("bootJar") {
+	archiveBaseName.set("app")  // ✅ Spring Boot JAR 이름 설정
+	archiveVersion.set("")      // ✅ 버전 제거
 }
 
 configurations {
