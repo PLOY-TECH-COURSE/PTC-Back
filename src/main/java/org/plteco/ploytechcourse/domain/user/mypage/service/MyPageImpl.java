@@ -7,6 +7,7 @@ import org.plteco.ploytechcourse.domain.application.repository.StudentRepository
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.like.commentlike.repository.CommentLikeRepository;
 import org.plteco.ploytechcourse.domain.like.documentlike.repository.DocumentLikeRepository;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.stereotype.Service;
@@ -58,5 +59,10 @@ public class MyPageImpl implements MyPage {
     @Override
     public String getUid(Long id) {
         return userRepository.findById(id).get().getUid();
+    }
+
+    @Override
+    public RoleEnum getRole(Long id) {
+        return userRepository.findById(id).get().getRole();
     }
 }

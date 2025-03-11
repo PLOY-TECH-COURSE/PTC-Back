@@ -1,5 +1,7 @@
 package org.plteco.ploytechcourse.domain.user.mypage.service;
 
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
+
 public interface MyPage {
     String getName(Long id);
     String getBio(Long id);
@@ -8,4 +10,5 @@ public interface MyPage {
     String getProfile(Long id);
     Long getGeneration(Long id);
     String getUid(Long id);
+    RoleEnum getRole(Long id);
 }
