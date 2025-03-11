@@ -3,7 +3,7 @@ name: Deploy Spring Boot Application
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up JDK 21  # ✅ Java 21로 변경
+      - name: Set up JDK 21  # ✅ Java 21 설정
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'  # OpenJDK 기반의 Temurin 사용
@@ -28,8 +28,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ploytechcourse-0.0.1-SNAPSHOT.jar
-          path: build/libs/*.jar
+          name: app-jar
+          path: build/libs/ploytechcourse-0.0.1-SNAPSHOT.jar  # ✅ 정확한 파일명 지정
 
   deploy:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
-          name: ploytechcourse-0.0.1-SNAPSHOT.jar
+          name: app-jar
           path: build/libs
 
       - name: Setup SSH Key
@@ -55,7 +55,7 @@ jobs:
       - name: Deploy with Docker Compose
         run: |
           # 서버로 JAR 파일 전송
-          scp build/libs/*.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/ploytechcourse-0.0.1-SNAPSHOT.jar
+          scp build/libs/ploytechcourse-0.0.1-SNAPSHOT.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/ploytechcourse-0.0.1-SNAPSHOT.jar
           
           # 서버에서 Docker 컨테이너 배포
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
@@ -63,9 +63,9 @@ jobs:
           
             echo "📌 기존 컨테이너 중지 및 삭제..."
             docker compose down  # 기존 컨테이너 종료
-            docker compose build --no-cache
+          
             echo "📌 새로운 컨테이너 빌드 및 실행..."
-            docker compose up -d --build  # 새로운 컨테이너 실행
+            docker compose up -d --build  # ✅ --build 옵션만 사용하여 재빌드 진행
           
             echo "🚀 배포 완료!"
           EOF
