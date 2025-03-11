@@ -75,10 +75,12 @@ jobs:
           
             echo "📌 기존 컨테이너 중지 및 삭제..."
             docker compose down  # 기존 컨테이너 종료
-            echo "📌 캐시 삭제 및 빌드..."
-            docker compose build --no-cache
-            echo "📌 새로운 컨테이너 실행..."
-            docker compose up -d  # ✅ --build 옵션만 사용하여 재빌드 진행
-          
+  
+            echo "📌 기존 이미지 삭제..."
+            docker rmi -f $(docker images -q ploytechcourse:plte) 2>/dev/null || echo "이미지 없음"
+  
+            echo "📌 새로운 이미지 빌드 및 컨테이너 실행..."
+            docker compose up -d --build ploytechcourse
+  
             echo "🚀 배포 완료!"
           EOF
