@@ -1,9 +1,11 @@
 name: Deploy Spring Boot Application
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed  # PR이 "closed"될 때 실행 (Merge 포함)
     branches:
-      - master
+      - master  # master 브랜치로 머지될 때만 실행
 
 jobs:
   build:
