@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.RoleEnum;
 
 @Data
 @AllArgsConstructor
@@ -17,4 +18,5 @@ public class ResponseMypage {
     private String profile;
     private Long generation;
     private String uid;
+    private RoleEnum role;
 }
