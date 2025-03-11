@@ -21,6 +21,7 @@ public class MyPageApplicationImpl implements MyPageApplication {
                 .profile(myPage.getProfile(id))
                 .generation(myPage.getGeneration(id))
                 .uid(myPage.getUid(id))
+                .role(myPage.getRole(id))
                 .build();
     }
 }
