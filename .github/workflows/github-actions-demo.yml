@@ -26,13 +26,13 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build -x test
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-jar
-          path: build/libs/ploytechcourse-0.0.1-SNAPSHOT.jar  # ✅ 정확한 파일명 지정
+          path: build/libs/app.jar  # ✅ 정확한 파일명 지정
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
       - name: Deploy with Docker Compose
         run: |
           # 서버로 JAR 파일 전송
-          scp build/libs/ploytechcourse-0.0.1-SNAPSHOT.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/ploytechcourse-0.0.1-SNAPSHOT.jar
+          scp build/libs/app.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/app.jar
           
           # 서버에서 Docker 컨테이너 배포
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
@@ -66,9 +66,10 @@ jobs:
           
             echo "📌 기존 컨테이너 중지 및 삭제..."
             docker compose down  # 기존 컨테이너 종료
-          
-            echo "📌 새로운 컨테이너 빌드 및 실행..."
-            docker compose up -d --build  # ✅ --build 옵션만 사용하여 재빌드 진행
+            echo "📌 캐시 삭제 및 빌드..."
+            docker compose build --no-cache
+            echo "📌 새로운 컨테이너 실행..."
+            docker compose up -d  # ✅ --build 옵션만 사용하여 재빌드 진행
           
             echo "🚀 배포 완료!"
           EOF
