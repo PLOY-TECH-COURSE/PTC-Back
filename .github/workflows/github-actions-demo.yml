@@ -51,11 +51,14 @@ jobs:
       - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
-          cat <<EOF > ~/.ssh/id_rsa
-          ${{ secrets.SSH_PRIVATE_KEY }}
-          EOF
+          printf "%s" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Debug SSH Key
+        run: |
+          ls -lah ~/.ssh
+          head -5 ~/.ssh/id_rsa  # SSH 키 앞부분만 확인 (보안 유의)
 
       - name: Test SSH Connection
         run: |
