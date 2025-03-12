@@ -43,7 +43,7 @@ public class MyPageImpl implements MyPage {
 
     @Override
     public Long getNumberOfLove(Long id) {
-        return Optional.ofNullable(documentLikeRepository.countTotalLikesByUserId(id)).orElse(0L);
+        return Optional.ofNullable(documentLikeRepository.getTotalLikesReceivedByUser(id)).orElse(0L);
     }
 
     @Override
