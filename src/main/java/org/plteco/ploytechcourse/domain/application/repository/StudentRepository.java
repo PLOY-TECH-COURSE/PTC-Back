@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("SELECT s.techCourse.generation FROM Student s WHERE s.user.id = :userId")
     Optional<Long> findTechCourseIdByUserId(@Param("userId") Long userId);
+
+    boolean existsByUserId(Long userId);
 }
