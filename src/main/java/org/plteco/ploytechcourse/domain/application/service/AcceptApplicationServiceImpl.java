@@ -39,12 +39,12 @@ public class AcceptApplicationServiceImpl implements AcceptApplicationService {
 
     @Override
     public boolean isApplicationAccepted(Long id) {
-        return applicationRepository.findById(id).isPresent();
+        return applicationRepository.existsByUserId(id);
     }
 
     @Override
     public boolean isDuplicationApplicationAccepted(Long id) {
-        return studentRepository.findById(id).isPresent();
+        return studentRepository.existsByUserId(id);
     }
 
 }
