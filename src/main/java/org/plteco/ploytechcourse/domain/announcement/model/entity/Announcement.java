@@ -39,7 +39,7 @@ public class Announcement {
     private String content;
 
     @Column(name = "thumbnail", nullable = false)
-    private Strㅇㅁㄴㅇㄴㅁng thumbnail;
+    private String thumbnail;
 
     @Column(name = "introduction")
     private String introduction;
