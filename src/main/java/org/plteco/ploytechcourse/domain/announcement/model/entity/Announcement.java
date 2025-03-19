@@ -36,7 +36,7 @@ public class Announcement {
     private String title;
 
     @Column(name = "content", nullable = false)
-    private Striㅁㄴㅇㄴㅁng content;
+    private String content;
 
     @Column(name = "thumbnail", nullable = false)
     private String thumbnail;
