@@ -1,0 +1,14 @@
+#!/bin/bash
+
+PROJECT_ROOT="/Users/ploytechcourse"
+
+cd "$PROJECT_ROOT" || exit 1
+
+# Gradle 빌드 실행 (테스트 제외)
+./gradlew clean build -x test
+
+# 빌드 실패 시 push 차단
+if [ $? -ne 0 ]; then
+  echo "❌ 빌드 실패! Push가 차단되었습니다."
+  exit 1
+fi
