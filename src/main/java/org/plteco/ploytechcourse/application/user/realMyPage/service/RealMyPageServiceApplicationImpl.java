@@ -22,6 +22,7 @@ public class RealMyPageServiceApplicationImpl implements RealMyPageServiceApplic
                 .numberOfLove(myPage.getNumberOfLove(id))
                 .profile(myPage.getProfile(id))
                 .generation(myPage.getGeneration(id))
+                .role(myPage.getRole(id))
                 .uid(myPage.getUid(id))
                 .build();
     }
