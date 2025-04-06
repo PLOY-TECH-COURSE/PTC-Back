@@ -101,7 +101,7 @@ public class Document {
                 .user(user)
                 .title(writeRequest.title())
                 .content(writeRequest.content())
-                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/11.png"))
+                .thumbnail(Optional.ofNullable(writeRequest.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/4.png"))
                 .introduction(writeRequest.introduction())
                 .createAt(LocalDate.now(ZoneId.of("Asia/Seoul")))
                 .build();
