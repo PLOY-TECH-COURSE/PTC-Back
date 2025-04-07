@@ -75,11 +75,16 @@ jobs:
 
       - name: Deploy with Docker Compose
         run: |
+          if [ ! -f build/libs/app.jar ]; then
+            echo "❌ app.jar not found!"
+            exit 1
+          fi
+          
           # 서버로 JAR 파일 전송
-          scp -P 2222 build/libs/app.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/app.jar
+          scp -P ${{ secrets.SERVER_PORT }} build/libs/app.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/app.jar
           
           # 서버에서 Docker 컨테이너 배포
-          ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
             cd ${{ secrets.DEPLOY_DIR }} 
           
             echo "📌 기존 컨테이너 중지 및 삭제..."
