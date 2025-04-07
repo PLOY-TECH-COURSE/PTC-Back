@@ -62,7 +62,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.SERVER_PORT }} -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Debug SSH Key
         run: |
@@ -71,15 +71,20 @@ jobs:
 
       - name: Test SSH Connection
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa remote-cli@${{ secrets.SERVER_HOST }} "echo 'SSH Connected!'"
+          ssh -p ${{ secrets.SERVER_PORT }} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa remote-cli@${{ secrets.SERVER_HOST }} "echo 'SSH Connected!'"
 
       - name: Deploy with Docker Compose
         run: |
+          if [ ! -f build/libs/app.jar ]; then
+            echo "❌ app.jar not found!"
+            exit 1
+          fi
+          
           # 서버로 JAR 파일 전송
-          scp -P 2222 build/libs/app.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/app.jar
+          scp -P ${{ secrets.SERVER_PORT }} build/libs/app.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/app.jar
           
           # 서버에서 Docker 컨테이너 배포
-          ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
             cd ${{ secrets.DEPLOY_DIR }} 
           
             echo "📌 기존 컨테이너 중지 및 삭제..."
