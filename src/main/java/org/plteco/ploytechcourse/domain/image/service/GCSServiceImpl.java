@@ -48,7 +48,7 @@ public class GCSServiceImpl implements GCSService {
         String newFileName = newFileId + fileExtension;
 
         // 서비스 계정 키 파일을 불러옴
-        String keyFileName = "graphite-ally-448608-t2-42698c9bcc52.json";
+        String keyFileName = "key-buttress-459907-a8-e8cb01f14868.json";
         InputStream keyFile = ResourceUtils.getURL("classpath:" + keyFileName).openStream();
 
         // Google Cloud Storage 클라이언트 설정
