@@ -59,6 +59,7 @@ jobs:
 
       - name: Setup SSH Key
         run: |
+          set -eux
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
