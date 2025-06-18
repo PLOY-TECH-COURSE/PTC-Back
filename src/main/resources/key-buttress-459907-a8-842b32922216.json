@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "key-buttress-459907-a8",
+  "private_key_id": "842b32922216fbaad66db3ec5c7320feb2f953c9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQD1WpAB8CzEjhnI\niwqQdt2v2d3okTA+lclU9+MQuZg38c7oAvdLWnEkhHCHWYowyyj5TPcViQfl/QeH\n0kzzlh3JEio1EZw++ifKwFUYDnMqcx9OX7kXgvmk1WMJLchVMrkprHNQ5NK6ji5+\nJdSztl3FNnsUSmwAjxj/p/ZfqIirkdygo+ImqL/p0X2yxXqJNnWt+yygpp1g275Y\nNvD8JnyVlfvT6oEj+eEI36/XOCtBk8GZGI2QMeEO1Hg+6iAm9gfJdFFuyM/qiTg4\nLdLcXQI7IeVOh5y0mg9VeWnu7Bz4KbswFukThPyWn/CK8PeewE2OxHPyoyDsDGju\nig151fg9AgMBAAECggEALkZI39y1DNNCQKUctnd8w0RjipALmdo1UT25iTd/4plM\nLU0V6BPkP/9sm9KC8kX28eIWveyM3U82QuMimVSIRJqU9FJgdi5HIAHbasCa7vgs\ngOMj7S/KNtD6L0p/vLXm31nDnA+0QPQ9B5TKA6UTFXV7jC2nJgnXLKy4ln0aXcUz\n2W5RwwVtXsZHVTiNdLQauS1N+ZioJ7kDE1LezXInbMwzzCbARBvBz5559IrD+0oo\nIEJY0+WoQrwPQ/73a/KQoJUngzMyUE78Vr5Y+RVTjbYEb52ef+kPmluN6o/TlMlu\nt6KVLO6zmlimcou0HpBS4xhKICuI0OfmzTlb4GWwQQKBgQD/vzoN8W0hx81A9Y9C\nCTxnLD0u7TgT/jeRlazAkGiZByZCi/N8aSOvGoVW/X6GHzDXIlBX+CnUVvMRY07x\n6VV2miFjulw7nUyUzhsL8kkBJfdROKiVUln6XzgcTp31/0imlBoijMngYxg+q7QF\nlY8MqZzTiXZOOGh3+61IknWE3QKBgQD1mLQVsIMSyL+b0u4HQ6Tc6H1RPceJnZo6\nMcpxXUvwW1ww8Vbu9yBXs0ytGl7ThAlaMSQ0190M0vbJOWbwQQt5+ZfqVPZRhL8y\nwwDLlg6lxuBzRBD2BFL1teRYkdK7SupudpOuRfLyV9TZGu9ObDlPp0wddIV/gZ5V\npMSI+Ija4QKBgQDPaqgK5uM7onA1XvLw+8yhYJ++j2YL0QIAcQPKqVQryECfeCHh\npOPr//ZktvMGlAVodcvzjLFgJaS9VW2RhUxrBFZQK7TiJJEXnpEQ/092PvR2Sx1u\n/Xs8ND2tt5UlDgY+E5+epdCUy8m+CkPWw5VhD67BYZsxlU4lAVlool/tgQKBgHki\n4ahVEMGCHOg56MfSeI2xaqZYp4PcJYcQqf6yetNJ7LYDQ9LIN76qJGa5PA5t8ML4\nvBgIZPJ/V9Q2qOxV2NhH4MNnNrtMk5XxEwJXuE/SQUD5ULhXt6eUGNYKzvssX2cu\nu3bY75TS95xCKcjvnnEIXoWkxHf4seUiSQIaPD5hAoGAH9Xl4Im7mEhuhAbjSCge\nVInez1VISadFZDyLQuz45N4LgvqhGdC1bk3D/ZzoWEkl8dt2hdQ9TcYSREXehCBt\nJCQ8WD9FUZ0170CdFD4EXzzp1VUu5RqPEoDPtV60s6h3XlyI4nR8uJpvjJiQG/qU\nnRGkL6VcmAdCnu3MTz6aPWc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "ploytechcourse@key-buttress-459907-a8.iam.gserviceaccount.com",
+  "client_id": "113845001003170028656",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ploytechcourse%40key-buttress-459907-a8.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
