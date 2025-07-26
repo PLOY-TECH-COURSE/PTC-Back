@@ -25,12 +25,10 @@ jobs:
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
 
-      - name: Create GCP Credentials File #
+      - name: Create GCP Credentials File
         run: |
           mkdir -p src/main/resources
-          echo "${{ secrets.GCP_CREDENTIALS }}" > src/main/resources/cosmic-kayak-467113-g5-7d0d19a6a74e.json
-
-
+          echo "${{ secrets.GCP_CREDENTIALS_B64 }}" | base64 --decode > src/main/resources/cosmic-kayak-467113-g5-a41d4c7c5286.json
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
@@ -58,10 +56,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Create GCP Credentials File  # ✅ 이 줄 추가
+      - name: Create GCP Credentials File
         run: |
           mkdir -p src/main/resources
-          echo "${{ secrets.GCP_CREDENTIALS }}" > src/main/resources/cosmic-kayak-467113-g5-7d0d19a6a74e.json
+          echo "${{ secrets.GCP_CREDENTIALS_B64 }}" | base64 --decode > src/main/resources/cosmic-kayak-467113-g5-a41d4c7c5286.json
 
       - name: Download Artifact
         uses: actions/download-artifact@v4
