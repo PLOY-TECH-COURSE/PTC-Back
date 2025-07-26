@@ -56,6 +56,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Create GCP Credentials File  # ✅ 이 줄 추가
+        run: |
+          mkdir -p src/main/resources
+          echo "${{ secrets.GCP_CREDENTIALS }}" > src/main/resources/cosmic-kayak-467113-g5-7d0d19a6a74e.json
+
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
