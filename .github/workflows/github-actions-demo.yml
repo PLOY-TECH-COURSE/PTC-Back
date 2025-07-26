@@ -25,6 +25,11 @@ jobs:
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
 
+      - name: Create GCP Credentials File #
+        run: |
+          mkdir -p src/main/resources
+          echo "${{ secrets.GCP_CREDENTIALS }}" > src/main/resources/cosmic-kayak-467113-g5-7d0d19a6a74e.json
+
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
         with:
@@ -48,11 +53,6 @@ jobs:
     needs: build
 
     steps:
-      - name: Create GCP Credentials File #
-        run: |
-          mkdir -p src/main/resources
-          echo "${{ secrets.GCP_CREDENTIALS }}" > src/main/resources/cosmic-kayak-467113-g5-7d0d19a6a74e.json
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
