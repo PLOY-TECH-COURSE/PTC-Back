@@ -195,7 +195,7 @@ public class DocumentApplicationTest {
         when(documentService.getDocumentUser(documentId)).thenReturn(testUser);
         when(modelMapper.map(testUser, DocumentUserInfoDTO.class)).thenReturn(userInfoDTO);
         when(documentHashTagService.getHashTagsForDocument(testDocument)).thenReturn(testHashTags);
-        when(documentService.getUserGeneration(testDocument)).thenReturn(Optional.of(1L));
+        when(documentService.getUserGeneration(testDocument)).thenReturn(Optional.of(1));
         when(documentLikeService.getLikes(documentId)).thenReturn(5L);
         when(documentLikeService.isLiked(testDocument, testUser)).thenReturn(true);
         when(favoriteService.isFavorite(testUser, testDocument)).thenReturn(false);
