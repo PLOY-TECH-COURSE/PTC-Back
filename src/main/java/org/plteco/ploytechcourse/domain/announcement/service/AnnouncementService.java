@@ -13,7 +13,7 @@ public interface AnnouncementService {
     List<Announcement> getAnnouncements(Long start, Long end);
     Announcement getAnnouncement(Long announcementId);
     User getAnnouncementUser(Long announcementId);
-    Optional<Long> getUserGeneration(Announcement announcement);
+    Optional<Integer> getUserGeneration(Announcement announcement);
     Announcement updateAnnouncement(AnnouncementUpdateRequestDTO announcementUpdateRequestDTO);
     void deleteAnnouncement(Long announcementId);
 }

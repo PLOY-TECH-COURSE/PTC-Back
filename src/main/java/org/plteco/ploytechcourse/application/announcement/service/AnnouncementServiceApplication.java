@@ -49,7 +49,7 @@ public class AnnouncementServiceApplication {
         User writer = announcementService.getAnnouncementUser(announcementId);
         AnnouncementUserInfoDTO userInfo = modelMapper.map(writer, AnnouncementUserInfoDTO.class);
 
-        Long generation = announcementService.getUserGeneration(announcement).orElse(null);
+        Integer generation = announcementService.getUserGeneration(announcement).orElse(null);
         String generationStr = generation == null ? "멘토" : String.valueOf(generation);
 
         return new AnnouncementDetailGetResponseDTO(announcementInfo, userInfo, generationStr);

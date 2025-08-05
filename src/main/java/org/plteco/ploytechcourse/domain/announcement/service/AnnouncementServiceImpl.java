@@ -42,7 +42,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     @Override
-    public Optional<Long> getUserGeneration(Announcement announcement) {
+    public Optional<Integer> getUserGeneration(Announcement announcement) {
         Long userId = announcement.getUser().getId();
         return studentRepository.findTechCourseIdByUserId(userId);
     }

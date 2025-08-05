@@ -16,7 +16,7 @@ public interface DocumentService {
     Document getDocument(Long documentId);
     User getDocumentUser(Long documentId);
     Document updateDocument(User user, DocumentUpdateRequestDTO updateRequest);
-    Optional<Long> getUserGeneration(Document document);
+    Optional<Integer> getUserGeneration(Document document);
     void deleteDocument(Long documentId, User user);
     List<Document> searchDocument(String query, Long start, Long size, SortMethod sortMethod);
 }
