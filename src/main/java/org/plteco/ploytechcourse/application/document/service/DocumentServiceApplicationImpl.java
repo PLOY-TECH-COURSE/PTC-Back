@@ -89,7 +89,7 @@ public class DocumentServiceApplicationImpl implements DocumentServiceApplicatio
                 .map(HashTag::getName)
                 .toList();
 
-        Long generation = documentService.getUserGeneration(document).orElse(null);
+        Integer generation = documentService.getUserGeneration(document).orElse(null);
 
         String generationStr = generation == null ? "멘토" : String.valueOf(generation);
 

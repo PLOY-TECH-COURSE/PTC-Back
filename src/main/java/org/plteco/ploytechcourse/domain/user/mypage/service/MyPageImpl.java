@@ -2,7 +2,6 @@ package org.plteco.ploytechcourse.domain.user.mypage.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.domain.application.model.Student;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.document.repository.DocumentRepository;
 import org.plteco.ploytechcourse.domain.like.commentlike.repository.CommentLikeRepository;
@@ -52,7 +51,7 @@ public class MyPageImpl implements MyPage {
     }
 
     @Override
-    public Long getGeneration(Long id) {
+    public Integer getGeneration(Long id) {
         return studentRepository.findTechCourseIdByUserId(id).orElse(null);
     }
 

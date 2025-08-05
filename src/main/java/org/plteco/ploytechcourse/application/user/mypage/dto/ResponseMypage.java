@@ -16,7 +16,7 @@ public class ResponseMypage {
     private Long numberOfPosts;
     private Long numberOfLove;
     private String profile;
-    private Long generation;
+    private Integer generation;
     private String uid;
     private RoleEnum role;
 }

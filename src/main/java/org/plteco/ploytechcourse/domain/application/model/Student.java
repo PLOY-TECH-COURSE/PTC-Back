@@ -37,6 +37,8 @@ public class Student {
     @JoinColumn(name = "track_id")
     private Track track;
 
+    private Integer generation;
+
     @Builder
     public Student(User user, Tech_course techCourse, Track track) {
         this.user = user;

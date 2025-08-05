@@ -60,7 +60,7 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public Optional<Long> getUserGeneration(Document document) {
+    public Optional<Integer> getUserGeneration(Document document) {
         Long userId =document.getUser().getId();
         return studentRepository.findTechCourseIdByUserId(userId);
     }
