@@ -3,10 +3,10 @@ package org.plteco.ploytechcourse.application.grade.service;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.grade.dto.CreateFormDto;
 import org.plteco.ploytechcourse.application.grade.dto.CreateQuestion;
+import org.plteco.ploytechcourse.application.grade.dto.GradingFormResponseDto;
 import org.plteco.ploytechcourse.domain.application.model.Student;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.grading.model.GradingForm;
-import org.plteco.ploytechcourse.domain.grading.model.GradingScore;
 import org.plteco.ploytechcourse.domain.grading.repository.GradingFormRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ public class GradeServiceApplicationImpl implements GradeServiceApplication {
     // 채점 폼 만드는 함수
     @Override
     @Transactional
-    public void createGradeForm(CreateFormDto createFormDto) {
+    public void createGradingForm(CreateFormDto createFormDto) {
         int studentCounts = studentRepository.countByLatestGeneration(); // 피채점자 수
         int graderCounts = createFormDto.getGrader_counts(); // 채점자 수
 
@@ -41,4 +41,15 @@ public class GradeServiceApplicationImpl implements GradeServiceApplication {
         gradingFormRepository.save(form); // 한 번만 저장하면 Cascade로 모두 저장됨
         gradingFormRepository.flush();
     }
+
+    @Override
+    public List<GradingFormResponseDto> getAllGradingForm() {
+        List<GradingForm> gradingFormList = gradingFormRepository.findAll();
+
+        return gradingFormList.stream()
+                .map(GradingFormResponseDto::fromGradingForm)
+                .toList();
+    }
+
+
 }

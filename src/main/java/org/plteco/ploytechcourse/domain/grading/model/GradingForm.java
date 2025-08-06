@@ -15,6 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 @Table(name = "grading_forms")
 public class GradingForm {
     @Id
@@ -26,19 +27,30 @@ public class GradingForm {
 
     private String description;
 
-    @Column(nullable = false,name="grader_count")
+    @Column(nullable = false, name = "grader_count")
     private Integer graderCount;
 
+    @Column(nullable = false, name = "expected_total_answers")
     private Integer expectedTotalAnswers;
+
+    @Column(name = "is_completed")
+    private boolean completed;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+
+
     @Getter
     @Builder.Default
     @OneToMany(mappedBy = "gradingForm", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GradingQuestion> gradingQuestions = new ArrayList<>();
+
+    @Getter
+    @Builder.Default
+    @OneToMany(mappedBy = "form", fetch = FetchType.LAZY)
+    private List<GradingAnswer> answers = new ArrayList<>();
 
     // 질문, 점수 추가
     public void addQuestionWithScores(String content, List<Integer> scores) {
@@ -59,4 +71,5 @@ public class GradingForm {
 
         this.gradingQuestions.add(question);
     }
+
 }

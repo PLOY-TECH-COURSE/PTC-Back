@@ -33,7 +33,7 @@ public class GradingAnswer {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    // 채점자 (관리자 또는 교사)
+    // 채점자 (관리자)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grader_id", nullable = false)
     private User grader;
@@ -41,9 +41,6 @@ public class GradingAnswer {
     // 점수
     @Column(nullable = false)
     private Integer score;
-
-    // 코멘트
-    private String comment;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

@@ -153,8 +153,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/users/{user-id}").hasAnyRole( "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
 
-
-                        .requestMatchers(HttpMethod.POST, "/grades/form").permitAll()
+                        // Grading-controller
+                        .requestMatchers(HttpMethod.POST, "/grades/forms").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/grades/forms").permitAll()
                         .anyRequest().denyAll()
                 )
                 .exceptionHandling(exception -> exception
