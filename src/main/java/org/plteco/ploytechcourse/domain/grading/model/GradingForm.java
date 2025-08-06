@@ -24,6 +24,8 @@ public class GradingForm {
     @Column(nullable = false)
     private String title;
 
+    private String description;
+
     @Column(nullable = false,name="grader_count")
     private Integer graderCount;
 

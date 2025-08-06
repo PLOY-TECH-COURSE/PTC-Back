@@ -9,10 +9,13 @@ import java.util.List;
 public class CreateFormDto {
     @Schema(description = "평가 폼 제목", example = "프로젝트 평가")
     private String title;
-    
+
+    @Schema(description = "설명", example = "중간 발표입니다.")
+    private String description;
+
     @Schema(description = "평가자 수", example = "3")
     private Integer grader_counts;
-    
+
     @Schema(description = "평가 질문 목록")
     private List<CreateQuestion> questions;
 }

@@ -29,6 +29,7 @@ public class GradeServiceApplicationImpl implements GradeServiceApplication {
 
         GradingForm form = GradingForm.builder()
                 .title(createFormDto.getTitle())
+                .description(createFormDto.getDescription())
                 .graderCount(graderCounts)
                 .expectedTotalAnswers(studentCounts * graderCounts)
                 .build();
