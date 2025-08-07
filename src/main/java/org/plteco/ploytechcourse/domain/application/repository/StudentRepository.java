@@ -20,7 +20,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
         SELECT MAX(s2.generation) FROM Student s2
     )
 """) // 학생 중 기수(generation)이 제일 높은 학생들만 출력
-    List<Student> findAllByMaxGeneration();
+    List<Student> findAllByLatestGeneration();
 
     @Query("""
     SELECT count(s) FROM Student s
