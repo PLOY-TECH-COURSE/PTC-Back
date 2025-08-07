@@ -1,7 +1,5 @@
 package org.plteco.ploytechcourse.shared.config;
 
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter;
 import org.plteco.ploytechcourse.domain.jwt.repository.RefreshRepository;
@@ -23,7 +21,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.util.Arrays;
 import java.util.List;
