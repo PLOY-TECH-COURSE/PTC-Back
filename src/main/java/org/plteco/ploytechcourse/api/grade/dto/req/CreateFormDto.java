@@ -1,7 +1,8 @@
-package org.plteco.ploytechcourse.application.grade.dto;
+package org.plteco.ploytechcourse.api.grade.dto.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+
 import java.util.List;
 
 @Data

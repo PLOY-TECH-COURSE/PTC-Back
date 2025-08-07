@@ -1,10 +1,9 @@
 package org.plteco.ploytechcourse.application.grade.service;
 
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.application.grade.dto.CreateFormDto;
-import org.plteco.ploytechcourse.application.grade.dto.CreateQuestion;
-import org.plteco.ploytechcourse.application.grade.dto.GradingFormResponseDto;
-import org.plteco.ploytechcourse.domain.application.model.Student;
+import org.plteco.ploytechcourse.api.grade.dto.req.CreateFormDto;
+import org.plteco.ploytechcourse.api.grade.dto.req.CreateQuestion;
+import org.plteco.ploytechcourse.api.grade.dto.res.GradingFormResponseDto;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
 import org.plteco.ploytechcourse.domain.grading.model.GradingForm;
 import org.plteco.ploytechcourse.domain.grading.repository.GradingFormRepository;

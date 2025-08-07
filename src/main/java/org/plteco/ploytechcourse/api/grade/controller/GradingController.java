@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.api.grade;
+package org.plteco.ploytechcourse.api.grade.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -7,10 +7,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.plteco.ploytechcourse.application.grade.dto.CreateFormDto;
-import org.plteco.ploytechcourse.application.grade.dto.GradingFormResponseDto;
+import org.plteco.ploytechcourse.api.grade.dto.req.CreateFormDto;
+import org.plteco.ploytechcourse.api.grade.dto.res.GradingFormResponseDto;
 import org.plteco.ploytechcourse.application.grade.service.GradeServiceApplication;
-import org.plteco.ploytechcourse.application.grade.service.GradeServiceApplicationImpl;
 import org.plteco.ploytechcourse.shared.exception.ErrorResponse;
 import org.plteco.ploytechcourse.shared.exception.PltecoException;
 import org.springframework.http.HttpStatus;
@@ -106,7 +105,10 @@ public class GradingController {
         }
     }
 
-
+//    @GetMapping("/forms/order")
+//    public ResponseEntity<List<>> getAllGradesByOrder() {
+//
+//    }
 
 
 }

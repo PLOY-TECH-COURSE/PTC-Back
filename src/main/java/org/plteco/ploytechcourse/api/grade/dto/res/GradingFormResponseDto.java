@@ -1,10 +1,9 @@
-package org.plteco.ploytechcourse.application.grade.dto;
+package org.plteco.ploytechcourse.api.grade.dto.res;
 
 import lombok.Data;
 import org.plteco.ploytechcourse.domain.grading.model.GradingForm;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 public class GradingFormResponseDto {
