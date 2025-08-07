@@ -2,17 +2,12 @@ package org.plteco.ploytechcourse.application.student.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.plteco.ploytechcourse.api.student.dto.res.StudentResponse;
 import org.plteco.ploytechcourse.domain.application.model.Student;
 import org.plteco.ploytechcourse.domain.application.repository.StudentRepository;
-import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
-import org.plteco.ploytechcourse.domain.user.signup.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
