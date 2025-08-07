@@ -1,6 +1,7 @@
 package org.plteco.ploytechcourse.shared.config;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter;
 import org.plteco.ploytechcourse.domain.jwt.repository.RefreshRepository;
@@ -25,6 +26,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -171,23 +173,19 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.cors(corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
+        http.cors(corsCustomizer -> corsCustomizer.configurationSource(request -> {
 
-            @Override
-            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+            CorsConfiguration configuration = new CorsConfiguration();
 
-                CorsConfiguration configuration = new CorsConfiguration();
+            // 모든 출처 허용
+            configuration.addAllowedOriginPattern("*"); // allowedOriginPatterns 사용
+            configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+            configuration.setAllowedHeaders(List.of("*"));
+            configuration.setAllowCredentials(true); // allowCredentials 설정
+            configuration.setExposedHeaders(List.of("Authorization"));
+            configuration.setMaxAge(3600L);
 
-                // 모든 출처 허용
-                configuration.addAllowedOriginPattern("*"); // allowedOriginPatterns 사용
-                configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-                configuration.setAllowedHeaders(Arrays.asList("*"));
-                configuration.setAllowCredentials(true); // allowCredentials 설정
-                configuration.setExposedHeaders(Arrays.asList("Authorization"));
-                configuration.setMaxAge(3600L);
-
-                return configuration;
-            }
+            return configuration;
         }));
         http.addFilterBefore(new JwtFilter(jwtUtil), LoginFilter.class);
         http.addFilterAt(new LoginFilter(authenticationManager(), jwtUtil,refreshRepository), UsernamePasswordAuthenticationFilter.class);
