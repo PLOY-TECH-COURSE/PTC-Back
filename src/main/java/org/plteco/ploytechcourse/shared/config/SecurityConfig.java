@@ -156,9 +156,11 @@ public class SecurityConfig {
                         // Grading-controller
                         .requestMatchers(HttpMethod.POST, "/grades/forms").permitAll()
                         .requestMatchers(HttpMethod.GET, "/grades/forms").permitAll()
+                        .requestMatchers(HttpMethod.PATCH, "/grades/forms/{form_id}/presentation-order").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}/presentation-order").permitAll()
 
                         // Student-controller
-                        .requestMatchers(HttpMethod.GET, "/students").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/students/latest-generation").permitAll()
 
 
                         .anyRequest().denyAll()
