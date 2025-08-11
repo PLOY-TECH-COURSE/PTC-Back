@@ -207,14 +207,94 @@ public class GradingController {
     }
 
     @GetMapping("/forms/{form_id}")
-    public ResponseEntity<GradingFormDetailResponseDto> getGradingFormById(@PathVariable("form_id") Long formId){
+    @Operation(
+        summary = "평가 폼 상세 조회",
+        description = "특정 평가 폼의 상세 정보를 조회합니다."
+    )
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "평가 폼 상세 조회 성공",
+            content = @Content(schema = @Schema(implementation = GradingFormDetailResponseDto.class))
+        ),
+        @ApiResponse(
+            responseCode = "401",
+            description = "인증 실패",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "403",
+            description = "권한 없음",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "평가 폼을 찾을 수 없음",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "500",
+            description = "서버 내부 오류",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        )
+    })
+    public ResponseEntity<GradingFormDetailResponseDto> getGradingFormById(
+        @Parameter(description = "평가 폼 ID", required = true)
+        @PathVariable("form_id") Long formId){
         GradingFormDetailResponseDto gradingFormDetailResponseDto = gradingServiceApplication.getGradingFormByFormId(formId);
         return new ResponseEntity<>(gradingFormDetailResponseDto, HttpStatus.OK);
     }
 
 
     @PostMapping("/forms/{form_id}/score")
-    public ResponseEntity<MessageResponse> addScore(@PathVariable("form_id") Long formId, @RequestBody RequestScoreDto requestScoreDto) {
+    @Operation(
+        summary = "평가 점수 등록",
+        description = "특정 평가 폼에 학생의 점수를 등록합니다. 모든 점수가 등록되면 자동으로 결과 공지사항이 생성됩니다.",
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "평가 점수 정보",
+            required = true,
+            content = @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = RequestScoreDto.class)
+            )
+        )
+    )
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "평가 점수 등록 성공",
+            content = @Content(schema = @Schema(implementation = MessageResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "400",
+            description = "잘못된 요청 데이터 (유효하지 않은 점수, 중복 평가 등)",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "401",
+            description = "인증 실패",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "403",
+            description = "권한 없음",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "평가 폼 또는 학생을 찾을 수 없음",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "500",
+            description = "서버 내부 오류",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        )
+    })
+    public ResponseEntity<MessageResponse> addScore(
+        @Parameter(description = "평가 폼 ID", required = true)
+        @PathVariable("form_id") Long formId, 
+        @RequestBody RequestScoreDto requestScoreDto) {
         gradingServiceApplication.addScore(formId, requestScoreDto);
 
         return new ResponseEntity<>(new MessageResponse("평가가 성공적으로 완료되었습니다."), HttpStatus.OK);
