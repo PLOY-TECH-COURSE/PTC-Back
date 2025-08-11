@@ -154,12 +154,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
 
                         // Grading-controller
-                        .requestMatchers(HttpMethod.POST, "/grades/forms").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/grades/forms").permitAll()
-                        .requestMatchers(HttpMethod.PATCH, "/grades/forms/{form_id}/presentation-order").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}/presentation-order").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/grades/forms/{form_id}/score").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/grades/forms").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/grades/forms").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/grades/forms/{form_id}/presentation-order").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}/presentation-order").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}").hasAnyRole("ADMIN","SUPERADMIN")
+                        .requestMatchers(HttpMethod.POST, "/grades/forms/{form_id}/score").hasRole("ADMIN")
 
                         // Student-controller
                         .requestMatchers(HttpMethod.GET, "/students/latest-generation").permitAll()

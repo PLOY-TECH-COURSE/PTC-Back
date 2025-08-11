@@ -276,7 +276,6 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
      */
     private void createGradingCompletionAnnouncement(GradingForm gradingForm) {
         try {
-            System.out.println("=== 공지사항 생성 시작 ===");
 
             // 상위 3명 학생 정보 조회
             List<StudentScoreDto> topStudents = calculateStudentScores(gradingForm.getId())
@@ -284,18 +283,14 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
                     .limit(3)
                     .toList();
 
-            System.out.println("topStudents 크기: " + topStudents.size());
 
             String title = String.format("🏆 %s 결과 발표!", gradingForm.getTitle());
-            System.out.println("title: " + title);
 
             StringBuilder contentBuilder = new StringBuilder();
 
             // 상위 3명 정보 추가
             if (!topStudents.isEmpty()) {
                 contentBuilder.append("<결과 src=\"");
-
-
 
                 List<Integer> aOrder = List.of(1, 0, 2);
 
@@ -314,13 +309,7 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
                         contentBuilder.append(" ");
                     }
                 }
-                /*
-                * <결과 src="1등:강준영 https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png
-                *  2등:진수화 https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png
-                *  3등:이우린 https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcckdnY%2FbtqDogEdAS4%2F7kJZCk4ZhTYhNQMl6RkIU1%2Fimg.png">
-                * </결과>
-결과를 떠나, 여러분 각자의 열정과 노력이 큰 의미를 만들어주었습니다. 모두 수고 많으셨습니다.
-                * */
+
                 contentBuilder.append("\"></결과>\n결과를 떠나, 여러분 각자의 열정과 노력이 큰 의미를 만들어주었습니다. 모두 수고 많으셨습니다.");
             }
 
