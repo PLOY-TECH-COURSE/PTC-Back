@@ -14,7 +14,6 @@ import org.plteco.ploytechcourse.api.grading.form.dto.res.GradingFormDetailRespo
 import org.plteco.ploytechcourse.api.grading.form.dto.res.GradingFormResponseDto;
 import org.plteco.ploytechcourse.api.grading.form.dto.res.MessageResponse;
 import org.plteco.ploytechcourse.api.grading.form.dto.res.PresentationOrderResponseDto;
-import org.plteco.ploytechcourse.api.grading.form.dto.res.StudentScoreDto;
 import org.plteco.ploytechcourse.application.grading.command.PresentationOrderCommand;
 import org.plteco.ploytechcourse.application.grading.service.GradingServiceApplication;
 import org.plteco.ploytechcourse.shared.exception.ErrorResponse;
