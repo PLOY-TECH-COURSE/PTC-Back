@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.api.grade.dto.req;
+package org.plteco.ploytechcourse.api.grading.form.dto.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

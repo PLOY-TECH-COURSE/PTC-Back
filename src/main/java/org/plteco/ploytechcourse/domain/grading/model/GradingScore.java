@@ -3,6 +3,7 @@ package org.plteco.ploytechcourse.domain.grading.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -15,10 +16,11 @@ public class GradingScore {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private GradingQuestion gradingQuestion;
 
+    @Getter
     private Integer scoreValue;
 
     private Integer scoreOrder;

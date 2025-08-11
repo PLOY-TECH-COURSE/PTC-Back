@@ -33,6 +33,7 @@ public class GradingAnswer {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
+    @Getter
     // 채점자 (관리자)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grader_id", nullable = false)

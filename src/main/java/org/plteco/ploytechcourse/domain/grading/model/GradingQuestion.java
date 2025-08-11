@@ -15,17 +15,20 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "grading_questions")
 public class GradingQuestion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "form_id")
     private GradingForm gradingForm;
 
+    @Getter
     @Column(name = "question_text")
     private String question;
 
+    @Getter
     private Integer questionOrder;
 
     @Getter

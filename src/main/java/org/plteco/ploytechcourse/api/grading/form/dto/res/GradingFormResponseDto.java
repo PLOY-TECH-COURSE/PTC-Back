@@ -1,4 +1,4 @@
-package org.plteco.ploytechcourse.api.grade.dto.res;
+package org.plteco.ploytechcourse.api.grading.form.dto.res;
 
 import lombok.Data;
 import org.plteco.ploytechcourse.domain.grading.model.GradingForm;
@@ -19,7 +19,7 @@ public class GradingFormResponseDto {
         dto.setTitle(gradingForm.getTitle());
         dto.setDescription(gradingForm.getDescription());
         dto.setCompleted(gradingForm.isCompleted());
-        // createdAt이 LocalDateTime이면 LocalDate로 변환
+        // createdAt이 LocalDateTime 이면 LocalDate로 변환
         dto.setCreatedAt(gradingForm.getCreatedAt().toLocalDate());
         return dto;
     }

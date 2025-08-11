@@ -158,6 +158,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/grades/forms").permitAll()
                         .requestMatchers(HttpMethod.PATCH, "/grades/forms/{form_id}/presentation-order").permitAll()
                         .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}/presentation-order").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/grades/forms/{form_id}/score").permitAll()
 
                         // Student-controller
                         .requestMatchers(HttpMethod.GET, "/students/latest-generation").permitAll()
