@@ -150,7 +150,7 @@ public class AnnouncementServiceApplicationTest {
         when(modelMapper.map(testAnnouncement, AnnouncementInfoDTO.class)).thenReturn(testAnnouncementInfoDTO);
         when(announcementService.getAnnouncementUser(announcementId)).thenReturn(testUser);
         when(modelMapper.map(testUser, AnnouncementUserInfoDTO.class)).thenReturn(testUserInfoDTO);
-        when(announcementService.getUserGeneration(testAnnouncement)).thenReturn(Optional.of(1L));
+        when(announcementService.getUserGeneration(testAnnouncement)).thenReturn(Optional.of(1));
         
         // when
         AnnouncementDetailGetResponseDTO result = announcementServiceApplication.getAnnouncementDetail(announcementId);

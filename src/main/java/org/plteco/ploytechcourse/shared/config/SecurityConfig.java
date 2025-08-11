@@ -1,6 +1,5 @@
 package org.plteco.ploytechcourse.shared.config;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.application.user.logout.CustomLogoutFilter;
 import org.plteco.ploytechcourse.domain.jwt.repository.RefreshRepository;
@@ -15,15 +14,16 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -153,32 +153,40 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/users/{user-id}").hasAnyRole( "STUDENT", "ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/users").hasAnyRole("USER", "STUDENT", "ADMIN", "SUPERADMIN")
 
+                        // Grading-controller
+                        .requestMatchers(HttpMethod.POST, "/grades/forms").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/grades/forms").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/grades/forms/{form_id}/presentation-order").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}/presentation-order").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}").hasAnyRole("ADMIN","SUPERADMIN")
+                        .requestMatchers(HttpMethod.POST, "/grades/forms/{form_id}/score").hasRole("ADMIN")
+
+                        // Student-controller
+                        .requestMatchers(HttpMethod.GET, "/students/latest-generation").permitAll()
+
+
                         .anyRequest().denyAll()
                 )
                 .exceptionHandling(exception -> exception
                         .accessDeniedHandler(customAccessDeniedHandler)
                 )
-                .csrf(csrf -> csrf.disable())
-                .formLogin(form -> form.disable())
-                .httpBasic(httpBasic -> httpBasic.disable())
+                .csrf(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.cors(corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
+        http.cors(corsCustomizer -> corsCustomizer.configurationSource(request -> {
 
-            @Override
-            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+            CorsConfiguration configuration = new CorsConfiguration();
 
-                CorsConfiguration configuration = new CorsConfiguration();
+            // 모든 출처 허용
+            configuration.addAllowedOriginPattern("*"); // allowedOriginPatterns 사용
+            configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+            configuration.setAllowedHeaders(List.of("*"));
+            configuration.setAllowCredentials(true); // allowCredentials 설정
+            configuration.setExposedHeaders(List.of("Authorization"));
+            configuration.setMaxAge(3600L);
 
-                // 모든 출처 허용
-                configuration.addAllowedOriginPattern("*"); // allowedOriginPatterns 사용
-                configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-                configuration.setAllowedHeaders(Arrays.asList("*"));
-                configuration.setAllowCredentials(true); // allowCredentials 설정
-                configuration.setExposedHeaders(Arrays.asList("Authorization"));
-                configuration.setMaxAge(3600L);
-
-                return configuration;
-            }
+            return configuration;
         }));
         http.addFilterBefore(new JwtFilter(jwtUtil), LoginFilter.class);
         http.addFilterAt(new LoginFilter(authenticationManager(), jwtUtil,refreshRepository), UsernamePasswordAuthenticationFilter.class);
