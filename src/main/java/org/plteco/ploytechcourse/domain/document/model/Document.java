@@ -86,8 +86,8 @@ public class Document {
                 beforeDocs.getId(),
                 beforeDocs.getUser(),
                 updateRequestDTO.title(),
-                updateRequestDTO.content(),
-                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse/11.png"),
+                updateRequestDTO.content(), //
+                Optional.ofNullable(updateRequestDTO.thumbnail()).orElse("https://storage.googleapis.com/ploytechcourse-version3/391b0b82-c522-4fd5-9a75-5a1488c21b7e"),
                 updateRequestDTO.introduction(),
                 LocalDate.now(ZoneId.of("Asia/Seoul")),
                 beforeDocs.getDocumentLikeCount(),
