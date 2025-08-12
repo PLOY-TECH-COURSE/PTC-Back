@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.plteco.ploytechcourse.api.grading.form.dto.req.CreateFormDto;
 import org.plteco.ploytechcourse.api.grading.form.dto.req.PresentationOrderDto;
@@ -64,7 +65,7 @@ public class GradingController {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class))
         )
     })
-    public ResponseEntity<?> createGrade(@RequestBody CreateFormDto createFormDto) {
+    public ResponseEntity<?> createGrade(@Valid @RequestBody CreateFormDto createFormDto) {
         try {
             gradingServiceApplication.createGradingForm(createFormDto);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -160,7 +161,7 @@ public class GradingController {
     public ResponseEntity<MessageResponse> updatePresentationOrder(
         @Parameter(description = "평가 폼 ID", required = true)
         @PathVariable("form_id") Long formId,
-        @RequestBody PresentationOrderDto dto) {
+        @Valid @RequestBody PresentationOrderDto dto) {
         gradingServiceApplication.applyPresentationOrders(formId, PresentationOrderCommand.fromDto(dto));
 
         return new ResponseEntity<>(new MessageResponse("발표 순서가 정상적으로 저장되었습니다."), HttpStatus.OK);
@@ -292,8 +293,8 @@ public class GradingController {
     })
     public ResponseEntity<MessageResponse> addScore(
         @Parameter(description = "평가 폼 ID", required = true)
-        @PathVariable("form_id") Long formId, 
-        @RequestBody RequestScoreDto requestScoreDto) {
+        @PathVariable("form_id") Long formId,
+        @Valid @RequestBody RequestScoreDto requestScoreDto) {
         gradingServiceApplication.addScore(formId, requestScoreDto);
 
         return new ResponseEntity<>(new MessageResponse("평가가 성공적으로 완료되었습니다."), HttpStatus.OK);

@@ -1,6 +1,7 @@
 package org.plteco.ploytechcourse.api.grading.form.dto.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import java.util.List;
 
@@ -11,5 +12,6 @@ public class PresentationOrderDto {
         description = "발표 순서 목록",
         required = true
     )
+    @NotEmpty(message = "순서가 유효하지 않습니다.")
     private List<OrderDto> orders;
 }
