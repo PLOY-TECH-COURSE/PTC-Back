@@ -2,6 +2,8 @@ package org.plteco.ploytechcourse.api.grading.form.dto.req;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -12,6 +14,7 @@ public class OrderDto {
         description = "학생 ID",
         required = true
     )
+    @NotNull(message = "student_id가 입력되지 않았습니다.")
     private Long studentId;
     
     @Schema(
@@ -19,5 +22,6 @@ public class OrderDto {
         minimum = "1",
         required = true
     )
+    @Min(value = 1)
     private Integer order;
 }
