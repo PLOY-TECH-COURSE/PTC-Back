@@ -120,6 +120,9 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
     public GradingFormDetailResponseDto getGradingFormByFormId(Long formId) {
         GradingForm gradingForm = gradingFormRepository.findById(formId).orElseThrow(() -> new PltecoException("해당 폼을 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
 
+        if (gradingForm.getPresentationOrders().isEmpty())
+            throw new PltecoException("순서를 먼저 입력해야 합니다.", HttpStatus.BAD_REQUEST);
+
         List<GradingQuestion> gradingQuestions = gradingForm.getGradingQuestions();
 
         List<GradingFormDetailResponseDto.ResponseQuestionDto> responseQuestionDtos = gradingQuestions.stream()
