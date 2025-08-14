@@ -163,19 +163,28 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
         // 2. 평가 폼 조회
         GradingForm gradingForm = gradingFormRepository.findById(formId)
                 .orElseThrow(() -> new PltecoException("해당 평가 폼을 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
-        
-        // 3. 평가 대상 학생 조회
+
+        // 3. 학생 전원 평가 했는지 확인
+        int answersCount =  (int) gradingForm.getAnswers().stream()
+                .filter(answer -> answer.getGrader().getId().equals(grader.getId()))
+                .count();
+
+        if (answersCount == gradingForm.findGradedStudentsCount(grader.getId())) {
+            throw new PltecoException("이미 모든 학생을 채점하였습니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        // 4. 평가 대상 학생 조회
         Student student = studentRepository.findById(scoreDto.getStudentId())
                 .orElseThrow(() -> new PltecoException("해당 학생을 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
-        
-        // 4. 중복 평가 방지 - 이미 해당 평가자가 이 학생을 평가했는지 확인
+
+        // 5. 중복 평가 방지 - 이미 해당 평가자가 이 학생을 평가했는지 확인
         boolean alreadyGraded = gradingAnswerRepository.existsByFormIdAndGraderIdAndStudentId(
                 formId, grader.getId(), student.getId());
         if (alreadyGraded) {
             throw new PltecoException("이미 해당 학생에 대한 평가를 완료했습니다.", HttpStatus.BAD_REQUEST);
         }
-        
-        // 5. 각 답변에 대해 GradingAnswer 엔티티 생성 및 저장
+
+        // 6. 각 답변에 대해 GradingAnswer 엔티티 생성 및 저장
         for (RequestScoreDto.Answer answer : scoreDto.getAnswers()) {
             // 질문 조회
             GradingQuestion question = gradingForm.getGradingQuestions().stream()
@@ -204,15 +213,12 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
             gradingAnswerRepository.flush();
         }
 
-        // 6. 평가 완료 상태 업데이트 확인 및 공지사항 생성
+        // 7. 평가 완료 상태 업데이트 확인 및 공지사항 생성
         // ✅ 수정: 올바른 완료 조건 확인
         long totalExpectedAnswers = gradingForm.getExpectedTotalAnswers();
         long currentAnswerCount = gradingAnswerRepository.countByFormId(formId);
-        System.out.println(totalExpectedAnswers);
-        System.out.println(currentAnswerCount);
-        System.out.println(gradingForm.isCompleted());
-        System.out.println((currentAnswerCount >= totalExpectedAnswers));
-        if (currentAnswerCount >= totalExpectedAnswers && !gradingForm.isCompleted()) {
+
+        if (currentAnswerCount == totalExpectedAnswers && !gradingForm.isCompleted()) {
             // 평가 완료 상태로 변경
             gradingForm.markAsCompleted();
             gradingFormRepository.save(gradingForm);
