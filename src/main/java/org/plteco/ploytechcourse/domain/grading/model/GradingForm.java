@@ -78,10 +78,7 @@ public class GradingForm {
     }
 
     public int findGradedStudentsCount(Long graderId){
-        int count = 0;
-        count = (int) this.answers.stream()
-                .filter(answer -> answer.getGrader().getId().equals(graderId)).count();
-        return count;
+        return this.presentationOrders.size();
     }
 
     /** 편의 메서드 */
