@@ -77,6 +77,8 @@ public class GradingForm {
         this.gradingQuestions.add(question);
     }
 
+
+    // 평가 학생 수 반환
     public int findGradedStudentsCount(Long graderId){
         return this.presentationOrders.size();
     }
@@ -119,6 +121,32 @@ public class GradingForm {
     /** 평가 완료 상태로 변경 */
     public void markAsCompleted() {
         this.completed = true;
+    }
+
+    // grader 수보다 많은 사람이 채정하는지 확인
+    private boolean canGrade(Long graderId) {
+
+        // 채점한 지 확인
+        boolean already = this.answers.stream()
+                .anyMatch(answer -> answer.getGrader().getId().equals(graderId));
+
+        if  (already) {
+            return true;
+        }
+
+        // 현재 채점한 고유 grader 수 계산
+        int uniqueGraders = (int) this.answers.stream()
+                .map(answer -> answer.getGrader().getId())
+                .distinct()
+                .count();
+
+        return this.graderCount >= uniqueGraders + 1;
+    }
+
+    public void validateCanGrade(Long graderId) {
+        if (!canGrade(graderId)) {
+            throw new PltecoException("채점자 수 제한을 초과했습니다", HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
