@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -105,7 +106,11 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
     public List<PresentationOrderResponseDto> getPresentationOrder(Long formId) {
         List<GradingPresentationOrder> orders = gradingPresentationOrderRepository.findByGradingFormId(formId);
 
-       return orders.stream()
+        orders = orders.stream()
+                .sorted(Comparator.comparing(GradingPresentationOrder::getOrderIndex)) // 오름차순
+                .toList();
+
+        return orders.stream()
                 .map(order -> PresentationOrderResponseDto
                         .fromOrder(
                                 order.getStudent().getId(),
