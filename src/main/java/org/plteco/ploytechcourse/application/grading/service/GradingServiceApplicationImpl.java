@@ -68,10 +68,16 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
 
     @Override
     public List<GradingFormResponseDto> getAllGradingForm() {
-        List<GradingForm> gradingFormList = gradingFormRepository.findAll();
+        List<GradingForm> gradingForms = gradingFormRepository.findAll();
+        User currentUser = userContextUtil.getCurrentUser();
 
-        return gradingFormList.stream()
-                .map(GradingFormResponseDto::fromGradingForm)
+        return gradingForms.stream()
+                .map(form -> GradingFormResponseDto.fromGradingForm(
+                        form,
+                        currentUser.getId(),
+                        // 채점자가 폼에 모든 학생을 채점했는지 확인
+                        form.AnswerCountByGrader(currentUser.getId()) == studentRepository.countByLatestGeneration()) // 채점 갯수 == 마지막 기(현재 5기) 학생 수
+                )
                 .toList();
     }
 
@@ -164,7 +170,7 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
     public void addScore(Long formId, RequestScoreDto scoreDto) {
         // 1. 현재 평가자(로그인한 사용자) 정보 가져오기
         User grader = userContextUtil.getCurrentUser();
-        
+
         // 2. 평가 폼 조회
         GradingForm gradingForm = gradingFormRepository.findById(formId)
                 .orElseThrow(() -> new PltecoException("해당 평가 폼을 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
@@ -287,7 +293,6 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
         return mutableStudents;
     }
 
-    ///
     /**
      * 평가 완료 시 자동으로 공지사항을 생성하는 메서드
      */

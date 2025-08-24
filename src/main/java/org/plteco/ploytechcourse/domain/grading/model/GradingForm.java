@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.plteco.ploytechcourse.domain.application.model.Student;
+import org.plteco.ploytechcourse.domain.user.signup.model.entity.User;
 import org.plteco.ploytechcourse.shared.exception.PltecoException;
 import org.springframework.http.HttpStatus;
 
@@ -123,24 +124,38 @@ public class GradingForm {
         this.completed = true;
     }
 
+
+    // 존재 여부만 묻는, NPE 방지
+    public boolean hasAnswerFrom(Long graderId) {
+        if (graderId == null) return false;
+        return answers.stream()
+                .map(GradingAnswer::getGrader)
+                .filter(Objects::nonNull)
+                .map(User::getId)
+                .anyMatch(id -> Objects.equals(id, graderId));
+    }
+
     // grader 수보다 많은 사람이 채정하는지 확인
     private boolean canGrade(Long graderId) {
+        // 이미 본인이 채점했다면(수정 허용) OK
+        if (hasAnswerFrom(graderId)) return true;
 
-        // 채점한 지 확인
-        boolean already = this.answers.stream()
-                .anyMatch(answer -> answer.getGrader().getId().equals(graderId));
-
-        if  (already) {
-            return true;
-        }
-
-        // 현재 채점한 고유 grader 수 계산
-        int uniqueGraders = (int) this.answers.stream()
-                .map(answer -> answer.getGrader().getId())
+        long uniqueGraders = answers.stream()
+                .map(GradingAnswer::getGrader)
+                .filter(Objects::nonNull)
+                .map(User::getId)
+                .filter(Objects::nonNull)
                 .distinct()
                 .count();
 
-        return this.graderCount >= uniqueGraders + 1;
+        // 새 채점자가 들어갈 자리가 남았는가
+        return uniqueGraders < graderCount;
+    }
+
+    public int AnswerCountByGrader(Long graderId) {
+        return (int) answers.stream()
+                .filter(answer -> Objects.equals(answer.getGrader().getId(), graderId))
+                .count();
     }
 
     public void validateCanGrade(Long graderId) {
