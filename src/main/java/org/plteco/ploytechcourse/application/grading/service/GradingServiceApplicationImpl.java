@@ -326,10 +326,6 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
 
                     contentBuilder.append(String.format("%d등:%s %s",
                             student.getRank(), student.getStudentName(), studentProfile));
-
-                    if (i < topStudents.size() - 1) {
-                        contentBuilder.append(" ");
-                    }
                 }
 
                 contentBuilder.append("\"></결과>\n결과를 떠나, 여러분 각자의 열정과 노력이 큰 의미를 만들어주었습니다. 모두 수고 많으셨습니다.");
