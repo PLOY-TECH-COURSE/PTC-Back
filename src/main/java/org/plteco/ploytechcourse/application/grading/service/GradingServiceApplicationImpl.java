@@ -224,7 +224,6 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
             
             // 저장
             gradingAnswerRepository.save(gradingAnswer);
-            gradingAnswerRepository.flush();
         }
 
         // 7. 평가 완료 상태 업데이트 확인 및 공지사항 생성
@@ -293,10 +292,13 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
         return mutableStudents;
     }
 
+
+
     /**
      * 평가 완료 시 자동으로 공지사항을 생성하는 메서드
      */
-    private void createGradingCompletionAnnouncement(GradingForm gradingForm) {
+    @Transactional
+    protected void createGradingCompletionAnnouncement(GradingForm gradingForm) {
         try {
 
             // 상위 3명 학생 정보 조회
