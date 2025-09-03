@@ -24,8 +24,11 @@ import org.plteco.ploytechcourse.shared.exception.PltecoException;
 import org.plteco.ploytechcourse.shared.jwt.UserContextUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -229,15 +232,20 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
         // 7. 평가 완료 상태 업데이트 확인 및 공지사항 생성
         // ✅ 수정: 올바른 완료 조건 확인
         long totalExpectedAnswers = gradingForm.getExpectedTotalAnswers();
-        long currentAnswerCount = gradingAnswerRepository.countByFormId(formId);
+        long currentAnswerCount = gradingForm.getAnswers().size();
 
         if (currentAnswerCount == totalExpectedAnswers && !gradingForm.isCompleted()) {
             // 평가 완료 상태로 변경
             gradingForm.markAsCompleted();
             gradingFormRepository.save(gradingForm);
             
-            // 평가 완료 공지사항 생성
-            createGradingCompletionAnnouncement(gradingForm);
+            // 평가 완료 공지사항 생성 (별도 트랜잭션)
+            try {
+                createGradingCompletionAnnouncement(gradingForm);
+            } catch (Exception e) {
+                // 공지사항 생성 실패해도 평가 완료는 유지
+                System.err.println("공지사항 생성 실패하였으나 평가는 정상 완료됨: " + e.getMessage());
+            }
         }
     }
 
@@ -297,7 +305,7 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
     /**
      * 평가 완료 시 자동으로 공지사항을 생성하는 메서드
      */
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     protected void createGradingCompletionAnnouncement(GradingForm gradingForm) {
         try {
 
@@ -306,7 +314,6 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
                     .stream()
                     .limit(3)
                     .toList();
-
 
             String title = String.format("🏆 %s 결과 발표!", gradingForm.getTitle());
 
@@ -335,7 +342,6 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
 
             String introduction = String.format("%s 평가가 완료되어 자동으로 생성된 공지사항입니다.", gradingForm.getTitle());
 
-
             // SUPERADMIN 사용자 찾기
             User superAdmin = userRepository.findByRole(RoleEnum.ROLE_SUPERADMIN);
 
@@ -349,12 +355,37 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
                     .content(contentBuilder.toString())
                     .introduction(introduction)
                     .thumbnail("https://storage.googleapis.com/ploytechcourse-version3/391b0b82-c522-4fd5-9a75-5a1488c21b7e")
+                    .createAt(LocalDate.now(ZoneId.of("Asia/Seoul"))) // createAt 필드 명시적으로 설정
                     .build();
 
             announcementRepository.save(announcement);
 
         } catch (Exception e) {
             System.err.println("평가 완료 공지사항 생성 실패: " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteGradingForm(Long formId) {
+        // 1. 평가 폼 존재 여부 확인
+        GradingForm gradingForm = gradingFormRepository.findById(formId)
+                .orElseThrow(() -> new PltecoException("해당 평가 폼을 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
+
+
+        // 2. 관련 데이터들을 순서대로 삭제
+        try {
+            // 2-1. 발표 순서 삭제
+            gradingPresentationOrderRepository.deleteByGradingForm(gradingForm);
+            
+            // 2-2. 답변 데이터 삭제
+            gradingAnswerRepository.deleteByForm(gradingForm);
+            
+            // 2-3. 평가 폼 삭제 (질문은 cascade로 자동 삭제됨)
+            gradingFormRepository.delete(gradingForm);
+            
+        } catch (Exception e) {
+            throw new PltecoException("평가 폼 삭제 중 오류가 발생했습니다: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
