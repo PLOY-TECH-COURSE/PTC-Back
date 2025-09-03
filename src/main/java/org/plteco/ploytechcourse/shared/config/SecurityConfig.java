@@ -160,7 +160,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}/presentation-order").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/grades/forms/{form_id}").hasAnyRole("ADMIN","SUPERADMIN")
                         .requestMatchers(HttpMethod.POST, "/grades/forms/{form_id}/score").hasRole("ADMIN")
-
+                        .requestMatchers(HttpMethod.DELETE, "/grades/forms/{form_id}").hasAnyRole("SUPERADMIN")
                         // Student-controller
                         .requestMatchers(HttpMethod.GET, "/students/latest-generation").permitAll()
 
