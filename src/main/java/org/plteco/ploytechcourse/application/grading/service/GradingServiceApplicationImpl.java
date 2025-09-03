@@ -149,7 +149,7 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
 
         int count = 1 + (int) gradingForm.getAnswers().stream()
                 .filter(answer -> answer.getGrader().getId().equals(grader.getId()))
-                .count();
+                .count() / gradingForm.getGradingQuestions().size();
 
         GradingPresentationOrder gradingPresentationOrder = gradingForm.getPresentationOrders().stream()
                 .filter(order -> order.getOrderIndex() == count).findFirst().get();
