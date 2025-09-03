@@ -229,12 +229,20 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
             gradingAnswerRepository.save(gradingAnswer);
         }
 
-        // 7. 평가 완료 상태 업데이트 확인 및 공지사항 생성
+        // 7. 평가 완료 상태 업데이트 확인 및 공지사항 생성 2 * 3 * 7 = 42
         // ✅ 수정: 올바른 완료 조건 확인
         long totalExpectedAnswers = gradingForm.getExpectedTotalAnswers();
-        long currentAnswerCount = gradingForm.getAnswers().size();
+        long currentAnswerCount = gradingAnswerRepository.countByFormId(formId);
+        
+        // 디버깅 로그 추가
+        System.out.println("=== 평가 완료 체크 ===");
+        System.out.println("currentAnswerCount: " + currentAnswerCount);
+        System.out.println("totalExpectedAnswers: " + totalExpectedAnswers);
+        System.out.println("isCompleted: " + gradingForm.isCompleted());
+        System.out.println("조건 만족: " + (currentAnswerCount == totalExpectedAnswers && !gradingForm.isCompleted()));
 
         if (currentAnswerCount == totalExpectedAnswers && !gradingForm.isCompleted()) {
+            System.out.println("평가 완료 조건 만족! 공지사항 생성 시작...");
             // 평가 완료 상태로 변경
             gradingForm.markAsCompleted();
             gradingFormRepository.save(gradingForm);
@@ -246,6 +254,8 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
                 // 공지사항 생성 실패해도 평가 완료는 유지
                 System.err.println("공지사항 생성 실패하였으나 평가는 정상 완료됨: " + e.getMessage());
             }
+        } else {
+            System.out.println("평가 완료 조건 불만족 - 공지사항 생성 안함");
         }
     }
 
@@ -362,6 +372,7 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
 
         } catch (Exception e) {
             System.err.println("평가 완료 공지사항 생성 실패: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
