@@ -20,4 +20,5 @@ public interface GradingServiceApplication {
     List<PresentationOrderResponseDto> getPresentationOrder(Long formId);
     GradingFormDetailResponseDto getGradingFormByFormId(Long formId);
     void addScore(Long formId, RequestScoreDto scoreDto);
+    void deleteGradingForm(Long formId);
 }

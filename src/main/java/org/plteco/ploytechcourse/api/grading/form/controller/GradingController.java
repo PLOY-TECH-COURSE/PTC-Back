@@ -300,4 +300,43 @@ public class GradingController {
         return new ResponseEntity<>(new MessageResponse("평가가 성공적으로 완료되었습니다."), HttpStatus.OK);
     }
 
+    @DeleteMapping("/forms/{form_id}")
+    @Operation(
+        summary = "평가 폼 삭제",
+        description = "특정 평가 폼을 삭제합니다. SUPERADMIN 권한이 필요하며, 관련된 모든 데이터가 함께 삭제됩니다."
+    )
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "평가 폼 삭제 성공",
+            content = @Content(schema = @Schema(implementation = MessageResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "401",
+            description = "인증 실패",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "403",
+            description = "권한 없음 (SUPERADMIN 권한 필요)",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "평가 폼을 찾을 수 없음",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "500",
+            description = "서버 내부 오류",
+            content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+        )
+    })
+    public ResponseEntity<MessageResponse> deleteGradingForm(
+        @Parameter(description = "삭제할 평가 폼 ID", required = true)
+        @PathVariable("form_id") Long formId) {
+        gradingServiceApplication.deleteGradingForm(formId);
+        return new ResponseEntity<>(new MessageResponse("평가 폼이 성공적으로 삭제되었습니다."), HttpStatus.OK);
+    }
+
 }

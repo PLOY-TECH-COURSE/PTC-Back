@@ -1,6 +1,7 @@
 package org.plteco.ploytechcourse.domain.grading.repository;
 
 import org.plteco.ploytechcourse.domain.grading.model.GradingAnswer;
+import org.plteco.ploytechcourse.domain.grading.model.GradingForm;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -41,6 +42,9 @@ public interface GradingAnswerRepository extends JpaRepository<GradingAnswer, Lo
     // 특정 폼에서 특정 학생의 모든 답변 조회
     @Query("SELECT a FROM GradingAnswer a WHERE a.form.id = :formId AND a.student.id = :studentId")
     List<GradingAnswer> findByFormIdAndStudentId(@Param("formId") Long formId, @Param("studentId") Long studentId);
+    
+    // 평가 폼 삭제를 위한 답변 일괄 삭제
+    void deleteByForm(GradingForm gradingForm);
     
     // Projection 인터페이스
     interface StudentScoreProjection {
