@@ -229,11 +229,11 @@ public class GradingServiceApplicationImpl implements GradingServiceApplication 
             gradingAnswerRepository.save(gradingAnswer);
         }
 
-        // 7. 평가 완료 상태 업데이트 확인 및 공지사항 생성
+        // 7. 평가 완료 상태 업데이트 확인 및 공지사항 생성 2 * 3 * 7 = 42
         // ✅ 수정: 올바른 완료 조건 확인
         long totalExpectedAnswers = gradingForm.getExpectedTotalAnswers();
-        long currentAnswerCount = gradingForm.getAnswers().size();
-
+        long currentAnswerCount = gradingAnswerRepository.countByFormId(formId);
+  
         if (currentAnswerCount == totalExpectedAnswers && !gradingForm.isCompleted()) {
             // 평가 완료 상태로 변경
             gradingForm.markAsCompleted();
