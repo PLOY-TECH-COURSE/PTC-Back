@@ -3,9 +3,8 @@ name: Deploy Spring Boot Application
 on:
   pull_request:
     branches:
-      - master  # master 브랜치로 머지될 때만 실행
-    types:
-      - closed
+      - master
+    types: [closed]
 
 jobs:
   build:
@@ -16,10 +15,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 21  # ✅ Java 21 설정
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'  # OpenJDK 기반의 Temurin 사용
+          distribution: 'temurin'
           java-version: '21'
 
       - name: Grant execute permission for Gradle
@@ -31,22 +30,31 @@ jobs:
           echo "${{ secrets.GCP_CREDENTIALS_B64 }}" | base64 --decode > src/main/resources/cosmic-kayak-467113-g5-a41d4c7c5286.json
 
       - name: Cache Gradle dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: ~/.gradle/caches
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ runner.os }}-
 
-      - name: Build with Gradle
-        run: ./gradlew build -x test --parallel --no-daemon --build-cache --configure-on-demand
+      - name: Build with Gradle (bootJar)
+        run: ./gradlew bootJar -x test --parallel --no-daemon --build-cache --configure-on-demand
 
+      - name: Normalize Jar Name -> build/libs/app.jar
+        run: |
+          set -euxo pipefail
+          JAR="$(ls -1 build/libs/*.jar | head -n1)"
+          echo "Found JAR: $JAR"
+          cp "$JAR" build/libs/app.jar
+          ls -l build/libs/app.jar
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-jar
-          path: build/libs/app.jar  # ✅ 정확한 파일명 지정
+          path: build/libs/app.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -56,7 +64,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Create GCP Credentials File
+      - name: Create GCP Credentials File (if needed by deploy step)
         run: |
           mkdir -p src/main/resources
           echo "${{ secrets.GCP_CREDENTIALS_B64 }}" | base64 --decode > src/main/resources/cosmic-kayak-467113-g5-a41d4c7c5286.json
@@ -67,7 +75,7 @@ jobs:
           name: app-jar
           path: build/libs
 
-      - name: Setup SSH Key
+      - name: Setup SSH Key (B안: base64 decode)
         run: |
           set -eux
           mkdir -p ~/.ssh
@@ -75,37 +83,39 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p ${{ secrets.SERVER_PORT }} -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Debug SSH Key
+      - name: Debug SSH Key (safe head)
         run: |
           ls -lah ~/.ssh
-          head -5 ~/.ssh/id_rsa  # SSH 키 앞부분만 확인 (보안 유의)
+          head -5 ~/.ssh/id_rsa || true
 
-      - name: Test SSH Connection
+      - name: Test SSH Connection (統一된 사용자/포트/호스트/키)
         run: |
-          ssh -p ${{ secrets.SERVER_PORT }} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa remote-cli@${{ secrets.SERVER_HOST }} "echo 'SSH Connected!'"
+          ssh -p ${{ secrets.SERVER_PORT }} -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo 'SSH Connected!'"
 
       - name: Deploy with Docker Compose
         run: |
+          set -euxo pipefail
           if [ ! -f build/libs/app.jar ]; then
             echo "❌ app.jar not found!"
             exit 1
           fi
-          
-          # 서버로 JAR 파일 전송
-          scp -P ${{ secrets.SERVER_PORT }} build/libs/app.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/app.jar
-          
-          # 서버에서 Docker 컨테이너 배포
-          ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
-            cd ${{ secrets.DEPLOY_DIR }} 
-          
-            echo "📌 기존 컨테이너 중지 및 삭제..."
-            docker compose down  # 기존 컨테이너 종료
-  
-            echo "📌 기존 이미지 삭제..."
+
+          # 1) 서버로 JAR 전송
+          scp -P ${{ secrets.SERVER_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no build/libs/app.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}/app.jar
+
+          # 2) 서버에서 컨테이너 교체
+          ssh -p ${{ secrets.SERVER_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            set -euxo pipefail
+            cd "${{ secrets.DEPLOY_DIR }}"
+
+            echo "📌 docker compose down"
+            docker compose down || true
+
+            echo "📌 remove old image (if any)"
             docker rmi -f $(docker images -q ploytechcourse:plte) 2>/dev/null || echo "이미지 없음"
-  
-            echo "📌 새로운 이미지 빌드 및 컨테이너 실행..."
+
+            echo "📌 docker compose up -d --build"
             docker compose up -d --build
-  
+
             echo "🚀 배포 완료!"
           EOF
