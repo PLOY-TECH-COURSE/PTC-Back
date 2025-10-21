@@ -41,14 +41,6 @@ jobs:
       - name: Build with Gradle (bootJar)
         run: ./gradlew bootJar -x test --parallel --no-daemon --build-cache --configure-on-demand
 
-      - name: Normalize Jar Name -> build/libs/app.jar
-        run: |
-          set -euxo pipefail
-          JAR="$(ls -1 build/libs/*.jar | head -n1)"
-          echo "Found JAR: $JAR"
-          cp "$JAR" build/libs/app.jar
-          ls -l build/libs/app.jar
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
