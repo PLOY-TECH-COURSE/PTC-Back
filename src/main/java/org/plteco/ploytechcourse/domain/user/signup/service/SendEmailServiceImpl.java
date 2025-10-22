@@ -91,7 +91,8 @@ public class SendEmailServiceImpl implements SendEmailService {
     @Override
     public void sendEmail(String toEmail, String title, String content) throws MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+        helper.setFrom("ploytechcourse@gmail.com");
         helper.setTo(toEmail);
         helper.setSubject(title);
         helper.setText(content, true);
