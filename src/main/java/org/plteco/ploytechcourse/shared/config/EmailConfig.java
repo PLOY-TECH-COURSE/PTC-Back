@@ -36,6 +36,12 @@ public class EmailConfig {
     @Value("${spring.mail.properties.mail.smtp.timeout}")
     private int timeout;
 
+    @Value("${spring.mail.properties.mail.smtp.starttls.required}")
+    private boolean starttlsRequired;
+
+    @Value("${spring.mail.properties.mail.smtp.ssl.trust}")
+    private String sslTrust;
+
     /**
      * JavaMailSender 빈을 생성하고 반환합니다.
      * 이메일 서버 설정을 기반으로 이메일 전송을 위한 JavaMailSender를 구성합니다.
@@ -64,6 +70,8 @@ public class EmailConfig {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", auth);
         properties.put("mail.smtp.starttls.enable", starttlsEnable);
+        properties.put("mail.smtp.starttls.required", starttlsRequired);
+        properties.put("mail.smtp.ssl.trust", sslTrust);
         properties.put("mail.smtp.timeout", timeout);
         return properties;
     }
