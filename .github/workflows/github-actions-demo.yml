@@ -68,11 +68,11 @@ jobs:
           name: app-jar
           path: build/libs
 
-      - name: Setup SSH Key (Base64 decode)
+      - name: Setup SSH Key (raw secret)
         run: |
           set -eux
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > ~/.ssh/id_rsa
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p "${{ secrets.SERVER_PORT }}" -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
 
