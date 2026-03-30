@@ -39,6 +39,10 @@ public class ProcessTokenReissueImpl implements ProcessTokenReissue {
 
         String refresh = null;
         Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            log.error("리프레시 토큰이 없습니다.");
+            return new ResponseEntity<>("refresh token null", HttpStatus.BAD_REQUEST);
+        }
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("refresh")) {
                 refresh = cookie.getValue();
@@ -93,6 +97,7 @@ public class ProcessTokenReissueImpl implements ProcessTokenReissue {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(24 * 60 * 60 * 14);  // 14일 유효
         cookie.setHttpOnly(true); // 클라이언트 측에서 접근 불가
+        cookie.setPath("/");
         log.info("쿠키 생성 끝");
         return cookie;
     }

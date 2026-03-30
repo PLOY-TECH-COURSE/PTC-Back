@@ -56,6 +56,11 @@ public class CustomLogoutFilter extends GenericFilterBean {
 
         String refresh = null;
         Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            log.error("로그아웃 시 리프레시 토큰이 없습니다.");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("refresh")) {
                 refresh = cookie.getValue();
@@ -95,6 +100,7 @@ public class CustomLogoutFilter extends GenericFilterBean {
 
         Cookie cookie = new Cookie("refresh", null);
         cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
         cookie.setPath("/");
 
         response.addCookie(cookie);
