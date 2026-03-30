@@ -53,10 +53,10 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String email = null;
         String password = null;
-        boolean is_deleted=false;
+        String contentType = request.getContentType();
 
         try {
-            if (request.getContentType() != null && request.getContentType().equalsIgnoreCase("application/json")) {
+            if (contentType != null && contentType.toLowerCase().startsWith("application/json")) {
                 // JSON 요청 처리
                 ObjectMapper objectMapper = new ObjectMapper();
                 Map<String, String> requestBody = objectMapper.readValue(request.getInputStream(), new TypeReference<Map<String, String>>() {});
@@ -169,6 +169,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(24 * 60 * 60*14); // 쿠키의 최대 수명: 14일
         cookie.setHttpOnly(true); // JavaScript에서 접근할 수 없도록 설정
+        cookie.setPath("/");
         return cookie;
     }
 
